@@ -1,0 +1,16 @@
+
+
+.form-control.ng-select  {   
+    padding-top: 0;
+    padding-left: 0;
+    padding-bottom: 0;
+    padding-right: 0;
+  }
+
+
+  .ng-select .ng-select-container {
+    color: #5c6873;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}

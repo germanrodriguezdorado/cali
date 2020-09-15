@@ -1,0 +1,22 @@
+# #################################
+# ARCHIVOS Y DIRECTORIOS DE BACKEND
+# #################################
+
+/backend/app/config/parameters.yml
+/backend/.web-server-pid
+/backend/var/sessions/
+/backend/var/cache/
+/backend/var/logs/
+/backend/var/spooldir/
+/backend/web/imagenes_comercios/
+/backend/.env
+/backend/vendor/
+
+# #################################
+# ARCHIVOS Y DIRECTORIOS DE WEBAPP
+# #################################
+# poner aca..
+/webapp/node_modules/
+# /webapp/dist/
+# /webapp/dist/avalon/
+# /webapp/dist/avalon/browser/
