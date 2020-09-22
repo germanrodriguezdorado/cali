@@ -4,12 +4,17 @@ export const navItems: INavData[] = [
   {
     name: 'Propiedades',
     url: '/propiedades',
-    icon: 'icon-puzzle',
+    icon: 'icon-home',
     children: [
       {
         name: 'Listado',
         url: '/propiedades/listado',
-        icon: 'icon-puzzle'
+        icon: 'icon-list'
+      },
+      {
+        name: 'Nueva',
+        url: '/propiedades/nueva',
+        icon: 'icon-plus'
       }
     ]
   }

@@ -26,7 +26,8 @@
               "node_modules/simple-line-icons/dist/styles/simple-line-icons.css",
               "src/scss/style.scss",
               "node_modules/@ng-select/ng-select/themes/default.theme.css",
-              "src/assets/css/custom_style.css"
+              "src/assets/css/custom_style.css",
+              "./node_modules/ngx-toastr/toastr.css" 
             ],
             "stylePreprocessorOptions": {
               "includePaths": [

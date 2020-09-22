@@ -27,6 +27,9 @@ import { RegisterComponent } from '@views/register/register.component';
 import { JwtInterceptor } from '@helpers/jwt.interceptor';
 import { Utilidades } from "@helpers/utilidades";
 import { VersionCheckService } from "@services/version-check.service";
+import { ToastService } from '@services/toast.service';
+
+
 
 const APP_CONTAINERS = [
   DefaultLayoutComponent
@@ -48,6 +51,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ToastrModule } from "ngx-toastr";
+import { CustomToast } from '@helpers/custom.toast';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   imports: [
@@ -66,7 +72,11 @@ import { NgSelectModule } from '@ng-select/ng-select';
     NgSelectModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxSpinnerModule,
+    ToastrModule.forRoot({
+      toastComponent: CustomToast // added custom toast!
+    }),
   ],
   declarations: [
     AppComponent,
@@ -74,7 +84,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
     P404Component,
     P500Component,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CustomToast,
+    ToastService
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
@@ -82,6 +94,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     { provide: Utilidades, useClass: Utilidades },
     { provide: VersionCheckService, useClass: VersionCheckService }
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent ],
+  entryComponents: [ CustomToast ]
 })
 export class AppModule { }

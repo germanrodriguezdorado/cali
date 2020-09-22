@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit{
 
   returnUrl: string; 
   loginForm: FormGroup;
+  loading: boolean;
   @ViewChild("inputUsuario", { static: true }) inputUsuario:ElementRef;
 
 
@@ -34,8 +35,9 @@ export class LoginComponent implements OnInit{
 
 
 
-  ngOnInit() {            
-    this.AuthService.logout();    
+  ngOnInit() {
+    this.loading = false;            
+    this.AuthService.logout(); 
     this.returnUrl = this.route.snapshot.queryParams["returnUrl"];
 
     this.loginForm = this.FormBuilder.group({
@@ -58,14 +60,17 @@ export class LoginComponent implements OnInit{
         
 
    
-
+    this.loading = true; 
+    
+    
     this.AuthService.login(this.loginForm.controls['username'].value, this.loginForm.controls['password'].value)
         .pipe(first())
         .subscribe(
             data => {
                
                 if(data["user_id"] == ""){ // Mal login    
-                    this.inputUsuario.nativeElement.focus();                
+                    this.inputUsuario.nativeElement.focus(); 
+                    this.loading = false;                 
                 }else{
 
                     // Si hay ruta de retorno, lo redirijo. Sino voy para el home de cada tipo de user
@@ -73,7 +78,7 @@ export class LoginComponent implements OnInit{
                     if(this.returnUrl != null && this.returnUrl != "/"){
                         this.router.navigate([this.returnUrl]); 
                     }else{
-                        this.router.navigate([""]);
+                        this.router.navigate(["propiedades/listado"]);
                     }
                 }                   
             });
