@@ -2,20 +2,36 @@ import { INavData } from '@coreui/angular';
 
 export const navItems: INavData[] = [
   {
-    name: 'Propiedades',
-    url: '/propiedades',
-    icon: 'icon-home',
-    children: [
-      {
-        name: 'Listado',
-        url: '/propiedades/listado',
-        icon: 'icon-list'
-      },
-      {
-        name: 'Nueva',
-        url: '/propiedades/nueva',
-        icon: 'icon-plus'
-      }
-    ]
+    name: 'Información',
+    url: '/negocio/informacion',
+    icon: 'icon-info',
+  },
+  {
+    name: 'Trabajos',
+    url: '/negocio/trabajos',
+    icon: 'icon-briefcase', 
+  },
+  {
+    name: 'Horarios',
+    url: '/negocio/horarios',
+    icon: 'icon-clock', 
+  },
+  {
+    name: 'Agenda',
+    url: '/negocio/agenda',
+    icon: 'icon-calendar',
+    // children: [
+    //   {
+    //     name: 'Listado',
+    //     url: '/negocio/listado',
+    //     icon: 'icon-list'
+    //   },
+    //   {
+    //     name: 'Nueva',
+    //     url: '/negocio/nueva',
+    //     icon: 'icon-plus'
+    //   }
+    // ]
+    
   }
 ];

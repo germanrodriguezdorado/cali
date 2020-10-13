@@ -1,0 +1,59 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <strong>Trabajos</strong>
+        </div>
+        <div class="card-body">
+
+          <div role="alert" class="alert alert-info alert-dismissible"><!----><button aria-label="Close" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>Ingrese los trabajos que su negocio realiza</div>
+
+          <div class="row">
+            <div class="col-sm-12">
+             
+
+              <div class="row">
+                <div class="form-group col-sm-4">
+                  <label>Nombre</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="form-group col-sm-2">
+                  <label>Duración</label>
+                  <ng-select class="form-control" [searchable]="false" [clearable]="false">
+                    <ng-option value="10 minutos">10 minutos</ng-option>  
+                    <ng-option value="15 minutos">15 minutos</ng-option>  
+                    <ng-option value="30 minutos">30 minutos</ng-option>  
+                    <ng-option value="1 hora">1 hora</ng-option>  
+                    <ng-option value="2 horas">2 horas</ng-option>  
+                  </ng-select>
+                </div>
+                <div class="form-group col-sm-1">
+                  <label>&nbsp;</label>
+                  <button class="btn btn-block btn-outline-danger" type="button"><i class="fa fa-trash"></i></button>
+                </div>
+                <div class="form-group col-sm-1">
+                  <label>&nbsp;</label>
+                  <button class="btn btn-block btn-outline-primary" type="button"><i class="fa fa-plus"></i></button>
+                </div>
+              </div>
+
+            
+
+            </div>
+           
+          </div>
+         
+         
+        
+
+       
+
+        </div>
+        <div class="card-footer">
+          <button (click)="guardar()" type="submit" class="btn btn-md btn-primary"><i class="fa fa-save"></i> Guardar</button>
+        </div>
+      </div>
+    </div><!--/.col-->
+  </div><!--/.row-->
+</div>

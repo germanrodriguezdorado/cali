@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
-  templateUrl: 'listado.component.html'
+  templateUrl: 'agenda.component.html'
 })
-export class ListadoComponent implements OnInit {
+export class AgendaComponent implements OnInit {
+
+
+  @ViewChild('myModal') public myModal: ModalDirective;
 
   constructor(private NgxSpinnerService: NgxSpinnerService) { }
 

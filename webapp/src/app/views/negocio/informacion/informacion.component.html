@@ -7,45 +7,43 @@
         </div>
         <div class="card-body">
 
+          <div role="alert" class="alert alert-info alert-dismissible"><!----><button aria-label="Close" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>Ingrese la información de su negocio</div>
+
           <div class="row">
             <div class="col-sm-6">
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
-                    <label for="name">Nombre</label>
-                    <input type="text" class="form-control" id="name">
+                    <label>Nombre</label>
+                    <input type="text" class="form-control">
                   </div>
                 </div>
               </div>
 
               <div class="row">
-                <div class="form-group col-sm-4">
-                  <label for="ccmonth">Rubro</label>
+                <div class="form-group col-sm-5">
+                  <label>Tipo</label>
                   <ng-select class="form-control" [clearable]="false" [searchable]="false">
-                    <ng-option value="Comercial">Comercial</ng-option>  
-                    <ng-option value="Vivienda">Vivienda</ng-option>  
-                    <ng-option value="Rural">Rural</ng-option>  
-                    <ng-option value="De uso propio">De uso propio</ng-option>  
+                    <ng-option value="damas">Para damas</ng-option>  
+                    <ng-option value="caballeros">Para caballeros</ng-option>  
+                    <ng-option value="unisex">Unisex</ng-option>  
                 </ng-select>
                 </div>
-                <div class="form-group col-sm-4">
-                  <label for="ccyear">Metraje</label>
-                  <input type="text" class="form-control" id="name">
-    
-                </div>
-                <div class="col-sm-4">
-                  <div class="form-group">
-                    <label for="cvv">Otro dato</label>
-                    <input type="text" class="form-control" id="cvv">
-                  </div>
+                <div class="form-group col-sm-7">
+                  <label>Métodos de pago</label>
+                  <ng-select class="form-control" [clearable]="false" [searchable]="false" [multiple]="true">
+                    <ng-option value="efectivo">Efectivo</ng-option>  
+                    <ng-option value="debito">Débito</ng-option>  
+                    <ng-option value="credito">Crédito</ng-option>  
+                </ng-select>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
-                    <label for="name">Notas</label>
-                    <textarea id="textarea-input" name="textarea-input" rows="5" class="form-control"></textarea>
+                    <label for="name">Comentarios</label>
+                    <textarea name="textarea-input" rows="5" class="form-control"></textarea>
                   </div>
                 </div>
               </div>
@@ -55,8 +53,8 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
-                    <label for="name">Dirección</label>
-                    <input type="text" class="form-control" id="name">
+                    <label>Dirección</label>
+                    <input type="text" class="form-control">
                   </div>
                 </div>
               </div>

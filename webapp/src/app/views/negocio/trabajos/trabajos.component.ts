@@ -4,9 +4,9 @@ import { ToastService } from "@services/toast.service";
 
 
 @Component({
-  templateUrl: 'nueva.component.html'
+  templateUrl: 'trabajos.component.html'
 })
-export class NuevaComponent implements OnInit {
+export class TrabajosComponent implements OnInit {
 
   
   constructor(

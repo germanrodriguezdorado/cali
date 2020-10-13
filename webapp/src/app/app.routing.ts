@@ -7,18 +7,21 @@ import { DefaultLayoutComponent } from './containers';
 import { P404Component } from '@views/error/404.component';
 import { P500Component } from '@views/error/500.component';
 import { LoginComponent } from '@views/login/login.component';
+import { HomeComponent } from '@views/home/home.component';
+import { AgendarComponent } from '@views/agendar/agendar.component';
 import { RegisterComponent } from '@views/register/register.component';
 
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'propiedades', pathMatch: 'full'},
+  { path: '', component: HomeComponent, data: { title: 'Home' }},
+  { path: 'agendar/:negocio', component: AgendarComponent, data: { title: 'Agendar' }},
   { path: '404', component: P404Component, data: { title: 'Page 404'} },
   { path: '500', component: P500Component, data: { title: 'Page 500'} },
   { path: 'login', component: LoginComponent, data: { title: 'Login Page' }},
   { path: 'register', component: RegisterComponent, data: { title: 'Register Page' }},
   { path: '', component: DefaultLayoutComponent,
     children: [
-      { path: 'propiedades', loadChildren: () => import('@views/propiedades/propiedades.module').then(m => m.PropiedadesModule)},
+      { path: 'negocio', loadChildren: () => import('@views/negocio/negocio.module').then(m => m.NegocioModule)},
       //{ path: 'base', loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule)},
       // { path: 'buttons', loadChildren: () => import('./views/buttons/buttons.module').then(m => m.ButtonsModule)},
       // { path: 'charts', loadChildren: () => import('./views/chartjs/chartjs.module').then(m => m.ChartJSModule)},

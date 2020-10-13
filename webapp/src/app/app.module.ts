@@ -4,6 +4,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule, NgbTimeAdapter, NgbDatepickerI18n, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
@@ -18,16 +20,22 @@ import { AppComponent } from './app.component';
 // Import containers
 import { DefaultLayoutComponent } from './containers';
 
+
+import { HomeComponent } from '@views/home/home.component';
+import { AgendarComponent } from '@views/agendar/agendar.component';
 import { P404Component } from '@views/error/404.component';
 import { P500Component } from '@views/error/500.component';
 import { LoginComponent } from '@views/login/login.component';
 import { RegisterComponent } from '@views/register/register.component';
 
 
+import { NgbTimeStringAdapter } from '@helpers/timepicker-adapter';
+import { NgbDateFRParserFormatter } from '@helpers/datepicker-adapter';
 import { JwtInterceptor } from '@helpers/jwt.interceptor';
 import { Utilidades } from "@helpers/utilidades";
 import { VersionCheckService } from "@services/version-check.service";
 import { ToastService } from '@services/toast.service';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 
 
 
@@ -77,10 +85,14 @@ import { NgxSpinnerModule } from "ngx-spinner";
     ToastrModule.forRoot({
       toastComponent: CustomToast // added custom toast!
     }),
+    OwlDateTimeModule, 
+    OwlNativeDateTimeModule,
   ],
   declarations: [
     AppComponent,
     ...APP_CONTAINERS,
+    HomeComponent,
+    AgendarComponent,
     P404Component,
     P500Component,
     LoginComponent,
@@ -92,7 +104,9 @@ import { NgxSpinnerModule } from "ngx-spinner";
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     { provide: Utilidades, useClass: Utilidades },
-    { provide: VersionCheckService, useClass: VersionCheckService }
+    { provide: VersionCheckService, useClass: VersionCheckService },
+    { provide: NgbTimeAdapter, useClass: NgbTimeStringAdapter },
+    { provide: NgbDateParserFormatter, useClass: NgbDateFRParserFormatter},
   ],
   bootstrap: [ AppComponent ],
   entryComponents: [ CustomToast ]
