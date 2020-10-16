@@ -78,7 +78,8 @@ export class LoginComponent implements OnInit{
                     if(this.returnUrl != null && this.returnUrl != "/"){
                         this.router.navigate([this.returnUrl]); 
                     }else{
-                        this.router.navigate(["negocio/informacion"]);
+                      if(data["user_id"] == "1") this.router.navigate(["negocio/informacion"]);
+                      if(data["user_id"] == "2") this.router.navigate(["cliente/informacion"]);
                     }
                 }                   
             });

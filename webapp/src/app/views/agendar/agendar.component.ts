@@ -66,6 +66,10 @@ export class AgendarComponent implements OnInit, AfterContentInit{
     this.paso = 2;
   }
 
+  irApaso3(){
+    this.paso = 3;
+  }
+
 
 
 

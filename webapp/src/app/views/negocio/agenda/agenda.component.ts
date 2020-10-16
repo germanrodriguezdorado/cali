@@ -5,7 +5,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 @Component({
   templateUrl: 'agenda.component.html'
 })
-export class AgendaComponent implements OnInit {
+export class NegocioAgendaComponent implements OnInit {
 
 
   @ViewChild('myModal') public myModal: ModalDirective;

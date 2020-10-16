@@ -49,13 +49,23 @@ class PublicController extends FOSRestController
         return new JsonResponse($respuesta);  */
 
 
-
         $respuesta = array();
-        $respuesta["user_id"] = "1";
-        $respuesta["token"] = "1234";
-        $respuesta["nombre"] = "German Rodriguez";
-        $respuesta["username"] = "german";
-        $respuesta["tipo"] = "admin";  
+        if( $request->get("username") == "juan" ){
+          $respuesta["user_id"] = "1";
+          $respuesta["token"] = "1234";
+          $respuesta["nombre"] = "Juan Perez";
+          $respuesta["username"] = "juan";
+          $respuesta["tipo"] = "1"; 
+        }else{
+          $respuesta["user_id"] = "2";
+          $respuesta["token"] = "1234";
+          $respuesta["nombre"] = "German Rodriguez";
+          $respuesta["username"] = "german";
+          $respuesta["tipo"] = "2"; 
+        }
+
+        
+         
         return new JsonResponse($respuesta);  
         
     }

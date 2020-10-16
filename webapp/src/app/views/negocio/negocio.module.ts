@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
-import { AgendaComponent } from './agenda/agenda.component';
+import { NegocioAgendaComponent } from './agenda/agenda.component';
 import { TrabajosComponent } from './trabajos/trabajos.component';
 import { HorariosComponent } from './horarios/horarios.component';
-import { InformacionComponent } from './informacion/informacion.component';
+import { NegocioInformacionComponent } from './informacion/informacion.component';
 
 // Collapse Component
 import { CollapseModule } from 'ngx-bootstrap/collapse';
@@ -29,9 +29,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
     NgSelectModule
   ],
   declarations: [
-    AgendaComponent,
+    NegocioAgendaComponent,
     TrabajosComponent,
-    InformacionComponent,
+    NegocioInformacionComponent,
     HorariosComponent
   ]
 })

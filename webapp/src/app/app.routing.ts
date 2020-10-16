@@ -22,7 +22,7 @@ export const routes: Routes = [
   { path: '', component: DefaultLayoutComponent,
     children: [
       { path: 'negocio', loadChildren: () => import('@views/negocio/negocio.module').then(m => m.NegocioModule)},
-      //{ path: 'base', loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule)},
+      { path: 'cliente', loadChildren: () => import('@views/cliente/cliente.module').then(m => m.ClienteModule)},
       // { path: 'buttons', loadChildren: () => import('./views/buttons/buttons.module').then(m => m.ButtonsModule)},
       // { path: 'charts', loadChildren: () => import('./views/chartjs/chartjs.module').then(m => m.ChartJSModule)},
       // { path: 'dashboard', loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule) },

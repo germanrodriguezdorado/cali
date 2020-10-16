@@ -1,8 +1,8 @@
 <app-header
-  [navbarBrandRouterLink]="['/dashboard']"
+  [navbarBrandRouterLink]="['/']"
   [fixed]="true"
-  [navbarBrandFull]="{src: 'assets/img/brand/logo.svg', width: 89, height: 25, alt: 'CoreUI Logo'}"
-  [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
+  [navbarBrandFull]="{src: 'assets/img/logo_full.png', width: 89, height: 25, alt: 'Company Logo'}"
+  [navbarBrandMinimized]="{src: 'assets/img/logo_chico.png', width: 30, height: 30, alt: 'Company Logo'}"
   [sidebarToggler]="false"
   [asideMenuToggler]="false"
   [mobileSidebarToggler]="false"
@@ -85,7 +85,7 @@
 
       <div class="animated fadeIn mt-5">
 
-        <div class="row">
+        <div class="row" *ngIf="paso == 1">
           <div class="col-lg-12" style="text-align: center;">
             <span class="display-4"><i class="fa fa-scissors fa-md mt-4"></i> {{ negocio | titlecase }}</span>
             <p class="h6 text-muted">Peluquería</p>
@@ -95,8 +95,8 @@
 
         <div *ngIf="paso == 1">
           <div class="row mt-5">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-8">
+           
+            <div class="col-lg-8 mx-auto">
               <div class="card">
                 
                 <div class="card-body">
@@ -114,7 +114,7 @@
                     <div class="form-group col-sm-5">
                       <label>&nbsp;</label>
                       <select class="form-control form-control-lg" id="select2" name="select2">
-                        <option value="0">Seleccione tarea</option>
+                        <option value="0">Tarea a realizar</option>
                         <option value="1">Corte dama</option>
                         <option value="2">Corte caballero</option>
                         <option value="3">Corte niño</option>
@@ -134,14 +134,14 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-2"></div>
+            
           </div>
 
 
           <div class="row mt-4 animated fadeIn" *ngIf="mostrar_resultados">
-            <div class="col-lg-2"></div>
+           
             
-            <div class="col-lg-8">
+            <div class="col-lg-8 mx-auto">
 
 
               <div class="row">
@@ -152,22 +152,6 @@
               
 
               </div>
-
-
-
-
-
-
-              
-
-            
-              
-
-              
-
-            
-              
-
             </div>
 
 
@@ -176,7 +160,6 @@
 
             
 
-            <div class="col-lg-2"></div>
           </div>
 
         </div>
@@ -185,16 +168,17 @@
 
         <div *ngIf="paso == 2">
           <div class="row mt-5 animated fadeIn">
-            <div class="col-lg-3"></div>
-            <div class="col-lg-6">
+            
+            <div class="col-lg-6 mx-auto">
              
 
               <div class="card">
                 <div class="card-header text-center">
-                  <strong>Confirme su agenda</strong> 
+                  <h3>Confirmá tu reserva</h3> 
                 </div>
                 <div class="card-body text-center">
                   
+                  <h1><i class="fa fa-scissors fa-md mt-4"></i> {{ negocio | titlecase }}</h1>
                     <h3>Lunes 12 de Octubre</h3>
                     <h3>10:00 hs</h3>
                     <br>
@@ -205,7 +189,7 @@
                   <button class="btn btn-lg btn-link" (click)="irApaso1()">
                     Volver
                   </button>
-                  <button class="btn btn-lg btn-primary">
+                  <button class="btn btn-lg btn-primary" (click)="irApaso3()">
                      Confirmar
                   </button>
                 </div>
@@ -213,7 +197,45 @@
 
 
             </div>
-            <div class="col-lg-3"></div>
+            
+          </div>
+
+
+
+        </div>
+
+
+
+        <div *ngIf="paso == 3">
+          <div class="row mt-5 animated fadeIn">
+            
+            <div class="col-lg-6 mx-auto">
+             
+
+              <div class="card">
+                <div class="card-header text-center">
+                  <h3><i class="fa fa-check-circle fa-lg text-primary"></i> Reserva confirmada</h3> 
+                </div>
+                <div class="card-body text-center">
+                  
+                  <h1><i class="fa fa-scissors fa-md mt-4"></i> {{ negocio | titlecase }}</h1>
+                    <h3>Lunes 12 de Octubre</h3>
+                    <h3>10:00 hs</h3>
+                    <br>
+                    <h5><i class="fa fa-map-marker fa-lg mt-4"></i> Rivera 3452 esq. Atlántico</h5>
+                  
+                </div>
+                <div class="card-footer text-center">
+                  <button class="btn btn-lg btn-link" (click)="irApaso1()">
+                    Volver
+                  </button>
+                 
+                </div>
+              </div>
+
+
+            </div>
+            
           </div>
 
 

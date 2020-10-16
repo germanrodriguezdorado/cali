@@ -6,7 +6,7 @@ import { ToastService } from "@services/toast.service";
 @Component({
   templateUrl: 'informacion.component.html'
 })
-export class InformacionComponent implements OnInit {
+export class NegocioInformacionComponent implements OnInit {
 
   
   constructor(
