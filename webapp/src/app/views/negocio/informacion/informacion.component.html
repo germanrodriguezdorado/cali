@@ -7,10 +7,10 @@
         </div>
         <div class="card-body">
 
-          <div role="alert" class="alert alert-info alert-dismissible"><!----><button aria-label="Close" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>Ingrese la información de su negocio</div>
-
+          
           <div class="row">
             <div class="col-sm-6">
+
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
@@ -21,36 +21,6 @@
               </div>
 
               <div class="row">
-                <div class="form-group col-sm-5">
-                  <label>Tipo</label>
-                  <ng-select class="form-control" [clearable]="false" [searchable]="false">
-                    <ng-option value="damas">Para damas</ng-option>  
-                    <ng-option value="caballeros">Para caballeros</ng-option>  
-                    <ng-option value="unisex">Unisex</ng-option>  
-                </ng-select>
-                </div>
-                <div class="form-group col-sm-7">
-                  <label>Métodos de pago</label>
-                  <ng-select class="form-control" [clearable]="false" [searchable]="false" [multiple]="true">
-                    <ng-option value="efectivo">Efectivo</ng-option>  
-                    <ng-option value="debito">Débito</ng-option>  
-                    <ng-option value="credito">Crédito</ng-option>  
-                </ng-select>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <label for="name">Comentarios</label>
-                    <textarea name="textarea-input" rows="5" class="form-control"></textarea>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-            <div class="col-sm-6">
-              <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
                     <label>Dirección</label>
@@ -58,6 +28,33 @@
                   </div>
                 </div>
               </div>
+
+              <div class="row">
+                <div class="form-group col-sm-5">
+                  <label>Zona</label>
+                  <ng-select class="form-control" [clearable]="false" [searchable]="false">
+                    <ng-option value="damas">Malvín</ng-option>  
+                    <ng-option value="caballeros">Buceo</ng-option>  
+                    <ng-option value="unisex">Pocitos</ng-option>  
+                </ng-select>
+                </div>
+                <div class="form-group col-sm-7">
+                  <label>Duración del servicio</label>
+                  <ng-select class="form-control" [clearable]="false" [searchable]="false" [multiple]="true">
+                    <ng-option value="10 minutos">10 minutos</ng-option>  
+                    <ng-option value="15 minutos">15 minutos</ng-option>  
+                    <ng-option value="30 minutos">30 minutos</ng-option>  
+                    <ng-option value="1 hora">1 hora</ng-option>  
+                    <ng-option value="2 horas">2 horas</ng-option>  
+                </ng-select>
+                </div>
+              </div>
+
+             
+
+            </div>
+            <div class="col-sm-6">
+             
               
             </div>
           </div>

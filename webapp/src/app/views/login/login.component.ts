@@ -53,39 +53,54 @@ export class LoginComponent implements OnInit{
 
 
 
+  submit(){
+
+    var user = {
+     "user_id": "1",
+          "token": "1234",
+          "nombre": "Juan Perez",
+          "username": "juan",
+          "tipo": "1"
+    }
+
+    localStorage.setItem("currentUser", JSON.stringify(user));
+    this.router.navigate(["negocio/informacion"]);
+  }
 
 
-  submit(model) {
+
+
+//   submit(model) {
 
         
 
    
-    this.loading = true; 
+//     this.loading = true; 
     
     
-    this.AuthService.login(this.loginForm.controls['username'].value, this.loginForm.controls['password'].value)
-        .pipe(first())
-        .subscribe(
-            data => {
+//     this.AuthService.login(this.loginForm.controls['username'].value, this.loginForm.controls['password'].value)
+//         .pipe(first())
+//         .subscribe(
+//             data => {
                
-                if(data["user_id"] == ""){ // Mal login    
-                    this.inputUsuario.nativeElement.focus(); 
-                    this.loading = false;                 
-                }else{
+//                 if(data["user_id"] == ""){ // Mal login    
+//                     this.inputUsuario.nativeElement.focus(); 
+//                     this.loading = false;                 
+//                 }else{
 
-                    // Si hay ruta de retorno, lo redirijo. Sino voy para el home de cada tipo de user
+//                     // Si hay ruta de retorno, lo redirijo. Sino voy para el home de cada tipo de user
                     
-                    if(this.returnUrl != null && this.returnUrl != "/"){
-                        this.router.navigate([this.returnUrl]); 
-                    }else{
-                      if(data["user_id"] == "1") this.router.navigate(["negocio/informacion"]);
-                      if(data["user_id"] == "2") this.router.navigate(["cliente/informacion"]);
-                    }
-                }                   
-            });
+//                     if(this.returnUrl != null && this.returnUrl != "/"){
+//                         this.router.navigate([this.returnUrl]); 
+//                     }else{
+//                       if(data["user_id"] == "1") this.router.navigate(["negocio/informacion"]);
+//                       if(data["user_id"] == "2") this.router.navigate(["cliente/informacion"]);
+//                     }
+//                 }                   
+//             });
 
-            return;    
-}
+//             return;    
+// }
 
 
 }

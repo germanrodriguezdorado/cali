@@ -13,6 +13,7 @@ export class AgendarComponent implements OnInit, AfterContentInit{
   mostrar_resultados: boolean;
   busqueda: string;
   paso: number;
+  email: string;
 
 
 
@@ -26,9 +27,10 @@ export class AgendarComponent implements OnInit, AfterContentInit{
 
   ngOnInit() {
     this.negocio = "";
-    this.mostrar_resultados = false;
+    this.mostrar_resultados = true;
     this.busqueda = "";
     this.paso = 1;
+    this.email = "";
 
 
     this.ActivatedRoute.params.subscribe(params => {

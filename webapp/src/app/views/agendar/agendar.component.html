@@ -1,4 +1,4 @@
-<app-header
+<app-header style="border-bottom: none;"
   [navbarBrandRouterLink]="['/']"
   [fixed]="true"
   [navbarBrandFull]="{src: 'assets/img/logo_full.png', width: 89, height: 25, alt: 'Company Logo'}"
@@ -25,11 +25,11 @@
 
 
 
-
+<!-- 
     <li class="nav-item dropdown" placement="bottom right">
       <a class="nav-link" [routerLink]="['/login']" routerLinkActive="active">Ingresar</a>
      
-    </li>
+    </li> -->
 
 
 
@@ -64,7 +64,7 @@
 <div class="app-body">
  
   <!-- Main content -->
-  <main class="main">
+  <main class="main" style="background-color: #FFFFFF">
     <!-- Breadcrumb -->
     <!-- breaking change 'cui-breadcrumb' -->
    
@@ -87,17 +87,17 @@
 
         <div class="row" *ngIf="paso == 1">
           <div class="col-lg-12" style="text-align: center;">
-            <span class="display-4"><i class="fa fa-scissors fa-md mt-4"></i> {{ negocio | titlecase }}</span>
-            <p class="h6 text-muted">Peluquería</p>
+            <span class="display-4 text-primary"><i class="fa fa-scissors fa-md mt-4"></i> {{ negocio | titlecase }}</span>
+            <p class="h6 text-primary">Peluquería</p>
           </div>
         </div>
 
 
         <div *ngIf="paso == 1">
-          <div class="row mt-5">
+          <div class="row mt-4">
            
             <div class="col-lg-8 mx-auto">
-              <div class="card">
+              <div class="card" style="border: none;">
                 
                 <div class="card-body">
                   
@@ -169,30 +169,36 @@
         <div *ngIf="paso == 2">
           <div class="row mt-5 animated fadeIn">
             
-            <div class="col-lg-6 mx-auto">
+            <div class="col-lg-5 mx-auto">
              
 
               <div class="card">
-                <div class="card-header text-center">
-                  <h3>Confirmá tu reserva</h3> 
-                </div>
+               
                 <div class="card-body text-center">
+
+                  <h3>Confirmá tu reserva</h3> 
                   
                   <h1><i class="fa fa-scissors fa-md mt-4"></i> {{ negocio | titlecase }}</h1>
                     <h3>Lunes 12 de Octubre</h3>
                     <h3>10:00 hs</h3>
                     <br>
                     <h5><i class="fa fa-map-marker fa-lg mt-4"></i> Rivera 3452 esq. Atlántico</h5>
-                  
+                    <br>
+                    <h5>Ingresa tu e-mail</h5>
+                    <input [(ngModel)]="email" type="text" class="form-control form-control-lg col-sm-9 mx-auto">
+
+                    <br>
+                    <br>
+
+                    <button class="btn btn-lg btn-link" (click)="irApaso1()">
+                      Volver
+                    </button>
+                    <button [disabled]="email == ''" class="btn btn-lg btn-primary" (click)="irApaso3()">
+                       Confirmar
+                    </button>
+
                 </div>
-                <div class="card-footer text-center">
-                  <button class="btn btn-lg btn-link" (click)="irApaso1()">
-                    Volver
-                  </button>
-                  <button class="btn btn-lg btn-primary" (click)="irApaso3()">
-                     Confirmar
-                  </button>
-                </div>
+               
               </div>
 
 
@@ -209,28 +215,28 @@
         <div *ngIf="paso == 3">
           <div class="row mt-5 animated fadeIn">
             
-            <div class="col-lg-6 mx-auto">
+            <div class="col-lg-5 mx-auto">
              
 
               <div class="card">
-                <div class="card-header text-center">
-                  <h3><i class="fa fa-check-circle fa-lg text-primary"></i> Reserva confirmada</h3> 
-                </div>
+                
                 <div class="card-body text-center">
+
+                  <h3><i class="fa fa-check-circle fa-lg text-primary"></i> Reserva pre-confirmada</h3> 
                   
                   <h1><i class="fa fa-scissors fa-md mt-4"></i> {{ negocio | titlecase }}</h1>
                     <h3>Lunes 12 de Octubre</h3>
                     <h3>10:00 hs</h3>
-                    <br>
                     <h5><i class="fa fa-map-marker fa-lg mt-4"></i> Rivera 3452 esq. Atlántico</h5>
-                  
+
+                    <br>
+                    <div class="alert alert-primary" role="alert" style="text-align: left;">
+                      <i class="fa fa-envelope-o" aria-hidden="true"></i> Te hemos enviado un email a tu casilla. Por favor sigue los pasos descriptos en el mismo para confirmar tu reserva.
+                    </div>
+
+                   
                 </div>
-                <div class="card-footer text-center">
-                  <button class="btn btn-lg btn-link" (click)="irApaso1()">
-                    Volver
-                  </button>
-                 
-                </div>
+               
               </div>
 
 
@@ -249,7 +255,7 @@
   </main>
   
 </div>
-<ngx-spinner type="ball-scale" size="medium"><p style="color: #fff" > Cargando... </p></ngx-spinner>
+<ngx-spinner type="timer" size="medium"><p style="color: #fff" > Cargando... </p></ngx-spinner>
 <!-- https://napster2210.github.io/ngx-spinner/ -->
 <!-- <app-footer>
   <span><a href="https://coreui.io">CoreUI</a> &copy; 2018 creativeLabs.</span>
