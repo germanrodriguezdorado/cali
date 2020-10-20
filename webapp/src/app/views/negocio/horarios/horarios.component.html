@@ -7,16 +7,15 @@
         </div>
         <div class="card-body">
 
-          <div role="alert" class="alert alert-info alert-dismissible"><!----><button aria-label="Close" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>Ingrese los horarios que realiza las tareas</div>
-
+         
           <div class="row">
             <div class="col-sm-12">
              
 
               <div class="row">
-                <div class="form-group col-sm-4">
-                  <label>Día</label>
-                  <ng-select class="form-control" [searchable]="false" [clearable]="false">
+                <div class="form-group col-sm-12">
+                  <label><i class="fa fa-calendar-o" aria-hidden="true"></i> Días de trabajo</label>
+                  <ng-select [(ngModel)]="dias" class="form-control" [searchable]="false" [clearable]="false" [multiple]="true">
                     <ng-option value="lunes">Lunes</ng-option>  
                     <ng-option value="martes">Martes</ng-option>  
                     <ng-option value="miercoles">Miércoles</ng-option>  
@@ -26,27 +25,43 @@
                     <ng-option value="domingo">Domingo</ng-option>  
                   </ng-select>
                 </div>
-                <div class="form-group col-sm-2">
-                  <label>Desde</label>
-                  <ng-select class="form-control" [searchable]="false" [clearable]="false">
-                    <ng-option value="00:00">00:00</ng-option>  
-                  </ng-select>
-                </div>
-                <div class="form-group col-sm-2">
-                  <label>Hasta</label>
-                  <ng-select class="form-control" [searchable]="false" [clearable]="false">
-                    <ng-option value="00:00">00:00</ng-option>  
-                  </ng-select>
-                </div>
-                <div class="form-group col-sm-1">
-                  <label>&nbsp;</label>
-                  <button class="btn btn-block btn-outline-danger" type="button"><i class="fa fa-trash"></i></button>
-                </div>
-                <div class="form-group col-sm-1">
-                  <label>&nbsp;</label>
-                  <button class="btn btn-block btn-outline-primary" type="button"><i class="fa fa-plus"></i></button>
-                </div>
+               
+          
+               
               </div>
+
+              <br>
+
+
+              <div class="row">
+
+                <div class="form-group col-sm-4">
+                  <label><i class="fa fa-clock-o" aria-hidden="true"></i> Desde</label>
+                  <ng-select [(ngModel)]="desde" class="form-control" [searchable]="false" [clearable]="false" >
+                    <ng-option *ngFor="let horario of horarios_disponibles" value="{{ horario }}">{{ horario }}</ng-option>  
+                  </ng-select>
+                </div>
+                <div class="form-group col-sm-4">
+                  <label><i class="fa fa-clock-o" aria-hidden="true"></i> Hasta</label>
+                  <ng-select [(ngModel)]="hasta" class="form-control" [searchable]="false" [clearable]="false">
+                    <ng-option *ngFor="let horario of horarios_disponibles" value="{{ horario }}">{{ horario }}</ng-option>  
+                  </ng-select>
+                </div>
+                <div class="form-group col-sm-4">
+                  <label><i class="fa fa-cutlery" aria-hidden="true"></i> Descanso</label>
+                  <ng-select [(ngModel)]="descanso" class="form-control" [searchable]="false" [clearable]="false">
+                    <ng-option value="Sin descanso">Sin descanso</ng-option>  
+                    <ng-option value="De 12 a 13">De 12 a 13</ng-option>  
+                    <ng-option value="De 13 a 14">De 13 a 14</ng-option>  
+                  </ng-select>
+                </div>
+       
+               
+              </div>
+
+
+
+              
 
             
 

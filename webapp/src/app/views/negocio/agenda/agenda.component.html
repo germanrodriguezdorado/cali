@@ -3,41 +3,56 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-header">
-          <strong>Agenda</strong>
+          <strong>Fecha</strong>
         </div>
+        <div class="card-body">
+          <input class="form-control form-control-lg" [(ngModel)]="fecha" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1">
+          <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+          
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        
         <div class="card-body">
           <table class="table">
            
             <tbody>
               <tr>
-                <td style="width: 70%;">
+                <td style="width: 80%;">
                   01/11/2020 <br>
-                  10:00 <br>
-                  Samppa Nori <br>
+                  <i class="fa fa-clock-o" aria-hidden="true"></i> 10:00 <br>
+                  juan@gmail.com <br>
                   Corte de cabello
                 </td>
                
-                <td  style="width: 70%;">
+                <td  style="width: 20%; vertical-align: middle;">
 
-                  <button class="btn btn-pill btn-success" type="button">Atendido</button>
-                  <button class="btn btn-pill btn-danger" type="button" data-toggle="modal" (click)="myModal.show()">Cancelar</button>
+                  <button class="btn btn-sm btn-success btn-block" type="button">Atendido</button>
+                  <button class="btn btn-sm btn-primary btn-block" type="button">No concurre</button>
+                  <button class="btn btn-sm btn-danger btn-block" type="button" data-toggle="modal" (click)="myModal.show()">Cancelar</button>
 
                 </td>
                
               </tr>
 
               <tr>
-                <td style="width: 70%;">
+                <td style="width: 80%;">
                   01/11/2020 <br>
-                  10:00 <br>
-                  Samppa Nori <br>
+                  <i class="fa fa-clock-o" aria-hidden="true"></i> 11:00 <br>
+                  diego@gmail.com <br>
                   Corte de cabello
                 </td>
                
-                <td  style="width: 70%;">
+                <td  style="width: 20%; vertical-align: middle;">
 
-                  <button class="btn btn-pill btn-success" type="button">Atendido</button>
-                  <button class="btn btn-pill btn-danger" type="button" data-toggle="modal" (click)="myModal.show()">Cancelar</button>
+                  <button class="btn btn-sm btn-success btn-block" type="button">Atendido</button>
+                  <button class="btn btn-sm btn-primary btn-block" type="button">No concurre</button>
+                  <button class="btn btn-sm btn-danger btn-block" type="button" data-toggle="modal" (click)="myModal.show()">Cancelar</button>
 
                 </td>
                
@@ -51,7 +66,6 @@
     </div>
     <!--/.col-->
   </div>
-  <!--/.row-->
 </div>
 
 

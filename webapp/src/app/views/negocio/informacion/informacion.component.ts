@@ -7,6 +7,11 @@ import { ToastService } from "@services/toast.service";
   templateUrl: 'informacion.component.html'
 })
 export class NegocioInformacionComponent implements OnInit {
+  nombre: string;
+  direccion: string;
+  telefono: string
+  zona: string;
+  duracion: string;
 
   
   constructor(
@@ -31,7 +36,11 @@ export class NegocioInformacionComponent implements OnInit {
 
 
   ngOnInit() {
-    
+    this.nombre = "Peluquería Morini";
+    this.direccion = "Rivera 2367 esq. Verdi";
+    this.telefono = "098438763";
+    this.zona = "Pocitos";
+    this.duracion = "1 hora";
   }
 
   guardar(){

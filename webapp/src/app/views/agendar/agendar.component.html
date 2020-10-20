@@ -106,7 +106,7 @@
                   
                     <div class="form-group col-sm-4">
                           <label>&nbsp;</label>
-                          <input class="form-control form-control-lg" [(ngModel)]="fecha_creacion"  [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1">
+                          <input class="form-control form-control-lg" [(ngModel)]="fecha" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1">
                           <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
                     </div>
 
@@ -146,8 +146,8 @@
 
               <div class="row">
 
-                <div class="col-6 col-sm-4 col-lg-3 col-md mb-3 text-left" *ngFor="let number of [0,1,2,3,4,5,6,7,8,9,10,18]">
-                  <button (click)="irApaso2()" class="btn-block btn btn-lg btn-primary" type="button">10:00 AM</button>
+                <div class="col-6 col-sm-4 col-lg-3 col-md mb-3 text-left" *ngFor="let number of ['10:00 AM', '11:00 AM', '12:00 AM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM', '8:00 PM', '9:00 PM']">
+                  <button (click)="irApaso2()" class="btn-block btn btn-lg btn-primary" type="button">{{ number }}</button>
                 </div>
               
 
@@ -181,11 +181,10 @@
                   <h1><i class="fa fa-scissors fa-md mt-4"></i> {{ negocio | titlecase }}</h1>
                     <h3>Lunes 12 de Octubre</h3>
                     <h3>10:00 hs</h3>
-                    <br>
-                    <h5><i class="fa fa-map-marker fa-lg mt-4"></i> Rivera 3452 esq. Atlántico</h5>
+                    <h5><i class="fa fa-map-marker fa-lg"></i> Rivera 3452 esq. Atlántico</h5>
                     <br>
                     <h5>Ingresa tu e-mail</h5>
-                    <input [(ngModel)]="email" type="text" class="form-control form-control-lg col-sm-9 mx-auto">
+                    <input #inputMail [(ngModel)]="email" type="text" class="form-control form-control-lg col-sm-9 mx-auto">
 
                     <br>
                     <br>
@@ -193,7 +192,7 @@
                     <button class="btn btn-lg btn-link" (click)="irApaso1()">
                       Volver
                     </button>
-                    <button [disabled]="email == ''" class="btn btn-lg btn-primary" (click)="irApaso3()">
+                    <button [disabled]="!Utilidades.validarEmail(email)" class="btn btn-lg btn-primary" (click)="irApaso3()">
                        Confirmar
                     </button>
 

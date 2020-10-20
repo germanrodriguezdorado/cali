@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastService } from "@services/toast.service";
+import { Utilidades } from "@helpers/utilidades";
 
 
 
@@ -8,9 +9,16 @@ import { ToastService } from "@services/toast.service";
 })
 export class HorariosComponent implements OnInit {
 
+  horarios_disponibles: string[];
+  dias: string[];
+  desde: string;
+  hasta: string;
+  descanso: string;
+  
   
   constructor(
-    private ToastService: ToastService
+    private ToastService: ToastService,
+    public Utilidades: Utilidades 
   ) { }
 
   isCollapsed: boolean = false;
@@ -31,7 +39,12 @@ export class HorariosComponent implements OnInit {
 
 
   ngOnInit() {
-    
+    this.horarios_disponibles = this.Utilidades.darHorariosDisponibles();
+    this.dias = ["lunes", "martes", "jueves"];
+    this.desde = "08:00";
+    this.hasta = "18:00";
+    this.descanso = "De 12 a 13";
+
   }
 
   guardar(){

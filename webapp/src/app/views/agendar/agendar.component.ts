@@ -1,25 +1,31 @@
-import { Component, ElementRef, ViewChild, OnInit, AfterContentInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit, AfterContentInit, ViewContainerRef } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
 import { ActivatedRoute, Router } from '@angular/router';
+import { DatePipe } from "@angular/common";
+import { Utilidades } from "@helpers/utilidades";
 
 
 @Component({
   selector: 'app-dashboard',
-  templateUrl: './agendar.component.html'
+  templateUrl: './agendar.component.html',
+  providers: [DatePipe]
 })
 export class AgendarComponent implements OnInit, AfterContentInit{
   // @ViewChild("inputBusqueda") inputBusqueda:ElementRef;
+  @ViewChild("inputMail", { read: ViewContainerRef }) inputMail:ElementRef;
   negocio: string;
   mostrar_resultados: boolean;
   busqueda: string;
   paso: number;
   email: string;
+  fecha: Date;
 
 
 
   constructor(
     private NgxSpinnerService: NgxSpinnerService,
-    private ActivatedRoute: ActivatedRoute, 
+    private ActivatedRoute: ActivatedRoute,
+    public Utilidades: Utilidades 
     ) { }
 
 
@@ -31,6 +37,7 @@ export class AgendarComponent implements OnInit, AfterContentInit{
     this.busqueda = "";
     this.paso = 1;
     this.email = "";
+    this.fecha = new Date();
 
 
     this.ActivatedRoute.params.subscribe(params => {
@@ -42,7 +49,7 @@ export class AgendarComponent implements OnInit, AfterContentInit{
 
 
   public ngAfterContentInit() {
-    //setTimeout(() => { this.inputBusqueda.nativeElement.focus();}, 500);
+    //setTimeout(() => { this.inputMail.nativeElement.focus();}, 500);
   }
 
 
@@ -66,6 +73,8 @@ export class AgendarComponent implements OnInit, AfterContentInit{
 
   irApaso2(){
     this.paso = 2;
+    //this.inputMail.nativeElement.focus();
+    //setTimeout(() => { this.inputMail.nativeElement.focus();}, 1000);
   }
 
   irApaso3(){

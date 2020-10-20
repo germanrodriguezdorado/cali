@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { LocationStrategy, HashLocationStrategy, registerLocaleData } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -36,6 +36,9 @@ import { Utilidades } from "@helpers/utilidades";
 import { VersionCheckService } from "@services/version-check.service";
 import { ToastService } from '@services/toast.service';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
+
+import es from '@angular/common/locales/es';
+registerLocaleData(es);
 
 
 
@@ -101,6 +104,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     { provide: VersionCheckService, useClass: VersionCheckService },
     { provide: NgbTimeAdapter, useClass: NgbTimeStringAdapter },
     { provide: NgbDateParserFormatter, useClass: NgbDateFRParserFormatter},
+    { provide: LOCALE_ID, useValue: "es-ES" },
   ],
   bootstrap: [ AppComponent ],
   entryComponents: [ CustomToast ]

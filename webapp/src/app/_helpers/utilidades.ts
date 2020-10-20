@@ -323,6 +323,64 @@ export class Utilidades {
       }
 
 
+
+
+      darHorariosDisponibles(){
+        var horarios_disponibles = [];
+        horarios_disponibles.push("");
+        horarios_disponibles.push("00:00");
+        horarios_disponibles.push("00:30");
+        horarios_disponibles.push("01:00");
+        horarios_disponibles.push("01:30");
+        horarios_disponibles.push("02:00");
+        horarios_disponibles.push("02:30");
+        horarios_disponibles.push("03:00");
+        horarios_disponibles.push("03:30");
+        horarios_disponibles.push("04:00");
+        horarios_disponibles.push("04:30");
+        horarios_disponibles.push("05:00");
+        horarios_disponibles.push("05:30");
+        horarios_disponibles.push("06:00");
+        horarios_disponibles.push("06:30");
+        horarios_disponibles.push("07:00");
+        horarios_disponibles.push("07:30");
+        horarios_disponibles.push("08:00");
+        horarios_disponibles.push("08:30");
+        horarios_disponibles.push("09:00");
+        horarios_disponibles.push("09:30");
+        horarios_disponibles.push("10:00");
+        horarios_disponibles.push("10:30");
+        horarios_disponibles.push("11:00");
+        horarios_disponibles.push("11:30");
+        horarios_disponibles.push("12:00");
+        horarios_disponibles.push("12:30");
+        horarios_disponibles.push("13:00");
+        horarios_disponibles.push("13:30");
+        horarios_disponibles.push("14:00");
+        horarios_disponibles.push("14:30");
+        horarios_disponibles.push("15:00");
+        horarios_disponibles.push("15:30");
+        horarios_disponibles.push("16:00");
+        horarios_disponibles.push("16:30");
+        horarios_disponibles.push("17:00");
+        horarios_disponibles.push("17:30");
+        horarios_disponibles.push("18:00");
+        horarios_disponibles.push("18:30");
+        horarios_disponibles.push("19:00");
+        horarios_disponibles.push("19:30");
+        horarios_disponibles.push("20:00");
+        horarios_disponibles.push("20:30");
+        horarios_disponibles.push("21:00");
+        horarios_disponibles.push("21:30");
+        horarios_disponibles.push("22:00");
+        horarios_disponibles.push("22:30");
+        horarios_disponibles.push("23:00");
+            horarios_disponibles.push("23:30");
+            
+            return horarios_disponibles;
+        }
+
+
      
     
 

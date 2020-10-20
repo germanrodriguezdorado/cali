@@ -7,6 +7,8 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class NegocioAgendaComponent implements OnInit {
 
+  fecha: Date;
+
 
   @ViewChild('myModal') public myModal: ModalDirective;
 
@@ -14,13 +16,8 @@ export class NegocioAgendaComponent implements OnInit {
 
 
   ngOnInit() {
-    /** spinner starts on init */
-    this.NgxSpinnerService.show();
- 
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.NgxSpinnerService.hide();
-    }, 2000);
+    this.fecha = new Date();
+  
   }
 
 }

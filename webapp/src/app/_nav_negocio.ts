@@ -6,11 +6,11 @@ export const navItemsNegocio: INavData[] = [
     url: '/negocio/informacion',
     icon: 'icon-info',
   },
-  {
-    name: 'Trabajos',
-    url: '/negocio/trabajos',
-    icon: 'icon-briefcase', 
-  },
+  // {
+  //   name: 'Trabajos',
+  //   url: '/negocio/trabajos',
+  //   icon: 'icon-briefcase', 
+  // },
   {
     name: 'Horarios',
     url: '/negocio/horarios',

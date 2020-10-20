@@ -1,5 +1,5 @@
 <app-header
-  [navbarBrandRouterLink]="['/dashboard']"
+  [navbarBrandRouterLink]="['/']"
   [fixed]="true"
   [navbarBrandFull]="{src: 'assets/img/logo_full.png', width: 89, height: 25, alt: 'Company Logo'}"
   [navbarBrandMinimized]="{src: 'assets/img/logo_chico.png', width: 30, height: 30, alt: 'Company Logo'}"
@@ -27,7 +27,12 @@
     </li> -->
    
 
-    <li class="nav-item dropdown" dropdown placement="bottom right">
+    <li class="nav-item dropdown mr-3" placement="bottom right">
+      <a class="nav-link text-primary" [routerLink]="['/login']" routerLinkActive="active"><i class="fa fa-sign-in" aria-hidden="true"></i> Salir</a>
+     
+    </li>
+
+    <!-- <li class="nav-item dropdown" dropdown placement="bottom right">
       <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
         <img src="assets/img/user.png" class="img-avatar" alt="foto del usuario"/>
       </a>
@@ -36,7 +41,7 @@
        
         <a routerLink="/login" class="dropdown-item" href="#"><i class="fa fa-lock"></i> Cerrar sesión</a>
       </div>
-    </li>
+    </li> -->
 
     <!-- <li class="nav-item dropdown" dropdown placement="bottom right">
       <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">

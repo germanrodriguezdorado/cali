@@ -7,6 +7,7 @@ import { NegocioAgendaComponent } from './agenda/agenda.component';
 import { TrabajosComponent } from './trabajos/trabajos.component';
 import { HorariosComponent } from './horarios/horarios.component';
 import { NegocioInformacionComponent } from './informacion/informacion.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 
 // Collapse Component
 import { CollapseModule } from 'ngx-bootstrap/collapse';
@@ -26,7 +27,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
     CollapseModule.forRoot(),
     ModalModule.forRoot(),
     NegocioRoutingModule,
-    NgSelectModule
+    NgSelectModule,
+    OwlDateTimeModule, 
+    OwlNativeDateTimeModule
   ],
   declarations: [
     NegocioAgendaComponent,
