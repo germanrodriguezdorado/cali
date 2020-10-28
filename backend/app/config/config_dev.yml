@@ -21,6 +21,7 @@ doctrine:
                 ROUND: DoctrineExtensions\Query\Mysql\Round
                 IFELSE: DoctrineExtensions\Query\Mysql\IfElse
                 DATE_FORMAT: DoctrineExtensions\Query\Mysql\DateFormat
+                STR_TO_DATE: DoctrineExtensions\Query\Mysql\StrToDate
 
 
 nelmio_cors:

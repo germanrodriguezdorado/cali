@@ -29,7 +29,7 @@ export class ToastService {
     // https://www.npmjs.com/package/ngx-toastr
     this.config = { 
       timeOut: 4000,
-      positionClass: "toast-buttom-center",
+      positionClass: "toast-bottom-right",
       preventDuplicates: true,
       progressBar: true
       //easing: 'ease-in'
@@ -38,7 +38,7 @@ export class ToastService {
 
   }
 
-  notificar(tipo:string, titulo:string, mensaje:[]){    
+  notificar(tipo:string, titulo:string, mensaje:[]){   
     var str : string = "";
     mensaje.forEach(element => { str += element });    
     if(tipo == "success") this.toastr.success(titulo,str,this.config);

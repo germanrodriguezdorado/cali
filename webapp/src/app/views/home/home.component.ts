@@ -1,5 +1,7 @@
 import { Component, ElementRef, ViewChild, OnInit, AfterContentInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
+import { Router } from '@angular/router';
+import { NegocioService } from "@services/negocio.service";
 
 
 @Component({
@@ -8,20 +10,26 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class HomeComponent implements OnInit, AfterContentInit{
   @ViewChild("inputBusqueda") inputBusqueda:ElementRef;
-  busqueda: string;
+  nombre: string;
+  barrio: string;
+  negocios: any;
   mostrando_sector_resultados: boolean;
 
 
 
   constructor(
-    private NgxSpinnerService: NgxSpinnerService
+    private NgxSpinnerService: NgxSpinnerService,
+    private NegocioService: NegocioService,
+    private Router: Router,
     ) { }
 
 
 
 
   ngOnInit() {
-    this.busqueda = "";
+    this.nombre = "";
+    this.barrio = "";
+    this.negocios = [];
     this.mostrando_sector_resultados = false;
   }
 
@@ -33,16 +41,26 @@ export class HomeComponent implements OnInit, AfterContentInit{
 
 
   buscar(){
-
     this.NgxSpinnerService.show();
-
-    setTimeout(() => {
+    var data = {
+      "nombre": this.nombre,
+      "barrio": this.barrio
+    }
+    this.NegocioService.buscar(data).subscribe(data => {
+      this.negocios = data;
       this.mostrando_sector_resultados = true;
-      this.busqueda = "";
       this.NgxSpinnerService.hide();
-    }, 500);
+    });
 
     
+
+    
+  }
+
+
+
+  irAAgendar(slug: string){
+    this.Router.navigate(["/agendar/" + slug]); 
   }
 
 

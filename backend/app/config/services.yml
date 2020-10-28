@@ -37,12 +37,15 @@ services:
 
    
 
-    ordentrabajo_service:
-        class: AppBundle\Services\OrdenTrabajoService   
+    servicio_horarios:
+        class: AppBundle\Services\HorariosService   
 
 
     functions:
         class: AppBundle\Resources\Functions
+
+    fechas_functions:
+        class: AppBundle\Resources\FechasFunctions    
 
     images_functions:
         class: AppBundle\Resources\ImagesFunctions        

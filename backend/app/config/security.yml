@@ -33,26 +33,36 @@ security:
 
 
         register_step1:
-            pattern:   ^/api_hc/public/register_step1
+            pattern:   ^/api_hc/p/register_step1
             stateless: true
             anonymous: true   
 
 
         register_step2:
-            pattern:   ^/api_hc/public/register_step1
+            pattern:   ^/api_hc/p/register_step1
             stateless: true
             anonymous: true    
 
 
         register_check:
-            pattern:   ^/api_hc/public/register_check
+            pattern:   ^/api_hc/p/register_check
             stateless: true
             anonymous: true    
 
-        zonas_de_cliente_por_rut:
-            pattern:   ^/api_hc/zona/zonas_de_cliente_por_rut
+        buscar_negocio:
+            pattern:   ^/api_hc/p/buscar_negocio
             stateless: true
-            anonymous: true                                    
+            anonymous: true
+
+        buscar_horarios:
+            pattern:   ^/api_hc/p/buscar_horarios
+            stateless: true
+            anonymous: true   
+
+        agendar:
+            pattern:   ^/api_hc/p/agendar
+            stateless: true
+            anonymous: true                                              
 
 
         api_hc:
@@ -73,10 +83,12 @@ security:
 
     access_control:
         - { path: ^/api_hc/login, roles: IS_AUTHENTICATED_ANONYMOUSLY } 
-        - { path: ^/api_hc/zona/zonas_de_cliente_por_rut, roles: IS_AUTHENTICATED_ANONYMOUSLY }  
-        - { path: ^/api_hc/public/register_step1, roles: IS_AUTHENTICATED_ANONYMOUSLY }  
-        - { path: ^/api_hc/public/register_step2, roles: IS_AUTHENTICATED_ANONYMOUSLY }  
-        - { path: ^/api_hc/public/register_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }  
+        - { path: ^/api_hc/p/buscar_negocio, roles: IS_AUTHENTICATED_ANONYMOUSLY } 
+        - { path: ^/api_hc/p/buscar_horarios, roles: IS_AUTHENTICATED_ANONYMOUSLY } 
+        - { path: ^/api_hc/p/agendar, roles: IS_AUTHENTICATED_ANONYMOUSLY }  
+        - { path: ^/api_hc/p/register_step1, roles: IS_AUTHENTICATED_ANONYMOUSLY }  
+        - { path: ^/api_hc/p/register_step2, roles: IS_AUTHENTICATED_ANONYMOUSLY }  
+        - { path: ^/api_hc/p/register_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }  
         - { path: ^/api_hc,       roles: IS_AUTHENTICATED_FULLY }      
 
 

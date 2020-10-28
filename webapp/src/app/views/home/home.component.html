@@ -83,16 +83,19 @@
     <div class="container-fluid">
       
 
-      <div class="animated fadeIn mt-5">
-        <div class="row mt-2">
+      <div class="animated fadeIn mt-2">
+        <div class="row">
           <div class="col-lg-12" style="text-align: center;">
             
               <img src="assets/img/logo_full.png" width="356" height="100">
+              <br>
+              <br>
+              <span class="display-4 text-primary" style="font-size: 38px;">Reservá hora en tu peluquería</span>
            
           </div>
         </div>
 
-        <div class="row mt-5">
+        <div class="row mt-3">
          
           <div class="col-lg-8 mx-auto">
             <div class="card" style="border: none;">
@@ -102,29 +105,47 @@
                 
                 <div class="row">
                  
-                  <div class="form-group col-sm-5">
-
-                   
-                        <label>&nbsp;</label>
-                        <input [(ngModel)]="busqueda" #inputBusqueda type="text" placeholder="Nombre del negocio" class="form-control form-control-lg">
-                     
-                   
-                   
                   
-      
+
+
+
+                  <div class="form-group col-sm-5" style="margin-bottom: 0px;">
+                    <label>&nbsp;</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" style="background-color: #fff;">
+                        <i class="fa fa-home font-2xl" style="color: #C8CED2"></i>
+                      </span>
+                    </div>
+                    <input placeholder="Nombre del negocio" #inputBusqueda class="form-control form-control-lg" type="text" style="border-left: none;" [(ngModel)]="nombre">
+                   
                   </div>
+                </div>
 
 
-                  <div class="form-group col-sm-5">
+                
+
+
+                  <div class="form-group col-sm-5" style="margin-bottom: 0px;">
 
                    
                     <label>&nbsp;</label>
-                    <select class="form-control form-control-lg" id="select2" name="select2">
-                      <option value="0">Cualquier barrio</option>
-                      <option value="1">Pocitos</option>
-                      <option value="2">Buceo</option>
-                      <option value="3">Malvín</option>
-                    </select>
+                   
+
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" style="background-color: #fff;">
+                        <i class="fa fa-map-marker font-2xl" style="color: #C8CED2"></i>
+                      </span>
+                    </div>
+                    <ng-select style="border-left: none;" class="form-control form-control-lg" [clearable]="false" [searchable]="false" [(ngModel)]="barrio">
+                      <ng-option value="">Cualquier zona</ng-option> 
+                      <ng-option value="Malvín">Malvín</ng-option>  
+                      <ng-option value="Buceo">Buceo</ng-option>  
+                      <ng-option value="Pocitos">Pocitos</ng-option>  
+                  </ng-select>
+                   
+                  </div>
                
                
               
@@ -133,7 +154,7 @@
                   
                     <div class="form-group col-sm-2">
                       <label>&nbsp;</label>
-                      <button (click)="buscar()" [disabled]="busqueda==''" class="btn btn-lg btn-block btn-primary" type="button">Buscar</button>
+                      <button (click)="buscar()"  class="btn btn-lg btn-block btn-primary" type="button">Buscar</button>
                     </div>
                   
                 </div>
@@ -152,13 +173,12 @@
          
           <div class="col-lg-8 mx-auto">
             <div class="row">
-              <div class="col-12 col-sm-4 col-lg-6 col-md mb-1 text-left" *ngFor="let number of [0]">
-                <div class="card bg-info text-white" style="cursor: pointer;" [routerLink]="['/agendar/morini']">
+              <div class="col-12 col-sm-4 col-lg-4 col-md mb-1 text-left" *ngFor="let negocio of negocios">
+                <div class="card bg-info text-white" style="cursor: pointer;" (click)="irAAgendar(negocio['slug'])">
                   <div class="card-body p-3 clearfix">
-                    <i class="fa fa-scissors bg-info p-3 font-5xl mr-3 float-left"></i>
-                    <div class="h5 mb-0 mt-2">Morini</div>
-                    <div class="text-uppercase font-weight-bold font-xs">Peluquería</div>
-                    <div class="text-uppercase font-weight-bold font-xs">Rivera 2345</div>
+                    <div class="h4 mb-0 mt-2">{{ negocio["nombre"] }}</div>
+                    <!-- <div class="font-xs"><i class="fa fa-scissors" aria-hidden="true"></i> Peluquería</div> -->
+                    <div class="font-xs">{{ negocio["direccion"] }}</div>
                   </div>
                 </div>
               </div>
@@ -424,9 +444,11 @@
     </tabset>
   </app-aside> -->
 </div>
-<ngx-spinner type="timer" size="medium"><p style="color: #fff" > Cargando... </p></ngx-spinner>
+<ngx-spinner type="timer" size="medium" bdColor = "rgba(35, 170, 214, 0.8)">
+  <p style="color: #fff" > Cargando... </p>
+</ngx-spinner>
 <!-- https://napster2210.github.io/ngx-spinner/ -->
-<app-footer style="background-color: #FFFFFF; border-top: none;">
-  <span><a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> Ayuda</a></span>
+<app-footer style=" border-top: none;">
+  <!-- <span><a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> Ayuda</a></span> -->
   <span class="ml-auto"><a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i> hola@cali.com</a></span>
 </app-footer>

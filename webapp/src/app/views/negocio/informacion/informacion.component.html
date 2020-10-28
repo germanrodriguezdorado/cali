@@ -15,59 +15,158 @@
                 <div class="col-sm-12">
                   <div class="form-group">
                     <label>Nombre</label>
-                    <input type="text" class="form-control" value="Peluquería Morini">
+                    <input [(ngModel)]="nombre" type="text" class="form-control">
                   </div>
                 </div>
               </div>
 
               <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                   <div class="form-group">
                     <label>Dirección</label>
-                    <input type="text" class="form-control" value="Rivera 2345 esq. Verdi">
+                    <input [(ngModel)]="direccion" type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Zona</label>
+                    <ng-select [(ngModel)]="barrio" class="form-control" [clearable]="false" [searchable]="false">
+                      <ng-option value="Malvín">Malvín</ng-option>  
+                      <ng-option value="Buceo">Buceo</ng-option>  
+                      <ng-option value="Pocitos">Pocitos</ng-option>  
+                  </ng-select>
                   </div>
                 </div>
               </div>
 
 
               <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                   <div class="form-group">
                     <label>Teléfono</label>
-                    <input type="text" class="form-control" value="098347712">
+                    <input [(ngModel)]="telefono" type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Duración del servicio</label>
+                    <ng-select [(ngModel)]="duracion" class="form-control" [clearable]="false" [searchable]="false">
+                      <ng-option value="10">10 minutos</ng-option>  
+                      <ng-option value="15">15 minutos</ng-option>  
+                      <ng-option value="30">30 minutos</ng-option>  
+                      <ng-option value="60">1 hora</ng-option>  
+                      <ng-option value="120">2 horas</ng-option>  
+                  </ng-select>
                   </div>
                 </div>
               </div>
 
+            
+
+             
+
+            </div>
+           
+          </div>
+
+
+         
+           
+             <hr>
+
+          <div class="row">
+                <div class="form-group col-sm-12">
+                  <label>Días de trabajo</label>
+                  <br>
+                  <!-- <label class="switch switch-primary">
+                    <input type="checkbox" class="switch-input" checked>
+                    <span class="switch-slider"></span>
+                  </label> -->
+                  <!-- <ng-select [(ngModel)]="dias" class="form-control" [searchable]="false" [clearable]="false" [multiple]="true">
+                    <ng-option value="lunes">Lunes</ng-option>  
+                    <ng-option value="martes">Martes</ng-option>  
+                    <ng-option value="miercoles">Miércoles</ng-option>  
+                    <ng-option value="jueves">Jueves</ng-option>  
+                    <ng-option value="viernes">Viernes</ng-option> 
+                    <ng-option value="sabado">Sábado</ng-option> 
+                    <ng-option value="domingo">Domingo</ng-option>  
+                  </ng-select> -->
+
+                  <div class="col-md-9 col-form-label">
+                    <div class="form-check">
+                      <input class="form-check-input" id="checkbox1" type="checkbox" [(ngModel)]="lunes">
+                      <label class="form-check-label" for="checkbox1"> Lunes </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="checkbox2" type="checkbox" [(ngModel)]="martes">
+                      <label class="form-check-label" for="checkbox2"> Martes </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="checkbox3" type="checkbox" [(ngModel)]="miercoles">
+                      <label class="form-check-label" for="checkbox3"> Miércoles </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="checkbox4" type="checkbox" [(ngModel)]="jueves">
+                      <label class="form-check-label" for="checkbox4"> Jueves </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="checkbox5" type="checkbox" [(ngModel)]="viernes">
+                      <label class="form-check-label" for="checkbox5"> Viernes </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="checkbox6" type="checkbox" [(ngModel)]="sabado">
+                      <label class="form-check-label" for="checkbox6"> Sábado </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="checkbox7" type="checkbox" [(ngModel)]="domingo">
+                      <label class="form-check-label" for="checkbox7"> Domingo </label>
+                    </div>
+                    
+                </div>
+
+          </div>
+        </div>
+               
+          
+               
+             
+
+
+
               <div class="row">
-                <div class="form-group col-sm-7">
-                  <label>Zona</label>
-                  <ng-select [(ngModel)]="zona" class="form-control" [clearable]="false" [searchable]="false">
-                    <ng-option value="Malvín">Malvín</ng-option>  
-                    <ng-option value="Buceo">Buceo</ng-option>  
-                    <ng-option value="Pocitos">Pocitos</ng-option>  
-                </ng-select>
+
+                <div class="form-group col-sm-4">
+                  <label>Desde</label>
+                  <ng-select [(ngModel)]="desde" class="form-control" [searchable]="false" [clearable]="false" >
+                    <ng-option *ngFor="let horario of horarios_disponibles" value="{{ horario }}">{{ horario }}</ng-option>  
+                  </ng-select>
                 </div>
-                <div class="form-group col-sm-5">
-                  <label>Duración del servicio</label>
-                  <ng-select [(ngModel)]="duracion" class="form-control" [clearable]="false" [searchable]="false">
-                    <ng-option value="10 minutos">10 minutos</ng-option>  
-                    <ng-option value="15 minutos">15 minutos</ng-option>  
-                    <ng-option value="30 minutos">30 minutos</ng-option>  
-                    <ng-option value="1 hora">1 hora</ng-option>  
-                    <ng-option value="2 horas">2 horas</ng-option>  
-                </ng-select>
+                <div class="form-group col-sm-4">
+                  <label>Hasta</label>
+                  <ng-select [(ngModel)]="hasta" class="form-control" [searchable]="false" [clearable]="false">
+                    <ng-option *ngFor="let horario of horarios_disponibles" value="{{ horario }}">{{ horario }}</ng-option>  
+                  </ng-select>
                 </div>
+                <div class="form-group col-sm-4">
+                  <label>Descanso</label>
+                  <ng-select [(ngModel)]="descanso" class="form-control" [searchable]="false" [clearable]="false">
+                    <ng-option value="Sin descanso">Sin descanso</ng-option>  
+                    <ng-option value="De 12 a 13">De 12 a 13</ng-option>  
+                    <ng-option value="De 13 a 14">De 13 a 14</ng-option>  
+                  </ng-select>
+                </div>
+       
+               
               </div>
 
-             
 
-            </div>
-            <div class="col-sm-6">
-             
+
               
-            </div>
-          </div>
+
+            
+
+           
+         
          
          
         

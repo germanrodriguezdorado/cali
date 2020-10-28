@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit{
   returnUrl: string; 
   loginForm: FormGroup;
   loading: boolean;
+  error_message: boolean;
   @ViewChild("inputUsuario", { static: true }) inputUsuario:ElementRef;
 
 
@@ -36,7 +37,8 @@ export class LoginComponent implements OnInit{
 
 
   ngOnInit() {
-    this.loading = false;            
+    this.loading = false;  
+    this.error_message = false;          
     this.AuthService.logout(); 
     this.returnUrl = this.route.snapshot.queryParams["returnUrl"];
 
@@ -53,54 +55,50 @@ export class LoginComponent implements OnInit{
 
 
 
-  submit(){
-
-    var user = {
-     "user_id": "1",
-          "token": "1234",
-          "nombre": "Juan Perez",
-          "username": "juan",
-          "tipo": "1"
-    }
-
-    localStorage.setItem("currentUser", JSON.stringify(user));
-    this.router.navigate(["negocio/informacion"]);
-  }
 
 
 
 
-//   submit(model) {
+  submit() {
 
         
 
    
-//     this.loading = true; 
+    this.loading = true; 
     
     
-//     this.AuthService.login(this.loginForm.controls['username'].value, this.loginForm.controls['password'].value)
-//         .pipe(first())
-//         .subscribe(
-//             data => {
+    this.AuthService.login(this.loginForm.controls['username'].value, this.loginForm.controls['password'].value)
+        .pipe(first())
+        .subscribe(
+            data => {
                
-//                 if(data["user_id"] == ""){ // Mal login    
-//                     this.inputUsuario.nativeElement.focus(); 
-//                     this.loading = false;                 
-//                 }else{
+                if(data["user_id"] == ""){ // Mal login    
+                    this.inputUsuario.nativeElement.focus(); 
+                    this.loading = false;   
+                    this.error_message = true;              
+                }else{
 
-//                     // Si hay ruta de retorno, lo redirijo. Sino voy para el home de cada tipo de user
+                    // Si hay ruta de retorno, lo redirijo. Sino voy para el home de cada tipo de user
                     
-//                     if(this.returnUrl != null && this.returnUrl != "/"){
-//                         this.router.navigate([this.returnUrl]); 
-//                     }else{
-//                       if(data["user_id"] == "1") this.router.navigate(["negocio/informacion"]);
-//                       if(data["user_id"] == "2") this.router.navigate(["cliente/informacion"]);
-//                     }
-//                 }                   
-//             });
+                    if(this.returnUrl != null && this.returnUrl != "/"){
+                        this.router.navigate([this.returnUrl]); 
+                    }else{
+                      if(data["tipo"] == "1") this.router.navigate(["negocio/informacion"]);
+                      if(data["tipo"] == "2") this.router.navigate(["cliente/informacion"]);
+                    }
+                }                   
+            });
 
-//             return;    
-// }
+            return;    
+}
+
+
+
+keyDownFunction(event) {
+  if (event.keyCode === 13 && this.loginForm.valid) {
+    this.submit();
+  }
+}
 
 
 }
