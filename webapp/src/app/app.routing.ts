@@ -9,12 +9,14 @@ import { P500Component } from '@views/error/500.component';
 import { LoginComponent } from '@views/login/login.component';
 import { HomeComponent } from '@views/home/home.component';
 import { AgendarComponent } from '@views/agendar/agendar.component';
+import { AgendarConfirmacionComponent } from '@views/agendarConfirmacion/agendarConfirmacion.component';
 import { RegisterComponent } from '@views/register/register.component';
 
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'Home' }},
   { path: 'agendar/:negocio', component: AgendarComponent, data: { title: 'Agendar' }},
+  { path: 'confirmar/:token', component: AgendarConfirmacionComponent, data: { title: 'Agendar' }},
   { path: '404', component: P404Component, data: { title: 'Page 404'} },
   { path: '500', component: P500Component, data: { title: 'Page 500'} },
   { path: 'login', component: LoginComponent, data: { title: 'Login Page' }},

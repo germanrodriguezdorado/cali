@@ -81,6 +81,7 @@ class PublicController extends FOSRestController
        
         if($negocio){
           $respuesta["nombre_negocio"] = $negocio->getNombre();
+          $respuesta["telefono_negocio"] = $negocio->getTelefono();
           $respuesta["direccion_negocio"] = $negocio->getDireccion();
           $respuesta["horarios"] = $this->get("servicio_horarios")->horariosDisponibles($negocio, $request->get("fecha"));
         }
@@ -103,13 +104,16 @@ class PublicController extends FOSRestController
         $negocio = $q->setParameter("slug", $request->get("slug"))->getOneOrNullResult();      
         // Si no existe el negocio
         if(!$negocio) return new JsonResponse("-1");
-        // Si el usuario tiene una agenda sin procesar
-        //if($this->get("servicio_horarios")->tieneAgendaSinProcesar()) return new JsonResponse("-2");
-        // Si el horario no esta dispoible
-        if(!$this->get("servicio_horarios")->horariosEstaDisponible($negocio,$request->get("fecha"),$request->get("horario"))) return new JsonResponse("-1");
+
         // Si el mail es incorrecto
         if(!$this->get("functions")->isValidEmail($request->get("email"))) return new JsonResponse("-1");
 
+        // Si el usuario tiene una agenda sin procesar
+        if($this->get("servicio_horarios")->tieneAgendaSinProcesar($request->get("email"), $negocio)) return new JsonResponse("-2");
+        
+        // Si el horario no esta dispoible
+        if(!$this->get("servicio_horarios")->horariosEstaDisponible($negocio,$request->get("fecha"),$request->get("horario"))) return new JsonResponse("-1");
+        
         // Creo agenda
         $agenda = new Agenda();
         $agenda->setNegocio($negocio);
@@ -117,12 +121,43 @@ class PublicController extends FOSRestController
         $fecha_ok = \DateTime::createFromFormat("Y-m-d", $request->get("fecha"));
         $agenda->setFecha($fecha_ok);
         $agenda->setHorario($request->get("horario"));
-        $agenda->setConfirmado(false);
+        $token = $this->get("string_functions")->generateRandomString(60);
+        $agenda->setConfirmationToken($token);
         $em->persist($agenda);
+
+        $this->get("email_service")->preAgenda($request->get("email"), $negocio->getNombre(), $fecha_ok->format("d/m/Y"), $request->get("horario"), $token);
+
+
         $em->flush();
         
         return new JsonResponse("1");   
-    }            
+    }     
+
+
+
+   /**
+    * @Rest\Post("/api_hc/p/confirmacion")
+    */
+    public function confirmacion(Request $request)
+    {
+        
+        $respuesta = array();
+        $respuesta["cliente_email"] = "";
+        $em = $this->getDoctrine()->getManager();
+        $agenda = $em->getRepository("AppBundle:Agenda")->findOneBy(array("confirmationToken" => $request->get("token")));
+          
+        if($agenda){
+          $respuesta["cliente_email"] = $agenda->getClienteMail();
+          $respuesta["negocio"] = $agenda->getNegocio()->getNombre();
+          $respuesta["direccion"] = $agenda->getNegocio()->getDireccion();
+          $respuesta["fecha"] = $agenda->getFecha()->format("d/m/Y");
+          $respuesta["horario"] = $agenda->getHorario();
+          $agenda->setConfirmationToken(null);
+          $em->flush();
+        }
+
+        return new JsonResponse($respuesta);  
+    }           
 
 
 

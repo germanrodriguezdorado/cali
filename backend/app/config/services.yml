@@ -44,6 +44,9 @@ services:
     functions:
         class: AppBundle\Resources\Functions
 
+    string_functions:
+        class: AppBundle\Resources\StringFunctions    
+
     fechas_functions:
         class: AppBundle\Resources\FechasFunctions    
 

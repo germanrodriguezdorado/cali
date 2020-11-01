@@ -13,9 +13,12 @@ export class NegocioAgendaComponent implements OnInit {
   fecha: Date;
   agendas: any[];
   cargando: boolean;
+  agenda_seleccionada: string;
 
 
-  @ViewChild('myModal') public myModal: ModalDirective;
+  @ViewChild('modalAtendido') public modalAtendido: ModalDirective;
+  @ViewChild('modalNoConcurre') public modalNoConcurre: ModalDirective;
+  @ViewChild('modalCancelar') public modalCancelar: ModalDirective;
 
   constructor(
     private NgxSpinnerService: NgxSpinnerService,
@@ -28,6 +31,7 @@ export class NegocioAgendaComponent implements OnInit {
     this.cargando = false;
     this.fecha = new Date();
     this.agendas = [];
+    this.agenda_seleccionada = "";
     this.buscar();
   
   }
@@ -46,5 +50,65 @@ export class NegocioAgendaComponent implements OnInit {
       this.cargando = false;
     });
   }
+
+
+
+
+  mostrarModal(modal: string, agenda: string){
+    
+
+    this.agenda_seleccionada = agenda;
+
+    if(modal == "atendido"){
+      this.modalAtendido.show();
+    }
+
+    if(modal == "no concurre"){
+      this.modalNoConcurre.show();
+    }
+
+    if(modal == "cancelar"){
+      this.modalCancelar.show();
+    }
+
+  }
+
+
+
+  atendido(){
+    this.NgxSpinnerService.show();
+    var data = {
+      "agenda": this.agenda_seleccionada
+    }
+    this.NegocioService.marcarAtendido(data).subscribe(respuesta => {
+      this.modalAtendido.hide();
+      this.buscar();
+    });
+  }
+
+  noConcurre(){
+    this.NgxSpinnerService.show();
+    var data = {
+      "agenda": this.agenda_seleccionada
+    }
+    this.NegocioService.marcarNoConcurre(data).subscribe(respuesta => {
+      this.modalNoConcurre.hide();
+      this.buscar();
+    });
+  }
+
+  cancelar(){
+    this.NgxSpinnerService.show();
+    var data = {
+      "agenda": this.agenda_seleccionada
+    }
+    this.NegocioService.marcarCancelar(data).subscribe(respuesta => {
+      this.modalCancelar.hide();
+      this.buscar();
+    });
+  }
+
+
+
 
 }

@@ -54,13 +54,6 @@ class Agenda
      * @ORM\Column(name="horario", type="string", length=5, nullable=false)
      */
     private $horario;     
-             
-
-    /**
-     * @var boolean
-     * @ORM\Column(name="confirmado", type="boolean", options={"default" : 1})
-     */
-    private $confirmado = true;
 
 
     /**
@@ -74,7 +67,14 @@ class Agenda
      * @var boolean
      * @ORM\Column(name="no_concurre", type="boolean", options={"default" : 0})
      */
-    private $noConcurre = false;        
+    private $noConcurre = false;
+
+
+    /**
+     * @var string
+     * @ORM\Column(name="confirmation_token", type="string", length=100, nullable=true)
+     */
+    private $confirmationToken;            
 
 
     /**
@@ -197,30 +197,6 @@ class Agenda
     }
 
     /**
-     * Set confirmado.
-     *
-     * @param bool $confirmado
-     *
-     * @return Agenda
-     */
-    public function setConfirmado($confirmado)
-    {
-        $this->confirmado = $confirmado;
-
-        return $this;
-    }
-
-    /**
-     * Get confirmado.
-     *
-     * @return bool
-     */
-    public function getConfirmado()
-    {
-        return $this->confirmado;
-    }
-
-    /**
      * Set procesado.
      *
      * @param bool $procesado
@@ -290,5 +266,29 @@ class Agenda
     public function getNegocio()
     {
         return $this->negocio;
+    }
+
+    /**
+     * Set confirmationToken.
+     *
+     * @param string|null $confirmationToken
+     *
+     * @return Agenda
+     */
+    public function setConfirmationToken($confirmationToken = null)
+    {
+        $this->confirmationToken = $confirmationToken;
+
+        return $this;
+    }
+
+    /**
+     * Get confirmationToken.
+     *
+     * @return string|null
+     */
+    public function getConfirmationToken()
+    {
+        return $this->confirmationToken;
     }
 }

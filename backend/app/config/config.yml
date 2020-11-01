@@ -38,6 +38,9 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    globals:
+        system_url: "%system_url%"
+        email_de_contacto: "%email_de_contacto%"
 
 # Doctrine Configuration
 doctrine:

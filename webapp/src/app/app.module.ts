@@ -23,6 +23,7 @@ import { DefaultLayoutComponent } from './containers';
 
 import { HomeComponent } from '@views/home/home.component';
 import { AgendarComponent } from '@views/agendar/agendar.component';
+import { AgendarConfirmacionComponent } from '@views/agendarConfirmacion/agendarConfirmacion.component';
 import { P404Component } from '@views/error/404.component';
 import { P500Component } from '@views/error/500.component';
 import { LoginComponent } from '@views/login/login.component';
@@ -36,6 +37,7 @@ import { Utilidades } from "@helpers/utilidades";
 import { VersionCheckService } from "@services/version-check.service";
 import { ToastService } from '@services/toast.service';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
+import { HttpErrorInterceptor } from '@helpers/server-errors.interceptor';
 
 import es from '@angular/common/locales/es';
 registerLocaleData(es);
@@ -90,6 +92,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     ...APP_CONTAINERS,
     HomeComponent,
     AgendarComponent,
+    AgendarConfirmacionComponent,
     P404Component,
     P500Component,
     LoginComponent,
@@ -98,8 +101,9 @@ import { NgxSpinnerModule } from "ngx-spinner";
     ToastService
   ],
   providers: [
-    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true},
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    { provide: LocationStrategy, useClass: HashLocationStrategy},
     { provide: Utilidades, useClass: Utilidades },
     { provide: VersionCheckService, useClass: VersionCheckService },
     { provide: NgbTimeAdapter, useClass: NgbTimeStringAdapter },

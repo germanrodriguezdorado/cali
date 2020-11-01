@@ -62,7 +62,12 @@ security:
         agendar:
             pattern:   ^/api_hc/p/agendar
             stateless: true
-            anonymous: true                                              
+            anonymous: true
+
+        confirmacion:
+            pattern:   ^/api_hc/p/confirmacion
+            stateless: true
+            anonymous: true                                                  
 
 
         api_hc:
@@ -85,7 +90,8 @@ security:
         - { path: ^/api_hc/login, roles: IS_AUTHENTICATED_ANONYMOUSLY } 
         - { path: ^/api_hc/p/buscar_negocio, roles: IS_AUTHENTICATED_ANONYMOUSLY } 
         - { path: ^/api_hc/p/buscar_horarios, roles: IS_AUTHENTICATED_ANONYMOUSLY } 
-        - { path: ^/api_hc/p/agendar, roles: IS_AUTHENTICATED_ANONYMOUSLY }  
+        - { path: ^/api_hc/p/agendar, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api_hc/p/confirmacion, roles: IS_AUTHENTICATED_ANONYMOUSLY }  
         - { path: ^/api_hc/p/register_step1, roles: IS_AUTHENTICATED_ANONYMOUSLY }  
         - { path: ^/api_hc/p/register_step2, roles: IS_AUTHENTICATED_ANONYMOUSLY }  
         - { path: ^/api_hc/p/register_check, roles: IS_AUTHENTICATED_ANONYMOUSLY }  

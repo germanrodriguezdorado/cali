@@ -1,0 +1,70 @@
+<app-header style="border-bottom: none;"
+  [navbarBrandRouterLink]="['/']"
+  [fixed]="true"
+  [navbarBrandFull]="{src: 'assets/img/logo_full.png', width: 89, height: 25, alt: 'Company Logo'}"
+  [navbarBrandMinimized]="{src: 'assets/img/logo_chico.png', width: 30, height: 30, alt: 'Company Logo'}"
+  [sidebarToggler]="false"
+  [asideMenuToggler]="false"
+  [mobileSidebarToggler]="false"
+  [mobileAsideMenuToggler]="false">
+</app-header>
+<div class="app-body">
+ 
+  <!-- Main content -->
+  <main class="main" style="background-color: #FFFFFF">
+  
+    <div class="container-fluid">
+      
+
+      <div class="animated fadeIn mt-5">
+
+
+
+
+
+          <div class="row mt-5 animated fadeIn">
+            
+            <div class="col-lg-5 mx-auto">
+             
+
+              <div class="card" *ngIf="mostrar_panel">
+                
+                <div class="card-body text-center">
+
+                  <span class="display-4" style="font-size: 38px;"> {{ negocio }}</span>
+
+                  <h3 class="mt-4"><i class="fa fa-check-circle fa-lg text-primary"></i> Reserva Confirmada</h3> 
+                  
+                  
+                    <h3>{{ fecha }}</h3>
+                    <h3>{{ horario }} hs.</h3>
+                    <h5><i class="fa fa-map-marker fa-lg"></i> {{ direccion }}</h5>
+
+                    
+
+                   
+                </div>
+               
+              </div>
+
+
+            </div>
+            
+          </div>
+
+
+
+
+      </div>
+
+
+    </div><!-- /.container-fluid -->
+  </main>
+  
+</div>
+<ngx-spinner type="timer" size="medium" bdColor = "rgba(35, 170, 214, 0.8)"><p style="color: #fff" > Cargando... </p></ngx-spinner>
+<!-- https://napster2210.github.io/ngx-spinner/ -->
+<!-- <app-footer>
+  <span><a href="https://coreui.io">CoreUI</a> &copy; 2018 creativeLabs.</span>
+  <span class="ml-auto">Powered by <a href="https://coreui.io/angular">CoreUI for Angular</a></span>
+</app-footer> -->

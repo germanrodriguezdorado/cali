@@ -1,4 +1,4 @@
-<app-header style="border-bottom: none;"
+<app-header style="border-bottom: none; background-color: #F9F7F0;"
   [navbarBrandRouterLink]="['/']"
   [fixed]="true"
   [navbarBrandFull]="{src: 'assets/img/logo_full.png', width: 89, height: 25, alt: 'Company Logo'}"
@@ -11,7 +11,7 @@
 <div class="app-body">
  
   <!-- Main content -->
-  <main class="main" style="background-color: #FFFFFF">
+  <main class="main" style="background-color: #F9F7F0">
   
     <div class="container-fluid">
       
@@ -20,7 +20,7 @@
 
         <div class="row" *ngIf="paso == 1">
           <div class="col-lg-12" style="text-align: center;">
-            <span class="display-4 text-primary"> {{ nombre_negocio }}</span>
+            <span class="display-4 text-primary" style="color: #178CA4 !important;"> {{ nombre_negocio }}</span>
             <!-- <p class="h6 text-primary"><i class="fa fa-scissors fa-md"></i> Peluquería</p> -->
           </div>
         </div>
@@ -29,8 +29,8 @@
         <div *ngIf="paso == 1">
           <div class="row mt-4">
            
-            <div class="col-lg-6 mx-auto">
-              <div class="card" style="border: none;">
+            <div class="col-lg-8 mx-auto">
+              <div class="card" style="background-color: #F9F7F0; border-color: #C8CED2;">
                 
                 <div class="card-body">
                   
@@ -44,11 +44,11 @@
                       <label>&nbsp;</label>
                     <div class="input-group">
                       <div class="input-group-prepend">
-                        <span class="input-group-text" style="background-color: #fff;">
-                          <i class="fa fa-calendar font-2xl" style="color: #C8CED2"></i>
+                        <span class="input-group-text" style="background-color: #fff; border-right: none; cursor: pointer;" [owlDateTimeTrigger]="dt1">
+                          <i class="fa fa-calendar font-2xl" style="color: #168DA4;" ></i>
                         </span>
                       </div>
-                      <input class="form-control form-control-lg" type="text" style="border-left: none;" [(ngModel)]="fecha" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1">
+                      <input readonly class="form-control form-control-lg" type="text" style="border-left: none; cursor: pointer;" [(ngModel)]="fecha" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" [min]="min">
                       <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
                     </div>
                   </div>
@@ -57,7 +57,8 @@
                     
                       <div class="form-group col-sm-5">
                         <label>&nbsp;</label>
-                        <button (click)="buscar()" class="btn btn-lg btn-block btn-primary" type="button">Buscar horarios</button>
+                        <button *ngIf="!loading" (click)="buscar()" class="btn btn-lg btn-block btn-primary" type="button">Buscar horarios</button>
+                        <button *ngIf="loading" disabled class="btn btn-lg btn-block btn-primary" type="button"><i class="fa fa-circle-o-notch fa-spin"></i> Buscando...</button>
                       </div>
                     
                   </div>
@@ -106,30 +107,32 @@
             <div class="col-lg-5 mx-auto">
              
 
-              <div class="card">
+              <div class="card" style="background-color: #F9F7F0;">
                
-                <div class="card-body text-center">
+                <div class="card-header"> <i class="fa fa-calendar"></i> Confirmá tu reserva </div>
+                <div class="card-body">
 
-                  
-                    <span class="display-4" style="font-size: 38px;"> {{ negocio | titlecase }}</span>
-                    <!-- <p class="h6"><i class="fa fa-scissors fa-md"></i> Peluquería</p> -->
-                    <h3 class="mt-4">Confirmá tu reserva</h3> 
-                    <h3>{{ fecha | date }}</h3>
-                    <h3>{{ horario_seleccionado }} hs.</h3>
-                    <h5><i class="fa fa-map-marker fa-lg"></i> {{ direccion_negocio }}</h5>
-                    <br>
-                    <h5>Ingresa tu e-mail</h5>
-                    <input #inputMail [(ngModel)]="email" type="text" class="form-control form-control-lg col-sm-9 mx-auto">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <p>{{ nombre_negocio }}</p>
+                        <p><strong>{{ fecha | date }}</strong></p>
+                        <p><strong>{{ horario_seleccionado }} hs.</strong></p>
+                        <p><strong>{{ direccion_negocio }}</strong></p>
+                        <label for="name">Ingresa tu e-mail</label>
+                        <input #inputMail [(ngModel)]="email" type="text" class="form-control">
+                       
+                        <div *ngIf="paso2_mensaje != ''" class="alert alert-danger mt-2" role="alert" style="text-align: left;">
+                           {{ paso2_mensaje }}
+                        </div>
 
-                    <br>
-                    <br>
+                      </div>
+                    </div>
+                  </div>
 
-                    <button class="btn btn-lg btn-link" (click)="irApaso1()">
-                      Volver
-                    </button>
-                    <button [disabled]="!Utilidades.validarEmail(email)" class="btn btn-lg btn-primary" (click)="agendar()">
-                       Confirmar
-                    </button>
+                  <button class="btn btn-link" (click)="irApaso1()">Volver</button>
+                  <button *ngIf="!loading" [disabled]="!Utilidades.validarEmail(email)" class="btn btn-primary" (click)="agendar()">Confirmar</button>
+                  <button *ngIf="loading" disabled class="btn btn-primary" type="button"><i class="fa fa-circle-o-notch fa-spin"></i> Espere...</button>
 
                 </div>
                
@@ -150,31 +153,33 @@
           <div class="row mt-5 animated fadeIn">
             
             <div class="col-lg-5 mx-auto">
-             
 
-              <div class="card">
-                
-                <div class="card-body text-center">
 
-                  <span class="display-4" style="font-size: 38px;"> {{ negocio | titlecase }}</span>
 
-                  <h3 class="mt-4"><i class="fa fa-check-circle fa-lg text-primary"></i> Reserva pre-confirmada</h3> 
-                  
-                  
-                    <h3>{{ fecha | date }}</h3>
-                    <h3>{{ horario_seleccionado }} hs.</h3>
-                    <h5><i class="fa fa-map-marker fa-lg"></i> {{ direccion_negocio }}</h5>
+              <div class="card" style="background-color: #F9F7F0;">
+               
+                <div class="card-header"> <i class="fa fa-check-circle"></i> Reserva pre-confirmada </div>
+                <div class="card-body">
 
-                    <br>
-                    <div class="alert alert-primary" role="alert" style="text-align: left;">
-                      <i class="fa fa-envelope-o" aria-hidden="true"></i> Te hemos enviado un email a tu casilla. Por favor sigue los pasos descriptos en el mismo para confirmar tu reserva.
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <p>{{ nombre_negocio }}</p>
+                        <p><strong>{{ fecha | date }}</strong></p>
+                        <p><strong>{{ horario_seleccionado }} hs.</strong></p>
+                        <p><strong>{{ direccion_negocio }}</strong></p>
+                        <div class="alert alert-primary" role="alert" style="text-align: left;">
+                          <i class="fa fa-envelope-o" aria-hidden="true"></i> Te hemos enviado un email a tu casilla. Por favor sigue los pasos descriptos en el mismo para confirmar tu reserva.
+                        </div>
+                      </div>
                     </div>
+                  </div>
 
-                   
+                  
                 </div>
                
               </div>
-
+             
 
             </div>
             

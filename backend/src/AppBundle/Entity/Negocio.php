@@ -27,7 +27,14 @@ class Negocio
      * @var string
      * @ORM\Column(name="nombre", type="string", length=100, nullable=false)
      */
-    private $nombre; 
+    private $nombre;
+
+
+    /**
+     * @var string
+     * @ORM\Column(name="email", type="string", length=100, nullable=false)
+     */
+    private $email;     
 
 
     /**
@@ -562,5 +569,29 @@ class Negocio
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * Set email.
+     *
+     * @param string $email
+     *
+     * @return Negocio
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email.
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 }

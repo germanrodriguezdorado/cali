@@ -4,8 +4,10 @@ namespace AppBundle\Services;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 use AppBundle\Entity\Negocio;
+use AppBundle\Entity\Usuario;
 
 
 // Uso: $this->get("servicio_horarios")->functionNombre(variable);
@@ -16,10 +18,12 @@ class HorariosService extends Controller
 
 
 	private $funciones_fechas;
+	private $em;
 
 
-	public function __construct(\AppBundle\Resources\FechasFunctions $funciones_fechas)  {
+	public function __construct(\AppBundle\Resources\FechasFunctions $funciones_fechas, EntityManagerInterface $em)  {
     	$this->funciones_fechas = $funciones_fechas;
+    	$this->em = $em;
 	}
 
 
@@ -59,11 +63,20 @@ class HorariosService extends Controller
 
 
 		// Controlo que no fueron agendados
+		$horarios2 = array();
+		foreach ($horarios as $clave => $horario) {
+			$test = $this->em->getRepository("AppBundle:Agenda")->findOneBy(array(
+				"negocio" => $negocio->getId(),
+				"fecha" => $date,
+				"horario" => $horario
+			));
+
+			if(!$test) $horarios2[] = $horario;
+		}
 
 		
 
-
-	    return $horarios;
+	    return $horarios2;
 
 	}
 
@@ -88,6 +101,19 @@ class HorariosService extends Controller
 
 	    return $horarios;
 
+	}
+
+
+
+	public function tieneAgendaSinProcesar($email, Negocio $negocio){
+		$test = $this->em->getRepository("AppBundle:Agenda")->findOneBy(array(
+			"negocio" => $negocio->getId(),
+			"clienteMail" => $email,
+			"procesado" => false
+		));
+
+
+		return $test != null;
 	}
 
 

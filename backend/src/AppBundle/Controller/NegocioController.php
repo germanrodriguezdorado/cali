@@ -29,6 +29,7 @@ class NegocioController extends FOSRestController
         $negocio = $em->getRepository("AppBundle:Negocio")->findOneBy(array("usuario" => $this->getUser()->getId())); 
         $respuesta = array();
         $respuesta["nombre"] = $negocio->getNombre();
+        $respuesta["email"] = $negocio->getEmail();
         $respuesta["direccion"] = $negocio->getDireccion();
         $respuesta["barrio"] = $negocio->getBarrio();
         $respuesta["telefono"] = $negocio->getTelefono();
@@ -55,9 +56,16 @@ class NegocioController extends FOSRestController
     public function guardarInformacion(Request $request)
     {     
         $em = $this->getDoctrine()->getManager();
+
+
+        // Chequeo nombre
+        // Chequeo email
+
         $negocio = $em->getRepository("AppBundle:Negocio")->findOneBy(array("usuario" => $this->getUser()->getId())); 
+        $email_anterior = $negocio->getEmail();
         $negocio->setNombre($request->get("nombre"));
-        $negocio->setSlug($this->get("functions")->slugify($request->get("nombre")));
+        $negocio->setEmail($request->get("email"));
+        $negocio->setSlug($this->get("string_functions")->slugify($request->get("nombre")));
         $negocio->setDireccion($request->get("direccion"));
         $negocio->setBarrio($request->get("barrio"));
         $negocio->setTelefono($request->get("telefono"));
@@ -72,8 +80,24 @@ class NegocioController extends FOSRestController
         $negocio->setDesde($request->get("desde"));
         $negocio->setHasta($request->get("hasta"));
         $negocio->setDescanso($request->get("descanso"));
+
+        $this->getUser()->setUsername($request->get("email"));
+        $this->getUser()->setUsernameCanonical($request->get("email"));
+        $this->getUser()->setEmail($request->get("email")); 
+
         $em->flush();
-        return new JsonResponse(1);
+
+
+        // Si el mail cambia se debe renovar el JWT
+        $respuesta = array();
+        $respuesta["new_jwt"] = "0";
+        if($email_anterior != $request->get("email")) {
+            $respuesta["new_jwt"] = $this->get("jwt")->getToken($this->getUser());
+        }
+        
+
+        
+        return new JsonResponse($respuesta);
     }    
 
 
@@ -88,7 +112,7 @@ class NegocioController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
         $negocio = $em->getRepository("AppBundle:Negocio")->findOneBy(array("usuario" => $this->getUser()->getId())); 
         
-        $q = $em->createQuery("SELECT a FROM AppBundle:Agenda a WHERE a.negocio = ".$negocio->getId()." AND a.fecha = :fecha AND a.procesado = 0 ORDER BY STR_TO_DATE(a.horario, '%h:%i') ASC");
+        $q = $em->createQuery("SELECT a FROM AppBundle:Agenda a WHERE a.negocio = ".$negocio->getId()." AND a.confirmationToken IS null AND a.fecha = :fecha AND a.procesado = 0 ORDER BY STR_TO_DATE(a.horario, '%h:%i') ASC");
         $res = $q->setParameter("fecha", $request->get("fecha"))->getResult();
 
         foreach ($res as $agenda) {
@@ -102,7 +126,67 @@ class NegocioController extends FOSRestController
         
         
         return new JsonResponse($respuesta);
-    }    
+    }  
+
+
+
+
+    /**
+    * @Rest\Post("/api_hc/negocio/marcar_atendido")
+    */
+    public function marcarAtendido(Request $request)
+    {     
+        $respuesta = array();
+        $em = $this->getDoctrine()->getManager();
+        $negocio = $em->getRepository("AppBundle:Negocio")->findOneBy(array("usuario" => $this->getUser()->getId())); 
+        $agenda = $em->getRepository("AppBundle:Agenda")->findOneBy(array("id" => $request->get("agenda"), "negocio" => $negocio->getId())); 
+        if($agenda){
+            $agenda->setProcesado(true);
+            $em->flush();
+        }
+        return new JsonResponse(1);
+    }  
+
+
+
+    /**
+    * @Rest\Post("/api_hc/negocio/marcar_no_concurre")
+    */
+    public function marcarNoConcurre(Request $request)
+    {     
+        $respuesta = array();
+        $em = $this->getDoctrine()->getManager();
+        $negocio = $em->getRepository("AppBundle:Negocio")->findOneBy(array("usuario" => $this->getUser()->getId())); 
+        $agenda = $em->getRepository("AppBundle:Agenda")->findOneBy(array("id" => $request->get("agenda"), "negocio" => $negocio->getId())); 
+        if($agenda){
+            $agenda->setProcesado(true);
+            $agenda->setNoConcurre(true);
+            $em->flush();
+        }
+        return new JsonResponse(1);
+    } 
+
+
+
+    /**
+    * @Rest\Post("/api_hc/negocio/marcar_cancelar")
+    */
+    public function marcarCancelar(Request $request)
+    {     
+        $respuesta = array();
+        $em = $this->getDoctrine()->getManager();
+        $negocio = $em->getRepository("AppBundle:Negocio")->findOneBy(array("usuario" => $this->getUser()->getId())); 
+        $agenda = $em->getRepository("AppBundle:Agenda")->findOneBy(array("id" => $request->get("agenda"), "negocio" => $negocio->getId())); 
+        if($agenda){
+            $em->remove($agenda);
+            $em->flush();
+        }
+
+        //mail?
+
+        return new JsonResponse(1);
+    } 
+
 
 
 

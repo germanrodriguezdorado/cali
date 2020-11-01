@@ -20,17 +20,42 @@ export class NegocioService {
   }
 
 
+
+    // PRIVADOS DEL NEGOCIO
+
     darInfo(){
         return this.http.get(environment.api_path + "/api_hc/negocio/informacion");
+    }
+
+    guardarInfo(data: any){
+      return this.http.post< any >(environment.api_path + "/api_hc/negocio/guardar_info/", data);
     }
 
     darAgenda(data: any){
       return this.http.post<any>(environment.api_path + "/api_hc/negocio/agenda", data);
     }
 
-    guardarInfo(data: any){
-      return this.http.post< any >(environment.api_path + "/api_hc/negocio/guardar_info/", data);
+    marcarAtendido(data: any){
+      return this.http.post<any>(environment.api_path + "/api_hc/negocio/marcar_atendido", data);
     }
+
+    marcarNoConcurre(data: any){
+      return this.http.post<any>(environment.api_path + "/api_hc/negocio/marcar_no_concurre", data);
+    }
+
+    marcarCancelar(data: any){
+      return this.http.post<any>(environment.api_path + "/api_hc/negocio/marcar_cancelar", data);
+    }
+
+    
+
+    
+
+
+
+
+
+    // PUBLICOS
 
     buscar(data: any){
       return this.http.post< any >(environment.api_path + "/api_hc/p/buscar_negocio", data);
@@ -42,6 +67,10 @@ export class NegocioService {
 
     agendar(data: any){
       return this.http.post< any >(environment.api_path + "/api_hc/p/agendar", data);
+    }
+
+    agendarConfirmacion(data: any){
+      return this.http.post< any >(environment.api_path + "/api_hc/p/confirmacion", data);
     }
 
 

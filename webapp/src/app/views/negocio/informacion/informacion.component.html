@@ -12,10 +12,16 @@
             <div class="col-sm-6">
 
               <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                   <div class="form-group">
                     <label>Nombre</label>
                     <input [(ngModel)]="nombre" type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>E-mail</label>
+                    <input [(ngModel)]="email" type="text" class="form-control">
                   </div>
                 </div>
               </div>
@@ -30,10 +36,8 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Zona</label>
-                    <ng-select [(ngModel)]="barrio" class="form-control" [clearable]="false" [searchable]="false">
-                      <ng-option value="Malvín">Malvín</ng-option>  
-                      <ng-option value="Buceo">Buceo</ng-option>  
-                      <ng-option value="Pocitos">Pocitos</ng-option>  
+                    <ng-select [(ngModel)]="barrio" class="form-control" [clearable]="false" [searchable]="true">
+                      <ng-option *ngFor="let barrio of barrios_disponibles" value="{{ barrio }}">{{ barrio }}</ng-option>  
                   </ng-select>
                   </div>
                 </div>

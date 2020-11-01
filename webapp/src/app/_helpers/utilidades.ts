@@ -381,6 +381,86 @@ export class Utilidades {
         }
 
 
+
+
+
+        darBarriosDisponibles(){
+          var barrios_disponibles = [];
+          barrios_disponibles.push('Abayubá');
+barrios_disponibles.push('Aguada');
+barrios_disponibles.push('Aires Puros');
+barrios_disponibles.push('Atahualpa');
+barrios_disponibles.push('Bañados de Carrasco');
+barrios_disponibles.push('Barrio Sur');
+barrios_disponibles.push('Bella Italia');
+barrios_disponibles.push('Bella Vista');
+barrios_disponibles.push('Belvedere');
+barrios_disponibles.push('Brazo Oriental');
+barrios_disponibles.push('Buceo');
+barrios_disponibles.push('Capurro');
+barrios_disponibles.push('Carrasco');
+barrios_disponibles.push('Carrasco Norte');
+barrios_disponibles.push('Casabó');
+barrios_disponibles.push('Casavalle');
+barrios_disponibles.push('Centro');
+barrios_disponibles.push('Cerrito');
+barrios_disponibles.push('Cerro');
+barrios_disponibles.push('Ciudad Vieja');
+barrios_disponibles.push('Colón');
+barrios_disponibles.push('Conciliación');
+barrios_disponibles.push('Cordón');
+barrios_disponibles.push('Flor de Maroñas');
+barrios_disponibles.push('Goes');
+barrios_disponibles.push('Ituzaingó');
+barrios_disponibles.push('Jacinto Vera');
+barrios_disponibles.push('Jardines del Hipódromo');
+barrios_disponibles.push('La Blanqueada');
+barrios_disponibles.push('La Comercial');
+barrios_disponibles.push('La Figurita');
+barrios_disponibles.push('La Paloma');
+barrios_disponibles.push('La Teja');
+barrios_disponibles.push('Larrañaga');
+barrios_disponibles.push('Las Acacias');
+barrios_disponibles.push('Las Canteras');
+barrios_disponibles.push('Lezica');
+barrios_disponibles.push('Malvín');
+barrios_disponibles.push('Malvin Norte');
+barrios_disponibles.push('Manga');
+barrios_disponibles.push('Maroñas');
+barrios_disponibles.push('Melilla');
+barrios_disponibles.push('Mercado Modelo');
+barrios_disponibles.push('Nuevo París');
+barrios_disponibles.push('Palermo');
+barrios_disponibles.push('Parque Batlle');
+barrios_disponibles.push('Parque Rodó');
+barrios_disponibles.push('Paso de la Arena');
+barrios_disponibles.push('Paso de las Duranas');
+barrios_disponibles.push('Paso Molino');
+barrios_disponibles.push('Peñarol');
+barrios_disponibles.push('Perez Castellanos');
+barrios_disponibles.push('Piedras Blancas');
+barrios_disponibles.push('Pocitos');
+barrios_disponibles.push('Prado');
+barrios_disponibles.push('Punta Carretas');
+barrios_disponibles.push('Punta de Rieles');
+barrios_disponibles.push('Punta Gorda');
+barrios_disponibles.push('Reducto');
+barrios_disponibles.push('Sayago');
+barrios_disponibles.push('Toledo Chico');
+barrios_disponibles.push('Tres Cruces');
+barrios_disponibles.push('Tres Ombúes');
+barrios_disponibles.push('Unión');
+barrios_disponibles.push('Villa Española');
+barrios_disponibles.push('Villa García');
+barrios_disponibles.push('Villa Muñoz');
+barrios_disponibles.push('Zonamérica');
+
+          
+              
+              return barrios_disponibles;
+          }
+
+
      
     
 

@@ -54,6 +54,24 @@ class EmailService extends Controller
 
 
 
+
+    public function preAgenda($email, $nombre_negocio, $fecha, $horario, $token){
+        if(!$this->envio_emails) return;
+        $this->email->setSubject("Confirma tu reserva en ".$nombre_negocio."!");            
+        $this->email->setFrom(array($this->container_interface->getParameter("mailer_user") => $this->container_interface->getParameter("mailer_name")));             
+        $this->email->setTo($email);              
+        $this->email->setBody($this->templating->render("emails/agenda_dirigida_a_cliente.html.twig", array(
+            "nombre_negocio" => $nombre_negocio,
+            "fecha" => $fecha,
+            "horario" => $horario,
+            "token" => $token
+        )), "text/html");
+        $this->mailer->send($this->email);
+        return 1;
+    }
+
+
+
      
 
 

@@ -37,9 +37,9 @@ export class LoginComponent implements OnInit{
 
 
   ngOnInit() {
-    this.loading = false;  
-    this.error_message = false;          
     this.AuthService.logout(); 
+    this.loading = false;  
+    this.error_message = false;  
     this.returnUrl = this.route.snapshot.queryParams["returnUrl"];
 
     this.loginForm = this.FormBuilder.group({

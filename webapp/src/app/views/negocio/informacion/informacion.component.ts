@@ -10,12 +10,15 @@ import { NegocioService } from "@services/negocio.service";
   templateUrl: 'informacion.component.html'
 })
 export class NegocioInformacionComponent implements OnInit {
+  usuario;
   nombre: string;
+  email: string;
   direccion: string;
   telefono: string
   barrio: string;
   duracion: string;
   horarios_disponibles: string[];
+  barrios_disponibles: string[];
   desde: string;
   hasta: string;
   descanso: string;
@@ -55,12 +58,16 @@ export class NegocioInformacionComponent implements OnInit {
   ngOnInit() {
 
     this.NgxSpinnerService.show();
+    this.usuario = JSON.parse(localStorage.getItem("currentUser"));
+    console.log(this.usuario)
     this.nombre = "";
+    this.email = "";
     this.direccion = "";
     this.telefono = "";
     this.barrio = "";
     this.duracion = "";
     this.horarios_disponibles = this.Utilidades.darHorariosDisponibles();
+    this.barrios_disponibles = this.Utilidades.darBarriosDisponibles();
     this.lunes = false;
     this.martes = false;
     this.miercoles = false;
@@ -75,6 +82,7 @@ export class NegocioInformacionComponent implements OnInit {
 
     this.NegocioService.darInfo().subscribe(data => {
       this.nombre = data["nombre"];
+      this.email = data["email"];
       this.direccion = data["direccion"];
       this.telefono = data["telefono"];
       this.barrio = data["barrio"];
@@ -99,15 +107,24 @@ export class NegocioInformacionComponent implements OnInit {
 
     if(
       this.nombre == "" ||
+      this.email == "" ||
       this.direccion == "" ||
       this.telefono == ""
     ){
-      this.ToastService.notificar("warning", "Por favor, complete nombre, dirección y teléfono.", []);
+      this.ToastService.notificar("warning", "Por favor, complete nombre, email, dirección y teléfono.", []);
+      return;
+    }
+
+
+    if(!this.Utilidades.validarEmail(this.email)){
+      this.ToastService.notificar("warning", "Por favor, ingrese un e-mail correcto.", []);
+      return;
     }
 
 
     var data = {
       "nombre": this.nombre,
+      "email": this.email,
       "direccion": this.direccion,
       "barrio": this.barrio,
       "telefono": this.telefono,
@@ -126,6 +143,13 @@ export class NegocioInformacionComponent implements OnInit {
 
     this.NgxSpinnerService.show();
     this.NegocioService.guardarInfo(data).subscribe(data => {
+
+      if(data["new_jwt"] != "0"){ // Reemplazo el JWT si amerita
+        this.usuario.token = data["new_jwt"];
+        this.usuario.username = this.email;
+        localStorage.setItem("currentUser", JSON.stringify(this.usuario));
+      }
+
       this.NgxSpinnerService.hide();
       this.ToastService.notificar("success", "Información guardada correctamente.", []);
     });

@@ -2,6 +2,8 @@ import { Component, ElementRef, ViewChild, OnInit, AfterContentInit } from '@ang
 import { NgxSpinnerService } from "ngx-spinner";
 import { Router } from '@angular/router';
 import { NegocioService } from "@services/negocio.service";
+import { Utilidades } from "@helpers/utilidades";
+import { AuthService } from "@services/auth.service";
 
 
 @Component({
@@ -13,7 +15,9 @@ export class HomeComponent implements OnInit, AfterContentInit{
   nombre: string;
   barrio: string;
   negocios: any;
+  barrios_disponibles: string[];
   mostrando_sector_resultados: boolean;
+  loading: boolean;
 
 
 
@@ -21,16 +25,21 @@ export class HomeComponent implements OnInit, AfterContentInit{
     private NgxSpinnerService: NgxSpinnerService,
     private NegocioService: NegocioService,
     private Router: Router,
+    public Utilidades: Utilidades,
+    private AuthService: AuthService
     ) { }
 
 
 
 
   ngOnInit() {
+    this.AuthService.logout();
+    this.loading = false;
     this.nombre = "";
     this.barrio = "";
     this.negocios = [];
     this.mostrando_sector_resultados = false;
+    this.barrios_disponibles = this.Utilidades.darBarriosDisponibles();
   }
 
 
@@ -41,7 +50,7 @@ export class HomeComponent implements OnInit, AfterContentInit{
 
 
   buscar(){
-    this.NgxSpinnerService.show();
+    this.loading = true;
     var data = {
       "nombre": this.nombre,
       "barrio": this.barrio
@@ -49,7 +58,7 @@ export class HomeComponent implements OnInit, AfterContentInit{
     this.NegocioService.buscar(data).subscribe(data => {
       this.negocios = data;
       this.mostrando_sector_resultados = true;
-      this.NgxSpinnerService.hide();
+      this.loading = false;
     });
 
     
