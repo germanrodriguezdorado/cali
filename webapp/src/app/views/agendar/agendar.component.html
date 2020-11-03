@@ -48,7 +48,7 @@
                           <i class="fa fa-calendar font-2xl" style="color: #168DA4;" ></i>
                         </span>
                       </div>
-                      <input readonly class="form-control form-control-lg" type="text" style="border-left: none; cursor: pointer;" [(ngModel)]="fecha" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" [min]="min">
+                      <input readonly class="form-control form-control-lg" type="text" style="border-left: none; cursor: pointer; color: #168DA4" [(ngModel)]="fecha" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" [min]="min">
                       <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
                     </div>
                   </div>
@@ -58,7 +58,7 @@
                       <div class="form-group col-sm-5">
                         <label>&nbsp;</label>
                         <button *ngIf="!loading" (click)="buscar()" class="btn btn-lg btn-block btn-primary" type="button">Buscar horarios</button>
-                        <button *ngIf="loading" disabled class="btn btn-lg btn-block btn-primary" type="button"><i class="fa fa-circle-o-notch fa-spin"></i> Buscando...</button>
+                        <button *ngIf="loading" disabled class="btn btn-lg btn-block btn-primary" type="button">Buscando</button>
                       </div>
                     
                   </div>
@@ -107,7 +107,7 @@
             <div class="col-lg-5 mx-auto">
              
 
-              <div class="card" style="background-color: #F9F7F0;">
+              <div class="card text-center" style="background-color: #F9F7F0; color: #168DA4 !important">
                
                 <div class="card-header"> <i class="fa fa-calendar"></i> Confirmá tu reserva </div>
                 <div class="card-body">
@@ -115,12 +115,15 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group">
-                        <p>{{ nombre_negocio }}</p>
-                        <p><strong>{{ fecha | date }}</strong></p>
-                        <p><strong>{{ horario_seleccionado }} hs.</strong></p>
-                        <p><strong>{{ direccion_negocio }}</strong></p>
-                        <label for="name">Ingresa tu e-mail</label>
-                        <input #inputMail [(ngModel)]="email" type="text" class="form-control">
+                        <!-- <span class="display-4" style="font-size: 30px;">{{ nombre_negocio }}</span><br> -->
+                        <!-- <span class="display-4" style="font-size: 18px;">{{ direccion_negocio }}</span><br> -->
+                        <span class="display-4" style="font-size: 30px;">{{ fecha | date }}</span><br><br>
+                        <span class="display-4" style="font-size: 30px;">{{ horario_seleccionado }} hs.</span><br>
+                        
+                        
+                        <hr>
+                         <span class="display-4" style="font-size: 18px;">Ingresa tu e-mail</span><br>
+                        <input #inputMail [(ngModel)]="email" type="text" class="form-control form-control-lg mt-2 text-center">
                        
                         <div *ngIf="paso2_mensaje != ''" class="alert alert-danger mt-2" role="alert" style="text-align: left;">
                            {{ paso2_mensaje }}
@@ -130,9 +133,9 @@
                     </div>
                   </div>
 
-                  <button class="btn btn-link" (click)="irApaso1()">Volver</button>
-                  <button *ngIf="!loading" [disabled]="!Utilidades.validarEmail(email)" class="btn btn-primary" (click)="agendar()">Confirmar</button>
-                  <button *ngIf="loading" disabled class="btn btn-primary" type="button"><i class="fa fa-circle-o-notch fa-spin"></i> Espere...</button>
+                  <button class="btn btn-link btn-lg" (click)="irApaso1()">Volver</button>
+                  <button *ngIf="!loading" [disabled]="!Utilidades.validarEmail(email)" class="btn btn-primary btn-lg" (click)="agendar()">Confirmar</button>
+                  <button *ngIf="loading" disabled class="btn btn-primary btn-lg" type="button"><i class="fa fa-circle-o-notch fa-spin"></i> Espere...</button>
 
                 </div>
                
@@ -156,21 +159,29 @@
 
 
 
-              <div class="card" style="background-color: #F9F7F0;">
+              <div class="card" style="background-color: #F9F7F0; color: #168DA4 !important">
                
                 <div class="card-header"> <i class="fa fa-check-circle"></i> Reserva pre-confirmada </div>
-                <div class="card-body">
+                <div class="card-body text-center">
+
+              
 
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group">
-                        <p>{{ nombre_negocio }}</p>
-                        <p><strong>{{ fecha | date }}</strong></p>
-                        <p><strong>{{ horario_seleccionado }} hs.</strong></p>
-                        <p><strong>{{ direccion_negocio }}</strong></p>
+
+                        <span class="display-4" style="font-size: 30px;">{{ nombre_negocio }}</span><br><br>
+                        <!-- <span class="display-4" style="font-size: 18px;">{{ direccion_negocio }}</span><br> -->
+                        <span class="display-4" style="font-size: 30px;">{{ fecha | date }}</span><br>
+                        <span class="display-4" style="font-size: 30px;">{{ horario_seleccionado }} hs.</span><br><br>
+
                         <div class="alert alert-primary" role="alert" style="text-align: left;">
                           <i class="fa fa-envelope-o" aria-hidden="true"></i> Te hemos enviado un email a tu casilla. Por favor sigue los pasos descriptos en el mismo para confirmar tu reserva.
                         </div>
+                        
+                        
+
+                        
                       </div>
                     </div>
                   </div>

@@ -89,12 +89,12 @@
         <div class="row">
           <div class="col-lg-12" style="text-align: center;">
             
-              <!-- <img src="assets/img/logo_full.png" width="356" height="100"> -->
-              <span class="display-1 text-primary" style="color: #178CA4 !important">CALI</span>
+              <img src="assets/img/logo_full.png" width="356" height="100">
+              <!-- <span class="display-1 text-primary" style="color: #178CA4 !important">CALI</span> -->
            
               <br>
               <br>
-              <span class="display-4 text-primary" style="font-size: 38px; color: #178CA4 !important">Reservá hora en tu peluquería</span>
+              <span class="display-4 text-primary" style="font-size: 38px; color: #178CA4 !important">Reservá tu hora</span>
            
           </div>
         </div>
@@ -102,9 +102,7 @@
         <div class="row mt-3">
          
           <div class="col-lg-8 mx-auto">
-            <div class="card" style="border: none; background-color: #F9F7F0;">
               
-              <div class="card-body">
                 
                 
                 <div class="row">
@@ -157,7 +155,7 @@
                     <div class="form-group col-sm-2">
                       <label>&nbsp;</label>
                       <button *ngIf="!loading" (click)="buscar()" class="btn btn-lg btn-block btn-primary" type="button">Buscar</button>
-                      <button *ngIf="loading" disabled class="btn btn-lg btn-block btn-primary" type="button"><i class="fa fa-circle-o-notch fa-spin"></i></button>
+                      <button *ngIf="loading" disabled class="btn btn-lg btn-block btn-primary" type="button">Buscando</button>
                     </div>
                   
                 </div>
@@ -165,8 +163,8 @@
 
 
 
-              </div>
-            </div>
+              
+            
           </div>
          
         </div>
@@ -464,7 +462,7 @@
   <p style="color: #fff" > Cargando... </p>
 </ngx-spinner>
 <!-- https://napster2210.github.io/ngx-spinner/ -->
-<app-footer style=" border-top: none; background-color: #178CA4;">
+<app-footer style="border-top: none; background-color: #178CA4;">
   <!-- <span><a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> Ayuda</a></span> -->
-  <span class="ml-auto" ><a href="#" style="color: #F9F7F0"><i class="fa fa-envelope-o" aria-hidden="true"></i> hola@cali.com</a></span>
+  <span class="ml-auto" ><a href="mailto:hola@cali.com.uy" style="color: #F9F7F0"><i class="fa fa-envelope-o" aria-hidden="true"></i> hola@cali.com.uy</a></span>
 </app-footer>
