@@ -19,7 +19,7 @@ let mainHash = '';
 let mainBundleFile = '';
 
 // RegExp to find main.bundle.js, even if it doesn't include a hash in it's name (dev build)
-let mainBundleRegexp = /^main.?([a-z0-9]*)?(\.bundle)?.js$/;
+let mainBundleRegexp = /^main-es5.?([a-z0-9]*)?(\.bundle)?.js$/;
 
 // read the dist folder files and find the one we're looking for
 readDir(path.join(__dirname, '../dist/'))
