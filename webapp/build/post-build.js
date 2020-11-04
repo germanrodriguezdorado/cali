@@ -35,6 +35,8 @@ readDir(path.join(__dirname, '../dist/'))
       }
     }
 
+    mainHash = new Date().getTime();
+
     console.log(`Writing version and hash to ${versionFilePath}`);
 
     // write current version and hash into the version.json file
