@@ -14,6 +14,8 @@ export class NegocioAgendaComponent implements OnInit {
   agendas: any[];
   cargando: boolean;
   agenda_seleccionada: string;
+  motivo_cancelacion: string;
+  bloquear_email: boolean;
 
 
   @ViewChild('modalAtendido') public modalAtendido: ModalDirective;
@@ -32,6 +34,8 @@ export class NegocioAgendaComponent implements OnInit {
     this.fecha = new Date();
     this.agendas = [];
     this.agenda_seleccionada = "";
+    this.motivo_cancelacion = "";
+    this.bloquear_email = false;
     this.buscar();
   
   }
@@ -89,10 +93,12 @@ export class NegocioAgendaComponent implements OnInit {
   noConcurre(){
     this.NgxSpinnerService.show();
     var data = {
-      "agenda": this.agenda_seleccionada
+      "agenda": this.agenda_seleccionada,
+      "bloquear": this.bloquear_email
     }
     this.NegocioService.marcarNoConcurre(data).subscribe(respuesta => {
       this.modalNoConcurre.hide();
+      this.bloquear_email = false;
       this.buscar();
     });
   }
@@ -100,10 +106,12 @@ export class NegocioAgendaComponent implements OnInit {
   cancelar(){
     this.NgxSpinnerService.show();
     var data = {
-      "agenda": this.agenda_seleccionada
+      "agenda": this.agenda_seleccionada,
+      "motivo": this.motivo_cancelacion
     }
     this.NegocioService.marcarCancelar(data).subscribe(respuesta => {
       this.modalCancelar.hide();
+      this.motivo_cancelacion = "";
       this.buscar();
     });
   }

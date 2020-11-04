@@ -142,6 +142,10 @@ export class AgendarComponent implements OnInit, AfterContentInit{
         this.paso2_mensaje = "Ya tienes una reserva en " + this.nombre_negocio + ". Puedes comunicarte con el local al " + this.telefono_negocio;
       }
 
+      if(respuesta == "-3"){ // Email bloqueado
+        this.paso2_mensaje = "No es posible realizar tu reserva";
+      }
+
     });
   }
 

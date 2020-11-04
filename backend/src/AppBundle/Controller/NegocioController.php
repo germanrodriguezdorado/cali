@@ -11,6 +11,7 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 use AppBundle\Entity\Negocio;
+use AppBundle\Entity\Bloqueo;
 
 
 
@@ -161,8 +162,22 @@ class NegocioController extends FOSRestController
         if($agenda){
             $agenda->setProcesado(true);
             $agenda->setNoConcurre(true);
-            $em->flush();
         }
+
+        // Bloqueo?
+        if($request->get("bloquear") == true){
+            $bloqueo = new Bloqueo();
+            $bloqueo->setNegocio($negocio);
+            $bloqueo->setEmail($agenda->getClienteMail());
+            $em->persist($bloqueo);
+        }
+
+
+
+
+        $em->flush();
+
+
         return new JsonResponse(1);
     } 
 
@@ -177,12 +192,15 @@ class NegocioController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
         $negocio = $em->getRepository("AppBundle:Negocio")->findOneBy(array("usuario" => $this->getUser()->getId())); 
         $agenda = $em->getRepository("AppBundle:Agenda")->findOneBy(array("id" => $request->get("agenda"), "negocio" => $negocio->getId())); 
+        $fecha = $agenda->getFecha()->format("d/m/Y");
+        $horario = $agenda->getHorario();
+        $email = $agenda->getClienteMail();
         if($agenda){
             $em->remove($agenda);
             $em->flush();
         }
 
-        //mail?
+        $this->get("email_service")->cancelarAgenda($email, $negocio->getNombre(), $fecha, $horario, $request->get("motivo"));
 
         return new JsonResponse(1);
     } 

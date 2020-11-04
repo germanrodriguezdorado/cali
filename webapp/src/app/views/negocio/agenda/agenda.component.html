@@ -105,6 +105,12 @@
       </div>
       <div class="modal-body">
         <p>¿Desea marcar que el cliente no concurrió?</p>
+
+        <div class="form-check">
+          <input class="form-check-input" id="checkbox1" type="checkbox" [(ngModel)]="bloquear_email">
+          <label class="form-check-label" for="checkbox1"> Bloquear esta casilla de email </label>
+        </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="modalNoConcurre.hide()">Cancelar</button>
@@ -126,11 +132,17 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>¿Desea cancelar esta cita?</p>
+        
+        <div role="alert" class="alert alert-info">
+          <strong>El cliente será avisado por e-mail.</strong><br> Si lo desea, también puede agregar un motivo de cancelación.
+        </div>
+
+        <textarea [(ngModel)]="motivo_cancelacion" class="form-control" id="textarea-input" name="textarea-input" placeholder="Escriba el motivo de cancelación.." rows="5"></textarea>
+
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="modalCancelar.hide()">Cancelar</button>
-        <button type="button" class="btn btn-primary" (click)="cancelar()">Aceptar</button>
+        <button type="button" class="btn btn-secondary" (click)="modalCancelar.hide()">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="cancelar()">Cancelar cita</button>
       </div>
     </div>
   </div>

@@ -108,6 +108,10 @@ class PublicController extends FOSRestController
         // Si el mail es incorrecto
         if(!$this->get("functions")->isValidEmail($request->get("email"))) return new JsonResponse("-1");
 
+        // Si este email no esta bloqueado para el negocio
+        $bloqueo = $em->getRepository("AppBundle:Bloqueo")->findOneBy(array("negocio" => $negocio->getId(), "email" => $request->get("email")));
+        if($bloqueo) return new JsonResponse("-3");
+
         // Si el usuario tiene una agenda sin procesar
         if($this->get("servicio_horarios")->tieneAgendaSinProcesar($request->get("email"), $negocio)) return new JsonResponse("-2");
         
