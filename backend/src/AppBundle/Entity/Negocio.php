@@ -46,14 +46,14 @@ class Negocio
 
     /**
      * @var string
-     * @ORM\Column(name="direccion", type="string", length=100, nullable=false)
+     * @ORM\Column(name="direccion", type="string", length=100, nullable=true)
      */
     private $direccion;
 
 
     /**
      * @var string
-     * @ORM\Column(name="barrio", type="string", length=40, nullable=false)
+     * @ORM\Column(name="barrio", type="string", length=40, nullable=true)
      */
     private $barrio;
 

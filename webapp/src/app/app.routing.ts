@@ -11,6 +11,7 @@ import { HomeComponent } from '@views/home/home.component';
 import { AgendarComponent } from '@views/agendar/agendar.component';
 import { AgendarConfirmacionComponent } from '@views/agendarConfirmacion/agendarConfirmacion.component';
 import { RegisterComponent } from '@views/register/register.component';
+import { RegisterCheckComponent } from '@views/registerCheck/registerCheck.component';
 
 
 export const routes: Routes = [
@@ -21,6 +22,7 @@ export const routes: Routes = [
   { path: '500', component: P500Component, data: { title: 'Page 500'} },
   { path: 'login', component: LoginComponent, data: { title: 'Login Page' }},
   { path: 'register', component: RegisterComponent, data: { title: 'Register Page' }},
+  { path: 'register-check/:token', component: RegisterCheckComponent, data: { title: 'Register Check Page' }},
   { path: '', component: DefaultLayoutComponent,
     children: [
       { path: 'negocio', loadChildren: () => import('@views/negocio/negocio.module').then(m => m.NegocioModule)},

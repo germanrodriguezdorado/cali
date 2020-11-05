@@ -28,6 +28,7 @@ import { P404Component } from '@views/error/404.component';
 import { P500Component } from '@views/error/500.component';
 import { LoginComponent } from '@views/login/login.component';
 import { RegisterComponent } from '@views/register/register.component';
+import { RegisterCheckComponent } from '@views/registerCheck/registerCheck.component';
 
 
 import { NgbTimeStringAdapter } from '@helpers/timepicker-adapter';
@@ -97,6 +98,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     P500Component,
     LoginComponent,
     RegisterComponent,
+    RegisterCheckComponent,
     CustomToast,
     ToastService
   ],

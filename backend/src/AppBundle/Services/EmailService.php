@@ -97,14 +97,14 @@ class EmailService extends Controller
 
 
 
-    public function registroUsuario(Usuario $usuario){   
+    public function registroUsuario(Usuario $usuario, $nombre_negocio){   
         if(!$this->envio_emails) return true;  
 
         try{
-            $this->email->setSubject("Solicitud de usuario recibida");            
+            $this->email->setSubject("Gracias por registrarse a Cali");            
             $this->email->setFrom(array($this->container_interface->getParameter("mailer_user") => $this->container_interface->getParameter("mailer_name")));             
             $this->email->setTo($usuario->getEmail());              
-            $this->email->setBody($this->templating->render("registroUsuario.html.twig", array("usuario" => $usuario)), "text/html");
+            $this->email->setBody($this->templating->render("emails/registro.html.twig", array("usuario" => $usuario, "nombre_negocio" => $nombre_negocio)), "text/html");
             if($this->mailer->send($this->email) > 0) $envio_exitoso = true;
         }catch(\Swift_TransportException $e){
             $envio_exitoso = false;

@@ -1,50 +1,70 @@
 <div class="app-body">
-  <main class="main d-flex align-items-center">
+  <main class="main d-flex align-items-center" style="background-color: #178CA4;">
     <div class="container">
       <div class="row">
         <div class="col-md-6 mx-auto">
-          <div class="card mx-4">
+          
+          <div *ngIf="paso == 1" class="card mx-4" style="background-color: #F9F7F0; border-radius: 3px;">
             <div class="card-body p-4">
-              <form>
-                <h1>Register</h1>
-                <p class="text-muted">Create your account</p>
+             
+                <h1>Registro</h1>
+                <p class="text-muted">Ingrese los datos solicitados para registrar su negocio en Cali</p>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="icon-user"></i></span>
+                    <span class="input-group-text"><i class="icon-home"></i></span>
                   </div>
-                  <input type="text" class="form-control" placeholder="Username" autocomplete="username" required>
+                  <input type="text" class="form-control" placeholder="Nombre del negocio" [(ngModel)]="nombre" [ngModelOptions]="{standalone: true}">
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">@</span>
                   </div>
-                  <input type="text" class="form-control" placeholder="Email" autocomplete="email" required>
+                  <input type="text" class="form-control" placeholder="Email" autocomplete="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-lock"></i></span>
                   </div>
-                  <input type="password" class="form-control" placeholder="Password" autocomplete="new-password" required>
+                  <input type="password" class="form-control" placeholder="Contraseña" autocomplete="new-password" [(ngModel)]="password1" [ngModelOptions]="{standalone: true}">
                 </div>
                 <div class="input-group mb-4">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-lock"></i></span>
                   </div>
-                  <input type="password" class="form-control" placeholder="Repeat password" autocomplete="new-password" required>
+                  <input type="password" class="form-control" placeholder="Repita contraseña" autocomplete="new-password" [(ngModel)]="password2" [ngModelOptions]="{standalone: true}">
                 </div>
-                <button type="button" class="btn btn-block btn-success">Create Account</button>
-              </form>
+                <button type="button" [disabled]="cargando" class="btn btn-block btn-lg btn-primary" (click)="registro()">Crear cuenta</button>
+             
             </div>
-            <div class="card-footer p-4">
+           
+          </div>
+
+          <div *ngIf="paso == 2" class="card text-center" style="background-color: #F9F7F0; color: #168DA4 !important">
+               
+           
+            <div class="card-body">
+
               <div class="row">
-                <div class="col-6">
-                  <button class="btn btn-block btn-facebook" type="button"><span>facebook</span></button>
-                </div>
-                <div class="col-6">
-                  <button class="btn btn-block btn-twitter" type="button"><span>twitter</span></button>
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <!-- <span class="display-4" style="font-size: 30px;">{{ nombre_negocio }}</span><br> -->
+                    <!-- <span class="display-4" style="font-size: 18px;">{{ direccion_negocio }}</span><br> -->
+                    <span class="display-4" style="font-size: 30px;">Gracias</span>
+                    <hr>
+                    <p>Te hemos enviado un e-mail a tu casilla:</p>
+
+                    <p><strong>{{ email }}</strong></p>
+
+                    <p>Por favor, sigue los pasos detallados en el mismo para finalizar tu registro en CALI.</p>
+                    
+                    
+                  </div>
                 </div>
               </div>
+
+              
             </div>
+           
           </div>
         </div>
       </div>

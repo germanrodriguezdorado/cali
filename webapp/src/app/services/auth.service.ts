@@ -58,12 +58,12 @@ export class AuthService {
     // REGISTRO
 
     registerStep1(data){
-        return this.http.post(environment.api_path + "/api_hc/public/register_step1", data);
+        return this.http.post(environment.api_path + "/api_hc/p/register_step1", data);
     }
 
 
     registerCheck(token: string){
-        return this.http.get(environment.api_path + "/api_hc/public/register_check/" + token);
+        return this.http.get(environment.api_path + "/api_hc/p/register_check/" + token);
     }
 
 

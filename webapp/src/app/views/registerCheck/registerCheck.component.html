@@ -1,0 +1,47 @@
+<div class="app-body">
+  <main class="main d-flex align-items-center" style="background-color: #178CA4;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          
+
+          <div *ngIf="mostrar_card" class="card text-center" style="background-color: #F9F7F0; color: #168DA4 !important">
+               
+           
+            <div class="card-body">
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <!-- <span class="display-4" style="font-size: 30px;">{{ nombre_negocio }}</span><br> -->
+                    <!-- <span class="display-4" style="font-size: 18px;">{{ direccion_negocio }}</span><br> -->
+                    <span class="display-4" style="font-size: 30px;">Bienvenido a CALI</span><br><br>
+                    <p>Ya creaste tu cuenta como negocio en CALI.</p>
+
+                    <p><u>A continuación recuerda:</u></p>
+
+                    <p><i class="fa fa-check" aria-hidden="true"></i> Completar el resto de la información de tu negocio</p>
+                    <p><i class="fa fa-check" aria-hidden="true"></i> Configurar los horarios en los que atiendes</p>
+                    
+                    
+                    
+                    
+                  </div>
+                </div>
+              </div>
+
+              <hr>
+
+              
+              <button class="btn btn-primary btn-lg" [routerLink]="['/negocio/informacion']">Comenzar</button>
+              
+            </div>
+           
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
