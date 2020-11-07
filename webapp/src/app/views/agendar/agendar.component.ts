@@ -49,10 +49,10 @@ export class AgendarComponent implements OnInit, AfterContentInit{
     this.loading = false;
     this.paso2_mensaje = "";
     this.slug = "";
-    this.nombre_negocio = "Cargando...";
+    this.nombre_negocio = "...";
     this.direccion_negocio = "";
     this.telefono_negocio = "";
-    this.mostrar_resultados = true;
+    this.mostrar_resultados = false;
     this.paso = 1;
     this.email = "";
     this.fecha = new Date();
@@ -95,6 +95,7 @@ export class AgendarComponent implements OnInit, AfterContentInit{
     }
     this.NegocioService.buscarHorarios(data2).subscribe(respuesta => {
       this.loading = false;
+      this.mostrar_resultados = true;
       if(respuesta["nombre_negocio"] != ""){
         this.nombre_negocio = respuesta["nombre_negocio"];
         this.telefono_negocio = respuesta["telefono_negocio"];

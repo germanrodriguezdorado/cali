@@ -78,10 +78,18 @@
             
             <div class="col-lg-8 mx-auto">
 
+              <div class="row animated fadeIn" *ngIf="!loading && horarios.length == 0">
+                <div class="col-lg-12 mx-auto">
+                  <div role="alert" class="alert alert-danger">
+                    <strong>¡Sin resultados!</strong> No hay horarios para esta fecha 
+                  </div>
+                </div>
+              </div>
 
-              <div class="row">
 
-                <div class="col-6 col-sm-4 col-lg-3 col-md mb-3 text-left" *ngFor="let horario of horarios">
+              <div class="row" *ngIf="horarios.length > 0">
+
+                <div class="animated fadeIn col-6 col-sm-4 col-lg-3 col-md mb-3 text-left" *ngFor="let horario of horarios">
                   <button (click)="irApaso2(horario)" class="btn-block btn btn-lg btn-primary" type="button">{{ horario }}</button>
                 </div>
               
