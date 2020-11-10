@@ -84,6 +84,10 @@ export class AgendarComponent implements OnInit, AfterContentInit{
     //setTimeout(() => { this.inputMail.nativeElement.focus();}, 500);
   }
 
+  alert(){
+    alert("dsdss")
+  }
+
 
 
   buscar(){

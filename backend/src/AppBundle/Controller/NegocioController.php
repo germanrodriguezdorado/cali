@@ -113,7 +113,7 @@ class NegocioController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
         $negocio = $em->getRepository("AppBundle:Negocio")->findOneBy(array("usuario" => $this->getUser()->getId())); 
         
-        $q = $em->createQuery("SELECT a FROM AppBundle:Agenda a WHERE a.negocio = ".$negocio->getId()." AND a.confirmationToken IS null AND a.fecha = :fecha AND a.procesado = 0 ORDER BY STR_TO_DATE(a.horario, '%h:%i') ASC");
+        $q = $em->createQuery("SELECT a FROM AppBundle:Agenda a WHERE a.negocio = ".$negocio->getId()." AND a.confirmationToken IS null AND a.fecha = :fecha AND a.procesado = 0 ORDER BY REPLACE(a.horario, ':', '') ASC");
         $res = $q->setParameter("fecha", $request->get("fecha"))->getResult();
 
         foreach ($res as $agenda) {

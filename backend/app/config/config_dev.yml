@@ -22,6 +22,7 @@ doctrine:
                 IFELSE: DoctrineExtensions\Query\Mysql\IfElse
                 DATE_FORMAT: DoctrineExtensions\Query\Mysql\DateFormat
                 STR_TO_DATE: DoctrineExtensions\Query\Mysql\StrToDate
+                REPLACE: DoctrineExtensions\Query\Mysql\Replace
 
 
 nelmio_cors:
