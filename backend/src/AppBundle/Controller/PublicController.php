@@ -211,6 +211,7 @@ class PublicController extends FOSRestController
       $negocio->setNombre($request->get("nombre"));
       $negocio->setSlug($this->get("string_functions")->slugify($request->get("nombre")));
       $negocio->setEmail($request->get("email"));
+      $negocio->setDescanso("Sin descanso");
       $em->persist($negocio);
       $em->flush(); 
 

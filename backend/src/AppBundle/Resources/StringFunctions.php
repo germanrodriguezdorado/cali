@@ -28,6 +28,10 @@ class StringFunctions extends Controller
 
     function slugify($text)
     {
+
+      // Apostrofe en espacio vacio
+      $text = str_replace("'","",$text);
+
       // replace non letter or digits by -
       $text = preg_replace('~[^\pL\d]+~u', '-', $text);
 

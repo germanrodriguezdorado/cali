@@ -328,20 +328,20 @@ export class Utilidades {
       darHorariosDisponibles(){
         var horarios_disponibles = [];
         horarios_disponibles.push("");
-        horarios_disponibles.push("00:00");
-        horarios_disponibles.push("00:30");
-        horarios_disponibles.push("01:00");
-        horarios_disponibles.push("01:30");
-        horarios_disponibles.push("02:00");
-        horarios_disponibles.push("02:30");
-        horarios_disponibles.push("03:00");
-        horarios_disponibles.push("03:30");
-        horarios_disponibles.push("04:00");
-        horarios_disponibles.push("04:30");
-        horarios_disponibles.push("05:00");
-        horarios_disponibles.push("05:30");
-        horarios_disponibles.push("06:00");
-        horarios_disponibles.push("06:30");
+        // horarios_disponibles.push("00:00");
+        // horarios_disponibles.push("00:30");
+        // horarios_disponibles.push("01:00");
+        // horarios_disponibles.push("01:30");
+        // horarios_disponibles.push("02:00");
+        // horarios_disponibles.push("02:30");
+        // horarios_disponibles.push("03:00");
+        // horarios_disponibles.push("03:30");
+        // horarios_disponibles.push("04:00");
+        // horarios_disponibles.push("04:30");
+        // horarios_disponibles.push("05:00");
+        // horarios_disponibles.push("05:30");
+        // horarios_disponibles.push("06:00");
+        // horarios_disponibles.push("06:30");
         horarios_disponibles.push("07:00");
         horarios_disponibles.push("07:30");
         horarios_disponibles.push("08:00");
@@ -375,7 +375,7 @@ export class Utilidades {
         horarios_disponibles.push("22:00");
         horarios_disponibles.push("22:30");
         horarios_disponibles.push("23:00");
-            horarios_disponibles.push("23:30");
+        //horarios_disponibles.push("23:30");
             
             return horarios_disponibles;
         }
