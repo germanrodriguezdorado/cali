@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { navItemsNegocio } from '../../_nav_negocio';
-import { navItemsCliente } from '../../_nav_cliente';
+import { navItemsAdmin } from '../../_nav_admin';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +18,7 @@ export class DefaultLayoutComponent implements OnInit {
   ngOnInit(){
     this.usuario = JSON.parse(localStorage.getItem("currentUser")); 
     if(this.usuario.tipo == 1) this.navItems = navItemsNegocio;
-    if(this.usuario.tipo == 2) this.navItems = navItemsCliente;
+    if(this.usuario.tipo == 2) this.navItems = navItemsAdmin;
   }
 }
 

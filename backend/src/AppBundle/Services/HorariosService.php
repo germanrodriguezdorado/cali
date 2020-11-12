@@ -62,13 +62,15 @@ class HorariosService extends Controller
 		}
 
 
-		// Controlo que no fueron agendados
+		// Controlo que no hay agendas activas
 		$horarios2 = array();
 		foreach ($horarios as $clave => $horario) {
 			$test = $this->em->getRepository("AppBundle:Agenda")->findOneBy(array(
 				"negocio" => $negocio->getId(),
 				"fecha" => $date,
-				"horario" => $horario
+				"horario" => $horario,
+				"procesado" => false,
+				"noConcurre" => false
 			));
 
 			if(!$test) $horarios2[] = $horario;

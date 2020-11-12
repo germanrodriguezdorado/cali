@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 use AppBundle\Entity\Negocio;
 use AppBundle\Entity\Bloqueo;
+use AppBundle\Entity\Agenda;
 
 
 
@@ -116,15 +117,40 @@ class NegocioController extends FOSRestController
         $q = $em->createQuery("SELECT a FROM AppBundle:Agenda a WHERE a.negocio = ".$negocio->getId()." AND a.confirmationToken IS null AND a.fecha = :fecha AND a.procesado = 0 ORDER BY REPLACE(a.horario, ':', '') ASC");
         $res = $q->setParameter("fecha", $request->get("fecha"))->getResult();
 
+        $horarios_string = array();
         foreach ($res as $agenda) {
             $una_agenda = array();
             $una_agenda["id"] = $agenda->getId();
-            $una_agenda["fecha"] = $agenda->getFecha()->format("d/m/Y");
+            $una_agenda["cliente"] = $agenda->getClienteMail();
             $una_agenda["horario"] = $agenda->getHorario();
-            $una_agenda["cliente_mail"] = $agenda->getClienteMail();
+            $una_agenda["horario_string"] = str_replace(":","",$agenda->getHorario());
+            $una_agenda["estado"] = "ocupado";
             $respuesta[] = $una_agenda;
+            $horarios_string[] = str_replace(":","",$agenda->getHorario());
         }
-        
+
+
+        // Horarios disponibles:
+        if($request->get("mostrar_horarios_libres") == "true"){
+            $horarios = $this->get("servicio_horarios")->horariosDisponibles($negocio, $request->get("fecha"));
+            foreach ($horarios as $horario) {
+                if (!in_array(str_replace(":","",$horario), $horarios_string)) {
+                    $una_agenda = array();
+                    $una_agenda["id"] = "";
+                    $una_agenda["horario"] = $horario;
+                    $una_agenda["horario_string"] = str_replace(":","",$horario);
+                    $una_agenda["cliente"] = "";
+                    $una_agenda["estado"] = "libre";
+                    $respuesta[] = $una_agenda;
+                }
+            }
+        }
+
+
+        usort($respuesta, function ($a, $b) { 
+            return $a["horario_string"] - $b["horario_string"]; 
+        });
+
         
         return new JsonResponse($respuesta);
     }  
@@ -166,10 +192,12 @@ class NegocioController extends FOSRestController
 
         // Bloqueo?
         if($request->get("bloquear") == true){
-            $bloqueo = new Bloqueo();
-            $bloqueo->setNegocio($negocio);
-            $bloqueo->setEmail($agenda->getClienteMail());
-            $em->persist($bloqueo);
+            if($this->get("functions")->isValidEmail($agenda->getClienteMail())){
+                $bloqueo = new Bloqueo();
+                $bloqueo->setNegocio($negocio);
+                $bloqueo->setEmail($agenda->getClienteMail());
+                $em->persist($bloqueo);
+            }   
         }
 
 
@@ -200,10 +228,34 @@ class NegocioController extends FOSRestController
             $em->flush();
         }
 
-        $this->get("email_service")->cancelarAgenda($email, $negocio->getNombre(), $fecha, $horario, $request->get("motivo"));
+        if($this->get("functions")->isValidEmail($email)){
+            $this->get("email_service")->cancelarAgenda($email, $negocio->getNombre(), $fecha, $horario, $request->get("motivo"));
+        }
 
         return new JsonResponse(1);
     } 
+
+
+
+    /**
+    * @Rest\Post("/api_hc/negocio/marcar_tomado")
+    */
+    public function marcarTomado(Request $request)
+    {     
+        $em = $this->getDoctrine()->getManager();
+        $negocio = $em->getRepository("AppBundle:Negocio")->findOneBy(array("usuario" => $this->getUser()->getId())); 
+        
+        $agenda = new Agenda();
+        $agenda->setNegocio($negocio);
+        $agenda->setClienteMail($request->get("cliente"));
+        $fecha_ok = \DateTime::createFromFormat("Y-m-d", $request->get("fecha"));
+        $agenda->setFecha($fecha_ok);
+        $agenda->setHorario($request->get("horario"));
+        $em->persist($agenda);
+        $em->flush();
+
+        return new JsonResponse(1);
+    }     
 
 
 

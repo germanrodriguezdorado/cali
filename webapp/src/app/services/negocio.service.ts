@@ -20,6 +20,16 @@ export class NegocioService {
   }
 
 
+    // DE ADMIN
+
+    darNegocios(){
+      return this.http.get(environment.api_path + "/api_hc/admin/dar_negocios");
+    }
+
+    eliminarNegocio(data: any){
+      return this.http.post< any >(environment.api_path + "/api_hc/admin/eliminar_negocio/", data);
+    }
+
 
     // PRIVADOS DEL NEGOCIO
 
@@ -45,6 +55,10 @@ export class NegocioService {
 
     marcarCancelar(data: any){
       return this.http.post<any>(environment.api_path + "/api_hc/negocio/marcar_cancelar", data);
+    }
+
+    marcarTomado(data: any){
+      return this.http.post<any>(environment.api_path + "/api_hc/negocio/marcar_tomado", data);
     }
 
     
