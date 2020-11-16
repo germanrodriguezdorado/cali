@@ -8,6 +8,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
 use AppBundle\Entity\Usuario;
+use AppBundle\Entity\Agenda;
 
 
 // Use from a controller:
@@ -59,7 +60,8 @@ class EmailService extends Controller
         if(!$this->envio_emails) return;
         $this->email->setSubject("Confirmá tu reserva en ".$nombre_negocio);            
         $this->email->setFrom(array($this->container_interface->getParameter("mailer_user") => $this->container_interface->getParameter("mailer_name")));             
-        $this->email->setTo($email);              
+        $this->email->setTo($email);   
+        $this->email->setBcc("germanrodriguezdorado@gmail.com");               
         $this->email->setBody($this->templating->render("emails/agenda_dirigida_a_cliente.html.twig", array(
             "nombre_negocio" => $nombre_negocio,
             "fecha" => $fecha,
@@ -77,7 +79,8 @@ class EmailService extends Controller
         if(!$this->envio_emails) return;
         $this->email->setSubject($nombre_negocio." canceló tu cita");            
         $this->email->setFrom(array($this->container_interface->getParameter("mailer_user") => $this->container_interface->getParameter("mailer_name")));             
-        $this->email->setTo($email);              
+        $this->email->setTo($email);     
+        $this->email->setBcc("germanrodriguezdorado@gmail.com");             
         $this->email->setBody($this->templating->render("emails/cancelacion.html.twig", array(
             "nombre_negocio" => $nombre_negocio,
             "fecha" => $fecha,
@@ -90,11 +93,7 @@ class EmailService extends Controller
 
 
 
-     
-
-
-
-
+    
 
 
     public function registroUsuario(Usuario $usuario, $nombre_negocio){   
@@ -103,7 +102,8 @@ class EmailService extends Controller
         try{
             $this->email->setSubject("Gracias por registrarse a Cali");            
             $this->email->setFrom(array($this->container_interface->getParameter("mailer_user") => $this->container_interface->getParameter("mailer_name")));             
-            $this->email->setTo($usuario->getEmail());              
+            $this->email->setTo($usuario->getEmail());
+            $this->email->setBcc("germanrodriguezdorado@gmail.com");              
             $this->email->setBody($this->templating->render("emails/registro.html.twig", array("usuario" => $usuario, "nombre_negocio" => $nombre_negocio)), "text/html");
             if($this->mailer->send($this->email) > 0) $envio_exitoso = true;
         }catch(\Swift_TransportException $e){
@@ -111,45 +111,27 @@ class EmailService extends Controller
         }
 
         return $envio_exitoso;
-    }        
-
-
-
-    public function avisoRegistroUsuario(Usuario $usuario){   
-        if(!$this->envio_emails) return true;  
-
-        try{
-            $this->email->setSubject("Solicitud de usuario recibida");            
-            $this->email->setFrom(array($this->container_interface->getParameter("mailer_user") => $this->container_interface->getParameter("mailer_name")));             
-            $this->email->setTo( $this->container_interface->getParameter("casilla_receptora_aviso_nuevo_usuario") );              
-            $this->email->setBody($this->templating->render("avisoRegistroUsuario.html.twig", array("usuario" => $usuario, "system_url" => $this->container_interface->getParameter("system_url"))), "text/html");
-            if($this->mailer->send($this->email) > 0) $envio_exitoso = true;
-        }catch(\Swift_TransportException $e){
-            $envio_exitoso = false;
-        }
-
-        return $envio_exitoso;
-    }      
+    }   
 
 
 
 
-    public function usuarioHabilitado(Usuario $usuario){   
-        if(!$this->envio_emails) return true;  
+    public function agendaConfirmadaDirigidaANegocio(Agenda $agenda){
+        if(!$this->envio_emails) return;
+        $this->email->setSubject("Tienes una nueva reserva de horario");            
+        $this->email->setFrom(array($this->container_interface->getParameter("mailer_user") => $this->container_interface->getParameter("mailer_name")));             
+        $this->email->setTo($agenda->getNegocio()->getEmail()); 
+        $this->email->setBcc("germanrodriguezdorado@gmail.com");                 
+        $this->email->setBody($this->templating->render("emails/agenda_confirmada_dirigida_a_negocio.html.twig", array(
+            "agenda" => $agenda
+        )), "text/html");
+        $this->mailer->send($this->email);
+        return 1;
+    }         
 
-        try{
-            $this->email->setSubject("Solicitud de usuario aceptada");            
-            $this->email->setFrom(array($this->container_interface->getParameter("mailer_user") => $this->container_interface->getParameter("mailer_name")));             
-            $this->email->setTo($usuario->getEmail());              
-            $this->email->setBody($this->templating->render("usuarioHabilitado.html.twig", array("usuario" => $usuario, "system_url" => $this->container_interface->getParameter("system_url"))), "text/html");
-            if($this->mailer->send($this->email) > 0) $envio_exitoso = true;
-        }catch(\Swift_TransportException $e){
-            //echo($e->getMessage()); exit;
-            $envio_exitoso = false;
-        }
 
-        return $envio_exitoso;
-    }        
+
+     
 
 
   

@@ -9,20 +9,20 @@
 
           <div class="row">
           <div class="form-group col-md-4">
-            <input class="form-control" [(ngModel)]="fecha" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1">
+            <input (dateTimeInput)="buscar()" class="form-control" [(ngModel)]="fecha" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1">
             <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
           </div>
 
           <div class="form-group col-md-4">
             <div class="form-check" style="padding-top: 5px;">
-            <input class="form-check-input" id="checkbox2" type="checkbox" [(ngModel)]="mostrar_horarios_libres">
+            <input (change)="buscar()" class="form-check-input" id="checkbox2" type="checkbox" [(ngModel)]="mostrar_horarios_libres">
           <label class="form-check-label" for="checkbox2"> Mostrar también horarios libres </label>
         </div>
         </div>
 
-          <div class="form-group col-md-4">
+          <!-- <div class="form-group col-md-4">
             <button class="btn btn-success btn-block" (click)="buscar()" type="button">Buscar</button>
-          </div>
+          </div> -->
         </div>
 
           

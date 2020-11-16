@@ -159,6 +159,7 @@ class PublicController extends FOSRestController
           $respuesta["horario"] = $agenda->getHorario();
           $agenda->setConfirmationToken(null);
           $em->flush();
+          $this->get("email_service")->agendaConfirmadaDirigidaANegocio($agenda);
         }
 
         return new JsonResponse($respuesta);  
