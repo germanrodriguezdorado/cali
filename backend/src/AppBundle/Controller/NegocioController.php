@@ -46,6 +46,7 @@ class NegocioController extends FOSRestController
         $respuesta["desde"] = $negocio->getDesde();
         $respuesta["hasta"] = $negocio->getHasta();
         $respuesta["descanso"] = $negocio->getDescanso();
+        $respuesta["cupos"] = $negocio->getCupos();
         return new JsonResponse($respuesta);
     }
 
@@ -82,6 +83,7 @@ class NegocioController extends FOSRestController
         $negocio->setDesde($request->get("desde"));
         $negocio->setHasta($request->get("hasta"));
         $negocio->setDescanso($request->get("descanso"));
+        $negocio->setCupos($request->get("cupos"));
 
         $this->getUser()->setUsername($request->get("email"));
         $this->getUser()->setUsernameCanonical($request->get("email"));

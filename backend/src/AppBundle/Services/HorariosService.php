@@ -62,10 +62,10 @@ class HorariosService extends Controller
 		}
 
 
-		// Controlo que no hay agendas activas
+		// Controlo que la cantidad de agendas activas no supere al "cupo" del negocio
 		$horarios2 = array();
 		foreach ($horarios as $clave => $horario) {
-			$test = $this->em->getRepository("AppBundle:Agenda")->findOneBy(array(
+			$test = $this->em->getRepository("AppBundle:Agenda")->findBy(array(
 				"negocio" => $negocio->getId(),
 				"fecha" => $date,
 				"horario" => $horario,
@@ -73,7 +73,7 @@ class HorariosService extends Controller
 				"noConcurre" => false
 			));
 
-			if(!$test) $horarios2[] = $horario;
+			if( count($test) < $negocio->getCupos() ) $horarios2[] = $horario;
 		}
 
 		

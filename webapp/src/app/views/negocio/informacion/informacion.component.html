@@ -139,19 +139,20 @@
 
               <div class="row">
 
-                <div class="form-group col-sm-4">
+                <div class="form-group col-sm-3">
                   <label>Desde</label>
                   <ng-select [(ngModel)]="desde" class="form-control" [searchable]="false" [clearable]="false" >
                     <ng-option *ngFor="let horario of horarios_disponibles" value="{{ horario }}">{{ horario }}</ng-option>  
                   </ng-select>
                 </div>
-                <div class="form-group col-sm-4">
+                <div class="form-group col-sm-3">
                   <label>Hasta</label>
                   <ng-select [(ngModel)]="hasta" class="form-control" [searchable]="false" [clearable]="false">
                     <ng-option *ngFor="let horario of horarios_disponibles" value="{{ horario }}">{{ horario }}</ng-option>  
                   </ng-select>
                 </div>
-                <div class="form-group col-sm-4">
+
+                <div class="form-group col-sm-3">
                   <label>Descanso</label>
                   <ng-select [(ngModel)]="descanso" class="form-control" [searchable]="false" [clearable]="false">
                     <ng-option value="Sin descanso">Sin descanso</ng-option>  
@@ -159,6 +160,14 @@
                     <ng-option value="De 13 a 14">De 13 a 14</ng-option>  
                   </ng-select>
                 </div>
+
+
+                <div class="form-group col-sm-3">
+                  <label>Cupos</label>
+                  <input [(ngModel)]="cupos" type="text" class="form-control">
+                </div>
+
+              
        
                
               </div>

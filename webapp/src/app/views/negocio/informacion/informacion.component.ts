@@ -17,6 +17,7 @@ export class NegocioInformacionComponent implements OnInit {
   telefono: string
   barrio: string;
   duracion: string;
+  cupos: string;
   horarios_disponibles: string[];
   barrios_disponibles: string[];
   desde: string;
@@ -78,6 +79,7 @@ export class NegocioInformacionComponent implements OnInit {
     this.desde = "";
     this.hasta = "";
     this.descanso = "";
+    this.cupos = "";
 
 
     this.NegocioService.darInfo().subscribe(data => {
@@ -97,6 +99,7 @@ export class NegocioInformacionComponent implements OnInit {
       this.desde = data["desde"];
       this.hasta = data["hasta"];
       this.descanso = data["descanso"];
+      this.cupos = data["cupos"];
       this.NgxSpinnerService.hide();
     });
   }
@@ -138,7 +141,8 @@ export class NegocioInformacionComponent implements OnInit {
       "domingo": this.domingo,
       "desde": this.desde,
       "hasta": this.hasta,
-      "descanso": this.descanso
+      "descanso": this.descanso,
+      "cupos": this.cupos
     }
 
     this.NgxSpinnerService.show();

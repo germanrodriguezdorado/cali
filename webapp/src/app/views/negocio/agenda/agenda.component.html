@@ -146,7 +146,7 @@
           <strong>El cliente será avisado por e-mail.</strong><br> Si lo desea, también puede agregar un motivo de cancelación.
         </div>
 
-        <textarea *ngIf="Utilidades.validarEmail(agenda_seleccionada['cliente'])" [(ngModel)]="motivo_cancelacion" class="form-control" id="textarea-input" name="textarea-input" placeholder="Escriba el motivo de cancelación.." rows="5"></textarea>
+        <textarea *ngIf="Utilidades.validarEmail(agenda_seleccionada['cliente'])" [(ngModel)]="motivo_cancelacion" class="form-control" id="textarea-input" name="textarea-input" placeholder="Escriba el motivo de cancelación..." rows="5"></textarea>
 
       </div>
       <div class="modal-footer">

@@ -135,7 +135,13 @@ class Negocio
      * @var string
      * @ORM\Column(name="descanso", type="string", length=20, nullable=true)
      */
-    private $descanso;                                                 
+    private $descanso;
+
+    /**
+     * @var string
+     * @ORM\Column(name="cupos", type="string", length=10, nullable=true)
+     */
+    private $cupos;                                                     
 
                      
 
@@ -593,5 +599,29 @@ class Negocio
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Set cupos.
+     *
+     * @param string|null $cupos
+     *
+     * @return Negocio
+     */
+    public function setCupos($cupos = null)
+    {
+        $this->cupos = $cupos;
+
+        return $this;
+    }
+
+    /**
+     * Get cupos.
+     *
+     * @return string|null
+     */
+    public function getCupos()
+    {
+        return $this->cupos;
     }
 }
