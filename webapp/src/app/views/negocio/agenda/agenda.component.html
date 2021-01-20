@@ -8,6 +8,7 @@
         <div class="card-body">
 
           <div class="row">
+
           <div class="form-group col-md-4">
             <input (dateTimeInput)="buscar()" class="form-control" [(ngModel)]="fecha" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1">
             <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
@@ -16,9 +17,19 @@
           <div class="form-group col-md-4">
             <div class="form-check" style="padding-top: 5px;">
             <input (change)="buscar()" class="form-check-input" id="checkbox2" type="checkbox" [(ngModel)]="mostrar_horarios_libres">
-          <label class="form-check-label" for="checkbox2"> Mostrar también horarios libres </label>
+          <label class="form-check-label" for="checkbox2"> Mostrar horarios libres </label>
         </div>
         </div>
+
+
+        <div class="form-group col-md-4">
+          <div class="form-check" style="padding-top: 5px;">
+          <input (change)="buscar()" class="form-check-input" id="checkbox3" type="checkbox" [(ngModel)]="mostrar_procesados">
+        <label class="form-check-label" for="checkbox3"> Mostrar procesados </label>
+      </div>
+      </div>
+
+
 
           <!-- <div class="form-group col-md-4">
             <button class="btn btn-success btn-block" (click)="buscar()" type="button">Buscar</button>
@@ -51,6 +62,7 @@
                   <div>{{ agenda["fecha"] }} </div>
                   <div class="small text-muted mb-3">  
                     <h5 *ngIf="agenda['estado'] == 'ocupado'"><span class="badge badge-primary">{{ agenda["cliente"] }}</span></h5>
+                    <h5 *ngIf="agenda['estado'] == 'procesado'"><span class="badge badge-danger">Procesado - {{ agenda["cliente"] }}</span></h5>
                     <h5 *ngIf="agenda['estado'] == 'libre'"><span class="badge badge-success">Horario Libre</span></h5>
                   </div>
                 </div>

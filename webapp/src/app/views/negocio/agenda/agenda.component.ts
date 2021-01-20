@@ -19,6 +19,7 @@ export class NegocioAgendaComponent implements OnInit {
   bloquear_email: boolean;
   tomar_cliente: string;
   mostrar_horarios_libres: boolean;
+  mostrar_procesados: boolean;
 
 
   @ViewChild('modalAtendido') public modalAtendido: ModalDirective;
@@ -43,6 +44,7 @@ export class NegocioAgendaComponent implements OnInit {
     this.bloquear_email = false;
     this.tomar_cliente = "";
     this.mostrar_horarios_libres = false;
+    this.mostrar_procesados = false;
     this.buscar();
   
   }
@@ -54,7 +56,8 @@ export class NegocioAgendaComponent implements OnInit {
     this.agendas = [];
     var data = {
       "fecha": this.DatePipe.transform(this.fecha, "yyyy-MM-dd"),
-      "mostrar_horarios_libres": this.mostrar_horarios_libres
+      "mostrar_horarios_libres": this.mostrar_horarios_libres,
+      "mostrar_procesados": this.mostrar_procesados
     }
     this.NegocioService.darAgenda(data).subscribe(respuesta => {
       this.agendas = respuesta;

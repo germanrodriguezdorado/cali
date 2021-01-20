@@ -116,7 +116,11 @@ class NegocioController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
         $negocio = $em->getRepository("AppBundle:Negocio")->findOneBy(array("usuario" => $this->getUser()->getId())); 
         
-        $q = $em->createQuery("SELECT a FROM AppBundle:Agenda a WHERE a.negocio = ".$negocio->getId()." AND a.confirmationToken IS null AND a.fecha = :fecha AND a.procesado = 0 ORDER BY REPLACE(a.horario, ':', '') ASC");
+        $query_string = "";
+        $query_string .= "SELECT a FROM AppBundle:Agenda a WHERE a.negocio = ".$negocio->getId()." AND a.confirmationToken IS null AND a.fecha = :fecha";
+        $query_string .= " AND a.procesado = 0";
+        $query_string .= " ORDER BY REPLACE(a.horario, ':', '') ASC";
+        $q = $em->createQuery($query_string);
         $res = $q->setParameter("fecha", $request->get("fecha"))->getResult();
 
         $horarios_string = array();
@@ -136,7 +140,7 @@ class NegocioController extends FOSRestController
         if($request->get("mostrar_horarios_libres") == "true"){
             $horarios = $this->get("servicio_horarios")->horariosDisponibles($negocio, $request->get("fecha"));
             foreach ($horarios as $horario) {
-                if (!in_array(str_replace(":","",$horario), $horarios_string)) {
+                //if (!in_array(str_replace(":","",$horario), $horarios_string)) {
                     $una_agenda = array();
                     $una_agenda["id"] = "";
                     $una_agenda["horario"] = $horario;
@@ -144,9 +148,29 @@ class NegocioController extends FOSRestController
                     $una_agenda["cliente"] = "";
                     $una_agenda["estado"] = "libre";
                     $respuesta[] = $una_agenda;
-                }
+                //}
             }
         }
+
+        // Procesados?
+        if($request->get("mostrar_procesados") == "true"){
+            $query_string = "";
+            $query_string .= "SELECT a FROM AppBundle:Agenda a WHERE a.negocio = ".$negocio->getId()." AND a.confirmationToken IS null AND a.fecha = :fecha";
+            $query_string .= " AND a.procesado = 1";
+            $query_string .= " ORDER BY REPLACE(a.horario, ':', '') ASC";
+            $q = $em->createQuery($query_string);
+            $res2 = $q->setParameter("fecha", $request->get("fecha"))->getResult();
+            foreach ($res2 as $value) {
+                $una_agenda = array();
+                $una_agenda["id"] = $value->getId();
+                $una_agenda["horario"] = $value->getHorario();
+                $una_agenda["horario_string"] = str_replace(":","",$value->getHorario());
+                $una_agenda["cliente"] = $value->getClienteMail();
+                $una_agenda["estado"] = "procesado";
+                $respuesta[] = $una_agenda;
+            }
+        }
+
 
 
         usort($respuesta, function ($a, $b) { 
