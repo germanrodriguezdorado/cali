@@ -114,7 +114,7 @@ class PublicController extends FOSRestController
         if($bloqueo) return new JsonResponse("-3");
 
         // Si el usuario tiene una agenda sin procesar
-        if($this->get("servicio_horarios")->tieneAgendaSinProcesar($request->get("email"), $negocio)) return new JsonResponse("-2");
+        //if($this->get("servicio_horarios")->tieneAgendaSinProcesar($request->get("email"), $negocio)) return new JsonResponse("-2");
         
         // Si el horario no esta dispoible
         if(!$this->get("servicio_horarios")->horariosEstaDisponible($negocio,$request->get("fecha"),$request->get("horario"))) return new JsonResponse("-1");
