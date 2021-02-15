@@ -56,3 +56,13 @@ input:read-only {
 .btn{
   border-radius: 3px;
 }
+
+
+
+
+
+.btn-cali {
+  color: #fff;
+  background-color: #5138D1;
+  border-color: #5138D1;
+}
