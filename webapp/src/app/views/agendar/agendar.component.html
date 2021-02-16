@@ -1,7 +1,7 @@
-<app-header style="border-bottom: none; background-color: #F9F7F0;"
+<app-header style="border-bottom: none; background-color: #fff;"
   [navbarBrandRouterLink]="['/']"
   [fixed]="true"
-  [navbarBrandFull]="{src: 'assets/img/logo_full.png', width: 89, height: 25, alt: 'Company Logo'}"
+  [navbarBrandFull]="{src: 'assets/img/logo2021.png', width: 45, height: 45, alt: 'Company Logo'}"
   [navbarBrandMinimized]="{src: 'assets/img/logo_chico.png', width: 30, height: 30, alt: 'Company Logo'}"
   [sidebarToggler]="false"
   [asideMenuToggler]="false"
@@ -11,7 +11,7 @@
 <div class="app-body">
  
   <!-- Main content -->
-  <main class="main" style="background-color: #F9F7F0">
+  <main class="main" style="background-color: #fff">
   
     <div class="container-fluid">
       
@@ -20,7 +20,7 @@
 
         <div class="row" *ngIf="paso == 1">
           <div class="col-lg-12" style="text-align: center;">
-            <span class="display-4 text-primary" style="color: #178CA4 !important;"> {{ nombre_negocio }}</span>
+            <span class="display-4 text-primary" style="color: #5138D1 !important;"> {{ nombre_negocio }}</span>
             <!-- <p class="h6 text-primary"><i class="fa fa-scissors fa-md"></i> Peluquería</p> -->
           </div>
         </div>
@@ -30,7 +30,7 @@
           <div class="row mt-4">
            
             <div class="col-lg-8 mx-auto">
-              <div class="card" style="background-color: #F9F7F0; border-color: #C8CED2;">
+              <div class="card" style="background-color: #fff; border-color: #C8CED2;">
                 
                 <div class="card-body">
                   
@@ -45,10 +45,10 @@
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text" style="background-color: #fff; border-right: none; cursor: pointer;" [owlDateTimeTrigger]="dt1">
-                          <i class="fa fa-calendar font-2xl" style="color: #168DA4;" ></i>
+                          <i class="fa fa-calendar font-2xl" style="color: #5138D1;" ></i>
                         </span>
                       </div>
-                      <input (dateTimeInput)="buscar()" readonly class="form-control form-control-lg" type="text" style="border-left: none; cursor: pointer; color: #168DA4" [(ngModel)]="fecha" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" [min]="min">
+                      <input (dateTimeInput)="buscar()" readonly class="form-control form-control-lg" type="text" style="border-left: none; cursor: pointer; color: #5138D1" [(ngModel)]="fecha" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" [min]="min">
                       <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
                     </div>
                   </div>
@@ -90,7 +90,7 @@
               <div class="row" *ngIf="horarios.length > 0">
 
                 <div class="animated fadeIn col-6 col-sm-4 col-lg-3 col-md mb-3 text-left" *ngFor="let horario of horarios">
-                  <button (click)="irApaso2(horario)" class="btn-block btn btn-lg btn-primary" type="button">{{ horario }}</button>
+                  <button (click)="irApaso2(horario)" class="btn-block btn btn-lg btn-cali" type="button">{{ horario }}</button>
                 </div>
               
 
@@ -115,7 +115,7 @@
             <div class="col-lg-5 mx-auto">
              
 
-              <div class="card text-center" style="background-color: #F9F7F0; color: #168DA4 !important">
+              <div class="card text-center" style="background-color: #fff; color: #5138D1 !important">
                
                 <div class="card-header"> <i class="fa fa-calendar"></i> Confirmá tu reserva </div>
                 <div class="card-body">
@@ -142,8 +142,8 @@
                   </div>
 
                   <button class="btn btn-link btn-lg" (click)="irApaso1()">Volver</button>
-                  <button *ngIf="!loading" [disabled]="!Utilidades.validarEmail(email)" class="btn btn-primary btn-lg" (click)="agendar()">Confirmar</button>
-                  <button *ngIf="loading" disabled class="btn btn-primary btn-lg" type="button"><i class="fa fa-circle-o-notch fa-spin"></i> Espere...</button>
+                  <button *ngIf="!loading" [disabled]="!Utilidades.validarEmail(email)" class="btn btn-cali btn-lg" (click)="agendar()">Confirmar</button>
+                  <button *ngIf="loading" disabled class="btn btn-cali btn-lg" type="button"><i class="fa fa-circle-o-notch fa-spin"></i> Espere...</button>
 
                 </div>
                
@@ -167,7 +167,7 @@
 
 
 
-              <div class="card" style="background-color: #F9F7F0; color: #168DA4 !important">
+              <div class="card" style="background-color: #fff; color: #5138D1 !important">
                
                 <div class="card-header"> <i class="fa fa-check-circle"></i> Reserva pre-confirmada </div>
                 <div class="card-body text-center">
