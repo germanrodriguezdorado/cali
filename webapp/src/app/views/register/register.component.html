@@ -1,10 +1,10 @@
 <div class="app-body">
-  <main class="main d-flex align-items-center" style="background-color: #178CA4;">
+  <main class="main d-flex align-items-center" style="background-color: #5138D1;">
     <div class="container">
       <div class="row">
         <div class="col-md-6 mx-auto">
           
-          <div *ngIf="paso == 1" class="card mx-4" style="background-color: #F9F7F0; border-radius: 3px;">
+          <div *ngIf="paso == 1" class="card mx-4" style="background-color: #fff; border-radius: 3px;">
             <div class="card-body p-4">
              
                 <h1>Registro</h1>
@@ -33,13 +33,13 @@
                   </div>
                   <input type="password" class="form-control" placeholder="Repita contraseña" autocomplete="new-password" [(ngModel)]="password2" [ngModelOptions]="{standalone: true}">
                 </div>
-                <button type="button" [disabled]="cargando" class="btn btn-block btn-lg btn-primary" (click)="registro()">Registrarme</button>
+                <button type="button" [disabled]="cargando" class="btn btn-block btn-lg btn-cali" (click)="registro()">Registrarme</button>
              
             </div>
            
           </div>
 
-          <div *ngIf="paso == 2" class="card text-center" style="background-color: #F9F7F0; color: #168DA4 !important">
+          <div *ngIf="paso == 2" class="card text-center" style="background-color: #F9F7F0; color: #5138D1 !important">
                
            
             <div class="card-body">
