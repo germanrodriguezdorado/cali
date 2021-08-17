@@ -8,7 +8,7 @@ import { AuthService } from "@services/auth.service";
 
 @Component({
   selector: 'app-dashboard',
-  templateUrl: './home.component.html'
+  templateUrl: './home2.component.html'
 })
 export class HomeComponent implements OnInit, AfterContentInit{
   @ViewChild("inputBusqueda") inputBusqueda:ElementRef;
@@ -70,6 +70,10 @@ export class HomeComponent implements OnInit, AfterContentInit{
 
   irAAgendar(slug: string){
     this.Router.navigate(["/agendar/" + slug]); 
+  }
+
+  volver(){
+    this.mostrando_sector_resultados = false;
   }
 
 
