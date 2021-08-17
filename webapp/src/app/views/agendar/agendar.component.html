@@ -1,82 +1,46 @@
-<app-header style="border-bottom: none; background-color: #fff;"
-  [navbarBrandRouterLink]="['/']"
-  [fixed]="true"
-  [navbarBrandFull]="{src: 'assets/img/logo2021.png', width: 45, height: 45, alt: 'Company Logo'}"
-  [navbarBrandMinimized]="{src: 'assets/img/logo2021.png', width: 30, height: 30, alt: 'Company Logo'}"
-  [sidebarToggler]="false"
-  [asideMenuToggler]="false"
-  [mobileSidebarToggler]="false"
-  [mobileAsideMenuToggler]="false">
-</app-header>
-<div class="app-body">
+<div class="app-body" style="margin-top: 0px;">
  
-  <!-- Main content -->
-  <main class="main" style="background-color: #fff">
+  <main class="main" style="background-image: linear-gradient(#fff, #fff);">
   
     <div class="container-fluid">
       
 
-      <div class="animated fadeIn mt-5">
+      <div class="animated fadeIn">
+
+        <div class="row">
+          <div class="col-md-12 text-right mt-2">
+            <button [routerLink]="['/']" type="button" class="btn btn-link" style="color: #9E31EE !important;">Ir al inicio</button>
+            <button [routerLink]="['/login']" type="button" class="btn btn-link" style="color: #9E31EE !important;">Acceso negocios</button>
+          </div>
+        </div>
 
         <div class="row" *ngIf="paso == 1">
           <div class="col-lg-12" style="text-align: center;">
-            <span class="display-4 text-primary" style="color: #5138D1 !important;"> {{ nombre_negocio }}</span>
-            <!-- <p class="h6 text-primary"><i class="fa fa-scissors fa-md"></i> Peluquería</p> -->
+            <h3 style="font-size: 39px; background: -webkit-linear-gradient(#8F15D4, #3945D1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">{{ nombre_negocio }}</h3>
+            
           </div>
         </div>
 
 
         <div *ngIf="paso == 1">
-          <div class="row mt-4">
-           
-            <div class="col-lg-8 mx-auto">
-              <div class="card" style="background-color: #fff; border-color: #C8CED2;">
-                
-                <div class="card-body">
-                  
-                  
-                  <div class="row">
-                  
-                  
-
-
-                    <div class="form-group col-sm-5 mx-auto">
-                      <label>&nbsp;</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" style="background-color: #fff; border-right: none; cursor: pointer;" [owlDateTimeTrigger]="dt1">
-                          <i class="fa fa-calendar font-2xl" style="color: #5138D1;" ></i>
-                        </span>
-                      </div>
-                      <input (dateTimeInput)="buscar()" readonly class="form-control form-control-lg" type="text" style="border-left: none; cursor: pointer; color: #5138D1" [(ngModel)]="fecha" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" [min]="min">
-                      <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
-                    </div>
-                  </div>
-
-                    
-                    
-                      <!-- <div class="form-group col-sm-5">
-                        <label>&nbsp;</label>
-                        <button *ngIf="!loading" (click)="buscar()" class="btn btn-lg btn-block btn-primary" type="button">Buscar horarios</button>
-                        <button *ngIf="loading" disabled class="btn btn-lg btn-block btn-primary" type="button">Buscando</button>
-                      </div> -->
-                    
-                  </div>
-
-
-
-
-                </div>
-              </div>
+          <div class="row mt-5">
+            <div class="col-lg-3 mx-auto mt-1">
+              <h4 class="text-center mb-4" style="color: #8F9BA6;">Selecciona fecha y hora</h4>
+              <input (dateTimeInput)="buscar()" readonly class="form-control form-control-lg text-center" type="text" style="font-size: 25px;height: 50px; border-radius: 50px; border: solid 1px; border-color: #5936D2; cursor: pointer; color: #5138D1" [(ngModel)]="fecha" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" [min]="min">
+              <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
             </div>
+
+
+
+
             
           </div>
 
 
-          <div class="row mt-4 animated fadeIn" *ngIf="mostrar_resultados">
+          <div class="row mt-5 animated fadeIn" *ngIf="mostrar_resultados">
            
             
-            <div class="col-lg-8 mx-auto">
+            <div class="col-lg-8 mx-auto mt-1">
 
               <div class="row animated fadeIn" *ngIf="!loading && horarios.length == 0">
                 <div class="col-lg-12 mx-auto">
@@ -90,7 +54,7 @@
               <div class="row" *ngIf="horarios.length > 0">
 
                 <div class="animated fadeIn col-6 col-sm-4 col-lg-3 col-md mb-3 text-left" *ngFor="let horario of horarios">
-                  <button (click)="irApaso2(horario)" class="btn-block btn btn-lg btn-cali" type="button">{{ horario }}</button>
+                  <button (click)="irApaso2(horario)" class="btn-block btn btn-lg btn-grad" type="button">{{ horario }}</button>
                 </div>
               
 
