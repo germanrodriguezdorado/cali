@@ -10,7 +10,7 @@
         <div class="row">
           <div class="col-md-12 text-right mt-2">
             <button [routerLink]="['/']" type="button" class="btn btn-link" style="color: #9E31EE !important;">Ir al inicio</button>
-            <button [routerLink]="['/login']" type="button" class="btn btn-link" style="color: #9E31EE !important;">Acceso negocios</button>
+            <!-- <button [routerLink]="['/login']" type="button" class="btn btn-link" style="color: #9E31EE !important;">Acceso negocios</button> -->
           </div>
         </div>
 
@@ -44,7 +44,7 @@
 
               <div class="row animated fadeIn" *ngIf="!loading && horarios.length == 0">
                 <div class="col-lg-12 mx-auto">
-                  <div role="alert" class="alert alert-danger">
+                  <div role="alert" class="alert alert-danger text-center" style="color: #5936D2; border-color: #5936D2; background-color: #fff; border-radius: 50px;">
                     <strong>¡Sin resultados!</strong> No hay horarios para esta fecha 
                   </div>
                 </div>
@@ -75,57 +75,43 @@
 
         <div *ngIf="paso == 2">
           <div class="row mt-5 animated fadeIn">
-            
             <div class="col-lg-5 mx-auto">
-             
-
-              <div class="card text-center" style="background-color: #fff; color: #5138D1 !important">
-               
-                <div class="card-header"> <i class="fa fa-calendar"></i> Confirmá tu reserva </div>
-                <div class="card-body">
-
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <div class="form-group">
-                        <!-- <span class="display-4" style="font-size: 30px;">{{ nombre_negocio }}</span><br> -->
-                        <!-- <span class="display-4" style="font-size: 18px;">{{ direccion_negocio }}</span><br> -->
-                        <span class="display-4" style="font-size: 30px;">{{ fecha | date }}</span><br><br>
-                        <span class="display-4" style="font-size: 30px;">{{ horario_seleccionado }} hs.</span><br>
-                        
-                        
-                        <hr>
-                         <span class="display-4" style="font-size: 18px;">Ingresa tu e-mail</span><br>
-                        <input #inputMail [(ngModel)]="email" type="text" class="form-control form-control-lg mt-2 text-center">
-                       
-                        <div *ngIf="paso2_mensaje != ''" class="alert alert-danger mt-2" role="alert">
-                           {{ paso2_mensaje }}
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-
-                  <button class="btn btn-link btn-lg" (click)="irApaso1()">Volver</button>
-                  <button *ngIf="!loading" [disabled]="!Utilidades.validarEmail(email)" class="btn btn-cali btn-lg" (click)="agendar()">Confirmar</button>
-                  <button *ngIf="loading" disabled class="btn btn-cali btn-lg" type="button"><i class="fa fa-circle-o-notch fa-spin"></i> Espere...</button>
-
+              <h3 class="text-center mb-5" style="font-size: 29px; background: -webkit-linear-gradient(#8F15D4, #3945D1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">CONFIRMÁ TU RESERVA</h3>
+              <p class="text-center display-4" style="font-size: 19px;"><strong>{{ nombre_negocio }}</strong></p>
+              <p class="text-center display-4" style="font-size: 19px;">{{ fecha | date }}</p>
+              <p class="text-center display-4" style="font-size: 19px;">{{ horario_seleccionado }} hs.</p>
+              <p class="text-center display-4 mt-5" style="font-size: 19px;">Ingresá tu e-mail</p>
+              <input #inputMail [(ngModel)]="email" type="text" class="form-control form-control-lg mt-2 text-center" style="border: solid 1px; border-color: #8F15D4">
+              <div *ngIf="paso2_mensaje != ''" class="alert alert-danger mt-2" role="alert">
+                {{ paso2_mensaje }}
+             </div>
+              <div class="row">
+                <div class="col-md-5 mx-auto">
+                  <button [disabled]="!Utilidades.validarEmail(email) || loading" class="btn btn-cali btn-lg btn-block mt-4" (click)="agendar()"><i *ngIf="loading" class="fa fa-circle-o-notch fa-spin"></i> Confirmar</button>
                 </div>
-               
               </div>
-
-
             </div>
-            
           </div>
-
-
-
         </div>
 
 
 
         <div *ngIf="paso == 3">
           <div class="row mt-5 animated fadeIn">
+            <div class="col-lg-5 mx-auto">
+              <h3 class="text-center mb-5" style="font-size: 29px; background: -webkit-linear-gradient(#8F15D4, #3945D1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">RESERVA PRE-CONFIRMADA</h3>
+              <p class="text-center display-4" style="font-size: 19px;"><strong>{{ nombre_negocio }}</strong></p>
+              <p class="text-center display-4" style="font-size: 19px;">{{ fecha | date }}</p>
+              <p class="text-center display-4" style="font-size: 19px;">{{ horario_seleccionado }} hs.</p>
+              <div class="alert alert-primary text-left" role="alert" style="color: #8F15D4; border-color: #8F15D4; background-color: #fff;">
+                <h3 class="text-center" style="font-size: 29px;"><i class="fa fa-envelope" aria-hidden="true"></i></h3>
+                 <p class="text-center"><strong>Te hemos enviado un email a tu casilla</strong></p>
+                 <p class="text-center">Por favor sigue los pasos descriptos en el mismo para confirmar tu reserva.</p>
+              </div>
+             
+            </div>
+          </div>
+          <!-- <div class="row mt-5 animated fadeIn">
             
             <div class="col-lg-5 mx-auto">
 
@@ -143,7 +129,6 @@
                       <div class="form-group">
 
                         <span class="display-4" style="font-size: 30px;">{{ nombre_negocio }}</span><br><br>
-                        <!-- <span class="display-4" style="font-size: 18px;">{{ direccion_negocio }}</span><br> -->
                         <span class="display-4" style="font-size: 30px;">{{ fecha | date }}</span><br>
                         <span class="display-4" style="font-size: 30px;">{{ horario_seleccionado }} hs.</span><br><br>
 
@@ -166,7 +151,7 @@
 
             </div>
             
-          </div>
+          </div> -->
 
 
 

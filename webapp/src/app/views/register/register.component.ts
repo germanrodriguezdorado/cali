@@ -62,7 +62,6 @@ export class RegisterComponent implements OnInit{
 
     this.cargando = true;
 
-
     var data = {
       "nombre": this.nombre,
       "email": this.email,

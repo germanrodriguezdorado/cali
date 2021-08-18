@@ -1,70 +1,18 @@
-<app-header style="border-bottom: none;"
-  [navbarBrandRouterLink]="['/']"
-  [fixed]="true"
-  [navbarBrandFull]="{src: 'assets/img/logo2021.png', width: 89, height: 25, alt: 'Company Logo'}"
-  [navbarBrandMinimized]="{src: 'assets/img/logo2021.png', width: 30, height: 30, alt: 'Company Logo'}"
-  [sidebarToggler]="false"
-  [asideMenuToggler]="false"
-  [mobileSidebarToggler]="false"
-  [mobileAsideMenuToggler]="false">
-</app-header>
-<div class="app-body">
- 
-  <!-- Main content -->
-  <main class="main" style="background-color: #FFFFFF">
-  
-    <div class="container-fluid">
-      
-
-      <div class="animated fadeIn mt-5">
-
-
-
-
-
-          <div class="row mt-5 animated fadeIn">
-            
-            <div class="col-lg-5 mx-auto">
-             
-
-              <div class="card" *ngIf="mostrar_panel">
-                
-                <div class="card-body text-center">
-
-                  <span class="display-4" style="font-size: 38px;"> {{ negocio }}</span>
-
-                  <h3 class="mt-4"><i class="fa fa-check-circle fa-lg text-primary"></i> Reserva Confirmada</h3> 
-                  
-                  
-                    <h3>{{ fecha }}</h3>
-                    <h3>{{ horario }} hs.</h3>
-                    <h5><i class="fa fa-map-marker fa-lg"></i> {{ direccion }}</h5>
-
-                    
-
-                   
-                </div>
-               
-              </div>
-
-
-            </div>
-            
+<div class="app-body" style="margin-top: 0px;">
+  <main class="main" style="background-image: linear-gradient(#fff, #fff);">
+    <div class="container-fluid animated fadeIn">
+      <div class="row mt-5 animated fadeIn">
+        <div class="col-lg-5 mx-auto">
+          <h3 class="text-center mb-5" style="font-size: 29px; background: -webkit-linear-gradient(#8F15D4, #3945D1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">RESERVA CONFIRMADA</h3>
+          <p class="text-center display-4" style="font-size: 19px;"><strong>{{ negocio }}</strong></p>
+          <p class="text-center display-4" style="font-size: 19px;">{{ fecha }}</p>
+          <p class="text-center display-4" style="font-size: 19px;">{{ horario }} hs.</p>
+          <div class="alert alert-primary text-left" role="alert" style="color: #8F15D4; border-color: #8F15D4; background-color: #fff;">
+            <h3 class="text-center" style="font-size: 29px;"><i class="fa fa-clock-o" aria-hidden="true"></i></h3>
+             <p class="text-center"><strong>Recordá ser puntual :)</strong></p>
           </div>
-
-
-
-
+        </div>
       </div>
-
-
-    </div><!-- /.container-fluid -->
+    </div>
   </main>
-  
 </div>
-<ngx-spinner type="timer" size="medium" bdColor = "rgba(35, 170, 214, 0.8)"><p style="color: #fff" > Cargando... </p></ngx-spinner>
-<!-- https://napster2210.github.io/ngx-spinner/ -->
-<!-- <app-footer>
-  <span><a href="https://coreui.io">CoreUI</a> &copy; 2018 creativeLabs.</span>
-  <span class="ml-auto">Powered by <a href="https://coreui.io/angular">CoreUI for Angular</a></span>
-</app-footer> -->

@@ -152,6 +152,7 @@ export class AgendarComponent implements OnInit, AfterContentInit{
       }
 
     });
+    
   }
 
 

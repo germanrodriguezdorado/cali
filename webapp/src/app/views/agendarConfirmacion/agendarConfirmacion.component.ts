@@ -18,7 +18,6 @@ export class AgendarConfirmacionComponent implements OnInit{
   token: string;
   mostrar_panel: boolean;
   negocio: string;
-  direccion: string;
   fecha: string;
   horario: string;
 
@@ -37,8 +36,8 @@ export class AgendarConfirmacionComponent implements OnInit{
 
 
   ngOnInit() {
+    this.mostrar_panel = false;
     this.negocio = "";
-    this.direccion = "";
     this.fecha = "";
     this.horario = "";
     this.ActivatedRoute.params.subscribe(params => {
@@ -59,7 +58,6 @@ export class AgendarConfirmacionComponent implements OnInit{
       this.NgxSpinnerService.hide();
       if(respuesta["cliente_email"] != ""){
         this.negocio = respuesta["negocio"];
-        this.direccion = respuesta["direccion"];
         this.fecha = respuesta["fecha"];
         this.horario = respuesta["horario"];
         this.mostrar_panel = true;

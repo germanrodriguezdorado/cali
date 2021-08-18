@@ -1,5 +1,5 @@
-<div class="app-body">
-  <main class="main d-flex align-items-center" style="background-color: #5138D1;">
+<div class="app-body" style="margin-top: 0px;">
+  <main class="main d-flex align-items-center" style="background-image: linear-gradient(#8F15D4, #3945D1);">
     <div class="container">
       <div class="row">
         <div class="col-md-6 mx-auto">
@@ -7,9 +7,10 @@
           <div *ngIf="paso == 1" class="card mx-4" style="background-color: #fff; border-radius: 3px;">
             <div class="card-body p-4">
              
-                <h1>Registro</h1>
-                <p class="text-muted">Ingresá los datos solicitados para registrar tu negocio en CALI</p>
-                <div class="input-group mb-3">
+              <h3 class="text-center" style="font-size: 29px; background: -webkit-linear-gradient(#8F15D4, #3945D1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">REGISTRO</h3>
+              
+              <p class="text-muted text-center mb-5">Ingresá los datos solicitados para registrar tu negocio en CALI</p>
+                <div class="input-group mb-3 mt-2">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-home"></i></span>
                   </div>
@@ -27,37 +28,46 @@
                   </div>
                   <input type="password" class="form-control" placeholder="Contraseña" autocomplete="new-password" [(ngModel)]="password1" [ngModelOptions]="{standalone: true}">
                 </div>
-                <div class="input-group mb-4">
+                <div class="input-group mb-5">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-lock"></i></span>
                   </div>
                   <input type="password" class="form-control" placeholder="Repita contraseña" autocomplete="new-password" [(ngModel)]="password2" [ngModelOptions]="{standalone: true}">
                 </div>
-                <button type="button" [disabled]="cargando" class="btn btn-block btn-lg btn-cali" (click)="registro()">Registrarme</button>
-             
+                <button type="button" [disabled]="cargando" class="btn btn-block btn-lg btn-cali" (click)="registro()"><i *ngIf="cargando" class="fa fa-circle-o-notch fa-spin"></i> Registrarme</button>
+                
+                <hr>
+                  
+                
+                <div class="row text-center">
+                  <div class="col-12">
+                    <button type="button" class="btn btn-link" style="color: #9E31EE !important;" [routerLink]="['/']">Volver al inicio</button>
+                  </div>
+                </div>
+
             </div>
            
           </div>
 
-          <div *ngIf="paso == 2" class="card text-center" style="background-color: #F9F7F0; color: #5138D1 !important">
+          <div *ngIf="paso == 2" class="card text-center" style="background-color: #fff; color: #5138D1 !important">
                
            
-            <div class="card-body">
+            <div class="card-body" style="padding-bottom: 0px;">
 
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
-                    <!-- <span class="display-4" style="font-size: 30px;">{{ nombre_negocio }}</span><br> -->
-                    <!-- <span class="display-4" style="font-size: 18px;">{{ direccion_negocio }}</span><br> -->
-                    <span class="display-4" style="font-size: 30px;">Gracias</span>
+                    <h3 class="text-center" style="font-size: 29px; background: -webkit-linear-gradient(#8F15D4, #3945D1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">REGISTRO EXITOSO</h3>
+                    <h3 class="text-center" style="font-size: 29px; background: -webkit-linear-gradient(#8F15D4, #3945D1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"><i class="fa fa-envelope" aria-hidden="true"></i></h3>
+                    <br>
+                    <p class="text-muted text-left" style="font-size: 17px;">Te hemos enviado un e-mail a tu casilla. Por favor, sigue los pasos detallados en el mismo para finalizar tu registro en CALI.</p>
+                    
+                    <p class="text-muted text-left" style="font-size: 17px;">Por cualquier problema o consulta, no dudes en escribirnos a <a href="mailto:hola@cali.uy">hola@cali.uy</a>.</p>
                     <hr>
-                    <p>Te hemos enviado un e-mail a tu casilla:</p>
+                    <p class="text-right">
+                      <img src="assets/img/logo2021.png" width="50" height="50">
+                    </p>
 
-                    <p><strong>{{ email }}</strong></p>
-
-                    <p>Por favor, sigue los pasos detallados en el mismo para finalizar tu registro en CALI.</p>
-                    
-                    
                   </div>
                 </div>
               </div>
