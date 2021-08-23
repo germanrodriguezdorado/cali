@@ -80,14 +80,13 @@
               <p class="text-center display-4" style="font-size: 19px;"><strong>{{ nombre_negocio }}</strong></p>
               <p class="text-center display-4" style="font-size: 19px;">{{ fecha | date }}</p>
               <p class="text-center display-4" style="font-size: 19px;">{{ horario_seleccionado }} hs.</p>
-              <p class="text-center display-4 mt-5" style="font-size: 19px;">Ingresá tu e-mail</p>
-              <input #inputMail [(ngModel)]="email" type="text" class="form-control form-control-lg mt-2 text-center" style="border: solid 1px; border-color: #8F15D4">
+              <input style="height: 50px; border-radius: 50px; border: solid 1px; border-color: #5936D2;" placeholder="INGRESÁ TU E-MAIL" #inputMail class="form-control form-control-lg text-center mt-5" type="text" [(ngModel)]="email">
               <div *ngIf="paso2_mensaje != ''" class="alert alert-danger mt-2" role="alert">
                 {{ paso2_mensaje }}
              </div>
               <div class="row">
                 <div class="col-md-5 mx-auto">
-                  <button [disabled]="!Utilidades.validarEmail(email) || loading" class="btn btn-cali btn-lg btn-block mt-4" (click)="agendar()"><i *ngIf="loading" class="fa fa-circle-o-notch fa-spin"></i> Confirmar</button>
+                  <button [disabled]="!Utilidades.validarEmail(email) || loading" class="btn btn-grad btn-lg btn-block mt-5" (click)="agendar()"><i *ngIf="loading" class="fa fa-circle-o-notch fa-spin"></i> Confirmar</button>
                 </div>
               </div>
             </div>
