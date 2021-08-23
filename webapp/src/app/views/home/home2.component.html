@@ -24,8 +24,7 @@
 
       <div class="row justify-content-md-center">
         <div class="col-md-8 mt-4">
-          <button *ngIf="!loading" (click)="buscar()" type="button" class="btn btn-grad btn-block">BUSCAR</button>
-          <button *ngIf="loading" disabled type="button" class="btn btn-grad btn-block">BUSCANDO</button>
+          <button [disabled]="loading" (click)="buscar()" type="button" class="btn btn-grad btn-block"><i *ngIf="loading" class="fa fa-circle-o-notch fa-spin"></i> BUSCAR</button>
         </div>
       </div>
 

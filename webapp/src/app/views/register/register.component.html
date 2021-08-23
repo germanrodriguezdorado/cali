@@ -7,41 +7,29 @@
           <div *ngIf="paso == 1" class="card mx-4" style="background-color: #fff; border-radius: 3px;">
             <div class="card-body p-4">
              
-              <h3 class="text-center" style="font-size: 29px; background: -webkit-linear-gradient(#8F15D4, #3945D1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">REGISTRO</h3>
+              <h3 class="text-center" style="font-size: 33px; background: -webkit-linear-gradient(#8F15D4, #3945D1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">REGISTRO</h3>
               
-              <p class="text-muted text-center mb-5">Ingresá los datos solicitados para registrar tu negocio en CALI</p>
+              <p class="text-muted text-center mb-4 mt-4" style="font-size: 15px;">Ingresá los datos solicitados para registrar tu negocio en CALI</p>
                 <div class="input-group mb-3 mt-2">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="icon-home"></i></span>
-                  </div>
-                  <input type="text" class="form-control" placeholder="Nombre del negocio" [(ngModel)]="nombre" [ngModelOptions]="{standalone: true}">
+                  <input style="height: 50px; border-radius: 50px; border: solid 1px; border-color: #5936D2;" placeholder="Nombre del negocio" class="form-control form-control-lg" type="text" [(ngModel)]="nombre" [ngModelOptions]="{standalone: true}">
                 </div>
                 <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">@</span>
-                  </div>
-                  <input type="text" class="form-control" placeholder="Email" autocomplete="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
+                  <input style="height: 50px; border-radius: 50px; border: solid 1px; border-color: #5936D2;" autocomplete="off" placeholder="E-mail" class="form-control form-control-lg" type="text" [(ngModel)]="email" autocomplete="email" [ngModelOptions]="{standalone: true}">
                 </div>
                 <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="icon-lock"></i></span>
-                  </div>
-                  <input type="password" class="form-control" placeholder="Contraseña" autocomplete="new-password" [(ngModel)]="password1" [ngModelOptions]="{standalone: true}">
+                  <input style="height: 50px; border-radius: 50px; border: solid 1px; border-color: #5936D2;" autocomplete="off" placeholder="Contraseña" class="form-control form-control-lg" type="password" [(ngModel)]="password1" [ngModelOptions]="{standalone: true}">
                 </div>
                 <div class="input-group mb-5">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="icon-lock"></i></span>
-                  </div>
-                  <input type="password" class="form-control" placeholder="Repita contraseña" autocomplete="new-password" [(ngModel)]="password2" [ngModelOptions]="{standalone: true}">
+                  <input style="height: 50px; border-radius: 50px; border: solid 1px; border-color: #5936D2;" placeholder="Repetí la contraseña" class="form-control form-control-lg" type="password" [(ngModel)]="password2" [ngModelOptions]="{standalone: true}">
                 </div>
-                <button type="button" [disabled]="cargando" class="btn btn-block btn-lg btn-cali" (click)="registro()"><i *ngIf="cargando" class="fa fa-circle-o-notch fa-spin"></i> Registrarme</button>
+                <button [disabled]="cargando" (click)="registro()" type="button" class="btn btn-grad btn-block"><i *ngIf="cargando" class="fa fa-circle-o-notch fa-spin"></i> REGISTRARME</button>
                 
                 <hr>
                   
                 
                 <div class="row text-center">
                   <div class="col-12">
-                    <button type="button" class="btn btn-link" style="color: #9E31EE !important;" [routerLink]="['/']">Volver al inicio</button>
+                    <button [disabled]="cargando" type="button" class="btn btn-link" style="color: #9E31EE !important;" [routerLink]="['/']">Volver al inicio</button>
                   </div>
                 </div>
 

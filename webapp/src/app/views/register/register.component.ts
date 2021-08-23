@@ -69,6 +69,7 @@ export class RegisterComponent implements OnInit{
     }
 
 
+
     this.AuthService.registerStep1(data).subscribe(respuesta => {
 
       this.cargando = false;
