@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule, NgbTimeAdapter, NgbDatepickerI18n, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
-
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
@@ -87,6 +87,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     }),
     OwlDateTimeModule, 
     OwlNativeDateTimeModule,
+    ModalModule.forRoot(),
   ],
   declarations: [
     AppComponent,
@@ -100,7 +101,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     RegisterComponent,
     RegisterCheckComponent,
     CustomToast,
-    ToastService
+    ToastService,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true},

@@ -16,6 +16,7 @@ import { RegisterCheckComponent } from '@views/registerCheck/registerCheck.compo
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, data: { title: 'Home' }},
+  { path: 'tutorial', component: HomeComponent, data: { title: 'Home' }},
   { path: 'agendar/:negocio', component: AgendarComponent, data: { title: 'Agendar' }},
   { path: 'confirmar/:token', component: AgendarConfirmacionComponent, data: { title: 'Agendar' }},
   { path: '404', component: P404Component, data: { title: 'Page 404'} },

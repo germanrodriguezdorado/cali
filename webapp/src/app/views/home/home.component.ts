@@ -1,9 +1,11 @@
 import { Component, ElementRef, ViewChild, OnInit, AfterContentInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NegocioService } from "@services/negocio.service";
 import { Utilidades } from "@helpers/utilidades";
 import { AuthService } from "@services/auth.service";
+import { ModalDirective } from 'ngx-bootstrap/modal';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -12,6 +14,10 @@ import { AuthService } from "@services/auth.service";
 })
 export class HomeComponent implements OnInit, AfterContentInit{
   @ViewChild("inputBusqueda") inputBusqueda:ElementRef;
+  @ViewChild('modalTutorial') public modalTutorial: ModalDirective;
+  @ViewChild('videoPlayer') videoplayer: ElementRef;
+
+
   nombre: string;
   barrio: string;
   negocios: any;
@@ -26,7 +32,9 @@ export class HomeComponent implements OnInit, AfterContentInit{
     private NegocioService: NegocioService,
     private Router: Router,
     public Utilidades: Utilidades,
-    private AuthService: AuthService
+    private AuthService: AuthService,
+    private ActivatedRoute: ActivatedRoute,
+    private Location: Location
     ) { }
 
 
@@ -40,11 +48,24 @@ export class HomeComponent implements OnInit, AfterContentInit{
     this.negocios = [];
     this.mostrando_sector_resultados = false;
     this.barrios_disponibles = this.Utilidades.darBarriosDisponibles();
+
+
+    
+
   }
+
+  
 
 
   public ngAfterContentInit() {
-    setTimeout(() => { this.inputBusqueda.nativeElement.focus();}, 500);
+    setTimeout(() => { 
+      if (this.Router.url == "/tutorial"){
+        this.Location.replaceState("/");
+        this.verTutorial();
+      }
+    }, 500);
+
+   
   }
 
 
@@ -60,10 +81,19 @@ export class HomeComponent implements OnInit, AfterContentInit{
       this.mostrando_sector_resultados = true;
       this.loading = false;
     });
+  }
 
-    
 
-    
+  verTutorial(){
+    this.modalTutorial.show();
+    this.videoplayer.nativeElement.play();
+  }
+
+  cerrarTutorial(){
+    this.videoplayer.nativeElement.pause();
+    this.videoplayer.nativeElement.currentTime = 0;
+    this.videoplayer.nativeElement.load();
+    this.modalTutorial.hide();
   }
 
 
