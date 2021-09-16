@@ -124,6 +124,13 @@ export class NegocioInformacionComponent implements OnInit {
       return;
     }
 
+    if(
+      this.cupos == ""
+    ){
+      this.ToastService.notificar("warning", "Por favor, ingrese la cantidad de cupos para cada horario.", []);
+      return;
+    }
+
 
     var data = {
       "nombre": this.nombre,
