@@ -1,103 +1,96 @@
 <div class="animated fadeIn">
   <div class="row">
     <div class="col-sm-12">
+
       <div class="card">
         <div class="card-header">
-          <strong>Información principal</strong>
+          <strong>Información del negocio</strong>
         </div>
         <div class="card-body">
 
           
           <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-12">
 
               <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <div class="form-group">
-                    <label>Nombre</label>
+                    <label>Nombre del negocio</label>
                     <input [(ngModel)]="nombre" type="text" class="form-control">
                   </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <div class="form-group">
                     <label>E-mail</label>
                     <input [(ngModel)]="email" type="text" class="form-control">
                   </div>
                 </div>
-              </div>
-
-              <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <div class="form-group">
                     <label>Dirección</label>
                     <input [(ngModel)]="direccion" type="text" class="form-control">
                   </div>
                 </div>
-                <div class="col-sm-6">
+              </div>
+
+              <div class="row">
+                
+                <div class="col-sm-4">
                   <div class="form-group">
-                    <label>Zona</label>
+                    <label>Barrio</label>
                     <ng-select [(ngModel)]="barrio" class="form-control" [clearable]="false" [searchable]="true">
                       <ng-option *ngFor="let barrio of barrios_disponibles" value="{{ barrio }}">{{ barrio }}</ng-option>  
                   </ng-select>
                   </div>
                 </div>
-              </div>
 
-
-              <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <div class="form-group">
                     <label>Teléfono</label>
                     <input [(ngModel)]="telefono" type="text" class="form-control">
                   </div>
                 </div>
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <label>Duración del servicio</label>
-                    <ng-select [(ngModel)]="duracion" class="form-control" [clearable]="false" [searchable]="false">
-                      <ng-option value="10">10 minutos</ng-option>
-                      <ng-option value="15">15 minutos</ng-option>
-                      <ng-option value="30">30 minutos</ng-option>
-                      <ng-option value="60">1 hora</ng-option>
-                      <ng-option value="90">1 hora y media</ng-option>
-                      <ng-option value="120">2 horas</ng-option>
-                  </ng-select>
-                  </div>
-                </div>
+
               </div>
 
-            
 
-             
 
             </div>
            
           </div>
 
+       
 
-         
-           
-             <hr>
+        </div>
+       
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <strong>Configuración de la agenda</strong>
+        </div>
+        <div class="card-body">
 
           <div class="row">
-                <div class="form-group col-sm-12">
-                  <label>Días de trabajo</label>
-                  <br>
-                  <!-- <label class="switch switch-primary">
-                    <input type="checkbox" class="switch-input" checked>
-                    <span class="switch-slider"></span>
-                  </label> -->
-                  <!-- <ng-select [(ngModel)]="dias" class="form-control" [searchable]="false" [clearable]="false" [multiple]="true">
-                    <ng-option value="lunes">Lunes</ng-option>  
-                    <ng-option value="martes">Martes</ng-option>  
-                    <ng-option value="miercoles">Miércoles</ng-option>  
-                    <ng-option value="jueves">Jueves</ng-option>  
-                    <ng-option value="viernes">Viernes</ng-option> 
-                    <ng-option value="sabado">Sábado</ng-option> 
-                    <ng-option value="domingo">Domingo</ng-option>  
-                  </ng-select> -->
 
-                  <div class="col-md-9 col-form-label">
+
+             
+          
+
+                <div class="form-group col-sm-12">
+                  <label>Seleccione sus días de trabajo</label>
+                  <div class="input-group" style="width: 100%;">
+                    <button (click)="switchDay('lunes')" [ngClass]="lunes ? 'btn-cali' : 'btn-light'" style='border-radius: 0px;' type="button" class="btn">Lunes</button>
+                    <button (click)="switchDay('martes')" [ngClass]="martes ? 'btn-cali' : 'btn-light'" style='border-radius: 0px;' type="button" class="btn">Martes</button>
+                    <button (click)="switchDay('miercoles')" [ngClass]="miercoles ? 'btn-cali' : 'btn-light'" style='border-radius: 0px;' type="button" class="btn">Miércoles</button>
+                    <button (click)="switchDay('jueves')" [ngClass]="jueves ? 'btn-cali' : 'btn-light'" style='border-radius: 0px;' type="button" class="btn">Jueves</button>
+                    <button (click)="switchDay('viernes')" [ngClass]="viernes ? 'btn-cali' : 'btn-light'" style='border-radius: 0px;' type="button" class="btn">Viernes</button>
+                    <button (click)="switchDay('sabado')" [ngClass]="sabado ? 'btn-cali' : 'btn-light'" style='border-radius: 0px;' type="button" class="btn">Sábado</button>
+                    <button (click)="switchDay('domingo')" [ngClass]="domingo ? 'btn-cali' : 'btn-light'" style='border-radius: 0px;' type="button" class="btn">Domingo</button>
+                  </div>
+                 
+
+                  <!-- <div class="col-md-9 col-form-label">
                     <div class="form-check">
                       <input class="form-check-input" id="checkbox1" type="checkbox" [(ngModel)]="lunes">
                       <label class="form-check-label" for="checkbox1"> Lunes </label>
@@ -127,7 +120,7 @@
                       <label class="form-check-label" for="checkbox7"> Domingo </label>
                     </div>
                     
-                </div>
+                </div> -->
 
           </div>
         </div>
@@ -135,25 +128,25 @@
           
                
              
-
+          <hr>
 
 
               <div class="row">
 
-                <div class="form-group col-sm-3">
+                <div class="form-group col-sm-2">
                   <label>Desde</label>
                   <ng-select [(ngModel)]="desde" class="form-control" [searchable]="false" [clearable]="false" >
                     <ng-option *ngFor="let horario of horarios_disponibles" value="{{ horario }}">{{ horario }}</ng-option>  
                   </ng-select>
                 </div>
-                <div class="form-group col-sm-3">
+                <div class="form-group col-sm-2">
                   <label>Hasta</label>
                   <ng-select [(ngModel)]="hasta" class="form-control" [searchable]="false" [clearable]="false">
                     <ng-option *ngFor="let horario of horarios_disponibles" value="{{ horario }}">{{ horario }}</ng-option>  
                   </ng-select>
                 </div>
 
-                <div class="form-group col-sm-3">
+                <div class="form-group col-sm-2">
                   <label>Descanso</label>
                   <ng-select [(ngModel)]="descanso" class="form-control" [searchable]="false" [clearable]="false">
                     <ng-option value="Sin descanso">Sin descanso</ng-option>  
@@ -163,9 +156,21 @@
                 </div>
 
 
-                <div class="form-group col-sm-3">
-                  <label>Cupos</label>
+                <div class="form-group col-sm-2">
+                  <label>Cantidad de cupos</label>
                   <input [(ngModel)]="cupos" type="text" class="form-control">
+                </div>
+
+                <div class="form-group col-sm-4">
+                  <label>Duración del servicio</label>
+                  <ng-select [(ngModel)]="duracion" class="form-control" [clearable]="false" [searchable]="false">
+                    <ng-option value="10">10 minutos</ng-option>
+                    <ng-option value="15">15 minutos</ng-option>
+                    <ng-option value="30">30 minutos</ng-option>
+                    <ng-option value="60">1 hora</ng-option>
+                    <ng-option value="90">1 hora y media</ng-option>
+                    <ng-option value="120">2 horas</ng-option>
+                </ng-select>
                 </div>
 
               
@@ -188,10 +193,11 @@
        
 
         </div>
-        <div class="card-footer">
-          <button (click)="guardar()" type="submit" class="btn btn-md btn-primary"><i class="fa fa-save"></i> Guardar</button>
-        </div>
+       
       </div>
+
+      <button (click)="guardar()" type="submit" class="btn btn-lg btn-cali">Guardar Información</button>
+
     </div><!--/.col-->
   </div><!--/.row-->
 </div>

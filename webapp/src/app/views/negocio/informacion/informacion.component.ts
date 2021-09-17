@@ -104,6 +104,12 @@ export class NegocioInformacionComponent implements OnInit {
     });
   }
 
+
+
+  switchDay(day: string){
+    this[day] = !this[day];
+  }
+
   
 
   guardar(){
