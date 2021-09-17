@@ -1,7 +1,7 @@
 {
-  "name": "hc",
+  "name": "cali",
   "version": "1.0.0",
-  "description": "Descripcion",
+  "description": "App de reservas Online",
   "scripts": {
     "start": "ng serve --hmr --proxy-config proxy.config.json",
     "construir": "ng build --prod && node ./build/post-build.js"

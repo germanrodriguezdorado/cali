@@ -6,25 +6,27 @@
           <strong>Negocios</strong>
         </div>
         <div class="card-body">
-          <table class="table">
-           
+          <table class="table ">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Último login</th>
+                <th></th>
+              </tr>
+            </thead>
             <tbody>
               <tr *ngFor="let negocio of negocios">
-                <td style="width: 70%;">
-                  <strong>{{ negocio['nombre'] }}</strong> <br>
-                  {{ negocio['direccion'] }}
-                </td>
-               
-                <td  style="width: 70%;">
-
-                  <button class="btn btn-pill btn-danger" type="button" data-toggle="modal" (click)="eliminar(negocio['id'])">Eliminar</button>
-
+                <td><i [ngClass]="negocio['habilitado'] ? 'text-success' : 'text-danger'" class="fa fa-circle" aria-hidden="true"></i> {{ negocio['nombre'] }}</td>
+                <td>{{ negocio['email'] }}</td>
+                <td>{{ negocio['telefono'] }}</td>
+                <td>{{ negocio['last_login'] }}</td>
+                <td class="text-right">
+                  <button class="btn btn-sm btn-danger" type="button" data-toggle="modal" (click)="eliminar(negocio['id'])"><i class="fa fa-trash" aria-hidden="true"></i></button>
                 </td>
                
               </tr>
-
-              
-              
             </tbody>
           </table>
           

@@ -33,25 +33,52 @@ class AdminController extends FOSRestController
             $un_negocio["id"] = $negocio->getId();
             $un_negocio["nombre"] = $negocio->getNombre();
             $un_negocio["email"] = $negocio->getEmail();
-            $un_negocio["direccion"] = $negocio->getDireccion();
-            $un_negocio["barrio"] = $negocio->getBarrio();
             $un_negocio["telefono"] = $negocio->getTelefono();
-            $un_negocio["duracion"] = $negocio->getDuracion();
-            $un_negocio["lunes"] = $negocio->getLunes();
-            $un_negocio["martes"] = $negocio->getMartes();
-            $un_negocio["miercoles"] = $negocio->getMiercoles();
-            $un_negocio["jueves"] = $negocio->getJueves();
-            $un_negocio["viernes"] = $negocio->getViernes();
-            $un_negocio["sabado"] = $negocio->getSabado();
-            $un_negocio["domingo"] = $negocio->getDomingo();
-            $un_negocio["desde"] = $negocio->getDesde();
-            $un_negocio["hasta"] = $negocio->getHasta();
-            $un_negocio["descanso"] = $negocio->getDescanso();
+            $un_negocio["habilitado"] = $negocio->getUsuario()->isEnabled();
+            if($negocio->getUsuario()->getLastLogin()){
+                $un_negocio["last_login"] = $negocio->getUsuario()->getLastLogin()->format("d/m/Y H:i")." hs.";
+            }else{
+                $un_negocio["last_login"] = "";
+            }
+            
             $respuesta[] = $un_negocio;
         }
         
         
         return new JsonResponse($respuesta);
+    }
+
+
+
+
+
+    /**
+    * @Rest\Get("/api_hc/admin/dar_detalle_negocio/{id}")
+    */
+    public function darDetalleNegocio($id)
+    {     
+        if($this->getUser()->getTipo() != "2") return new JsonResponse($respuesta);
+        $em = $this->getDoctrine()->getManager();
+        $negocio = $em->getRepository("AppBundle:Negocio")->find($id); 
+        $un_negocio = array();
+        $un_negocio["id"] = $negocio->getId();
+        $un_negocio["nombre"] = $negocio->getNombre();
+        $un_negocio["email"] = $negocio->getEmail();
+        $un_negocio["direccion"] = $negocio->getDireccion();
+        $un_negocio["barrio"] = $negocio->getBarrio();
+        $un_negocio["telefono"] = $negocio->getTelefono();
+        $un_negocio["duracion"] = $negocio->getDuracion();
+        $un_negocio["lunes"] = $negocio->getLunes();
+        $un_negocio["martes"] = $negocio->getMartes();
+        $un_negocio["miercoles"] = $negocio->getMiercoles();
+        $un_negocio["jueves"] = $negocio->getJueves();
+        $un_negocio["viernes"] = $negocio->getViernes();
+        $un_negocio["sabado"] = $negocio->getSabado();
+        $un_negocio["domingo"] = $negocio->getDomingo();
+        $un_negocio["desde"] = $negocio->getDesde();
+        $un_negocio["hasta"] = $negocio->getHasta();
+        $un_negocio["descanso"] = $negocio->getDescanso();
+        return new JsonResponse($un_negocio);
     }
 
 
