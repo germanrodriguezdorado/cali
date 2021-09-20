@@ -47,6 +47,8 @@ class NegocioController extends FOSRestController
         $respuesta["hasta"] = $negocio->getHasta();
         $respuesta["descanso"] = $negocio->getDescanso();
         $respuesta["cupos"] = $negocio->getCupos();
+        $respuesta["rubro"] = $negocio->getRubro();
+        $respuesta["slug"] = $negocio->getSlug();
         return new JsonResponse($respuesta);
     }
 
@@ -84,6 +86,7 @@ class NegocioController extends FOSRestController
         $negocio->setHasta($request->get("hasta"));
         $negocio->setDescanso($request->get("descanso"));
         $negocio->setCupos($request->get("cupos"));
+        $negocio->setRubro($request->get("rubro"));
 
         $this->getUser()->setUsername($request->get("email"));
         $this->getUser()->setUsernameCanonical($request->get("email"));
@@ -98,6 +101,7 @@ class NegocioController extends FOSRestController
         if($email_anterior != $request->get("email")) {
             $respuesta["new_jwt"] = $this->get("jwt")->getToken($this->getUser());
         }
+        $respuesta["slug"] = $negocio->getSlug();
         
 
         

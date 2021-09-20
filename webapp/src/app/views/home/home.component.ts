@@ -6,6 +6,7 @@ import { Utilidades } from "@helpers/utilidades";
 import { AuthService } from "@services/auth.service";
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Location } from '@angular/common';
+import { ToastService } from "@services/toast.service";
 
 
 @Component({
@@ -18,12 +19,13 @@ export class HomeComponent implements OnInit, AfterContentInit{
   @ViewChild('videoPlayer') videoplayer: ElementRef;
 
 
-  nombre: string;
+  rubro: string;
   barrio: string;
   negocios: any;
   barrios_disponibles: string[];
   mostrando_sector_resultados: boolean;
   loading: boolean;
+  iniciando_paso2: boolean;
 
 
 
@@ -34,7 +36,8 @@ export class HomeComponent implements OnInit, AfterContentInit{
     public Utilidades: Utilidades,
     private AuthService: AuthService,
     private ActivatedRoute: ActivatedRoute,
-    private Location: Location
+    private Location: Location,
+    private ToastService: ToastService,
     ) { }
 
 
@@ -43,15 +46,12 @@ export class HomeComponent implements OnInit, AfterContentInit{
   ngOnInit() {
     this.AuthService.logout();
     this.loading = false;
-    this.nombre = "";
+    this.rubro = "";
     this.barrio = "";
     this.negocios = [];
     this.mostrando_sector_resultados = false;
     this.barrios_disponibles = this.Utilidades.darBarriosDisponibles();
-
-
-    
-
+    this.iniciando_paso2 = true;
   }
 
   
@@ -68,12 +68,21 @@ export class HomeComponent implements OnInit, AfterContentInit{
    
   }
 
-
+  ir_a_paso2(){
+    this.mostrando_sector_resultados = true;
+  }
 
   buscar(){
+
+    if(this.rubro == ""){
+      this.ToastService.notificar("warning", "Seleccioná un rubro para comenzar tu búsqueda.", []);
+      return;
+    }
+
     this.loading = true;
+    this.iniciando_paso2 = false;
     var data = {
-      "nombre": this.nombre,
+      "rubro": this.rubro,
       "barrio": this.barrio
     }
     this.NegocioService.buscar(data).subscribe(data => {
@@ -99,11 +108,27 @@ export class HomeComponent implements OnInit, AfterContentInit{
 
 
   irAAgendar(slug: string){
-    this.Router.navigate(["/agendar/" + slug]); 
+    this.Router.navigate(["/s/" + slug]); 
   }
 
   volver(){
     this.mostrando_sector_resultados = false;
+    this.iniciando_paso2 = true;
+    this.rubro = "";
+    this.barrio = "";
+  }
+
+
+  irARedSocial(red_social: string): void{
+    if(red_social=="instagram"){
+      window.open("https://www.instagram.com/cali.uy", "_blank");
+    }
+    if(red_social=="facebook"){
+      window.open("https://www.facebook.com/Caliuy-105118571893889", "_blank");
+    }
+    if(red_social=="youtube"){
+      window.open("https://www.youtube.com/channel/UCBON5K4tBSDxh0Ax312Onrg", "_blank");
+    }
   }
 
 

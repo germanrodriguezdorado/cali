@@ -29,6 +29,8 @@ import { P500Component } from '@views/error/500.component';
 import { LoginComponent } from '@views/login/login.component';
 import { RegisterComponent } from '@views/register/register.component';
 import { RegisterCheckComponent } from '@views/registerCheck/registerCheck.component';
+import { PasswordRecoveryS1Component } from "@views/passwordRecoveryS1/passwordRecoveryS1.component";
+import { PasswordRecoveryS2Component } from "@views/passwordRecoveryS2/passwordRecoveryS2.component";
 
 
 import { NgbTimeStringAdapter } from '@helpers/timepicker-adapter';
@@ -100,6 +102,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     LoginComponent,
     RegisterComponent,
     RegisterCheckComponent,
+    PasswordRecoveryS1Component,
+    PasswordRecoveryS2Component,
     CustomToast,
     ToastService,
   ],

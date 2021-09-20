@@ -1,6 +1,6 @@
 <div class="animated fadeIn">
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-8">
 
       <div class="card">
         <div class="card-header">
@@ -51,6 +51,18 @@
                   </div>
                 </div>
 
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>Rubro</label>
+                    <ng-select [(ngModel)]="rubro" class="form-control" [clearable]="false" [searchable]="true">
+                      <ng-option value="Gimnasios">Gimnasios</ng-option>
+                      <ng-option value="Masajistas">Masajistas</ng-option>
+                      <ng-option value="Peluquerías">Peluquerías</ng-option>
+                      <ng-option value="Otros">Otros</ng-option>
+                  </ng-select>
+                  </div>
+                </div>
+
               </div>
 
 
@@ -65,6 +77,27 @@
        
       </div>
 
+    </div> 
+
+    <div class="col-sm-4">
+      <div class="brand-card">
+        <div class="brand-card-header" style="background-color: #8121D3;">
+          <i class="fa fa-instagram"></i>
+        </div>
+        <div class="brand-card-body">
+          <div>
+            <div class="text-value" style="font-size: 14px;">Para que tus seguidores puedan agendarse,<br> pegá este link en tu descripción en Instagram!</div>
+            <div class="text-muted mt-4">https://cali.uy/#/s/{{slug}}</div>
+            <div class="text-muted mt-2"><button (click)="copyLink()" type="button" class="btn btn-sm btn-ghost-success">Copiar enlace</button></div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+
+  <div class="row">
+    <div class="col-sm-12">
       <div class="card">
         <div class="card-header">
           <strong>Configuración de la agenda</strong>
@@ -195,9 +228,10 @@
         </div>
        
       </div>
+    
+    </div> 
+  </div>  
 
       <button (click)="guardar()" type="submit" class="btn btn-lg btn-cali">Guardar Información</button>
 
     </div><!--/.col-->
-  </div><!--/.row-->
-</div>

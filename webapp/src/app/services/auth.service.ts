@@ -163,11 +163,11 @@ export class AuthService {
     }
 
     passwordResetStep1(email: string){
-        return this.http.get<boolean>(environment.api_path + "/api/common/password_reset_step1/" + email);
+        return this.http.get<boolean>(environment.api_path + "/api_hc/p/password_reset_step1/" + email);
     }
 
     passwordResetCheck(token: string){
-        return this.http.get(environment.api_path + "/api/common/password_reset_check/" + token);
+        return this.http.get(environment.api_path + "/api_hc/p/password_reset_check/" + token);
     }
 
     passwordResetStep2(password: string, token: string){
@@ -175,6 +175,6 @@ export class AuthService {
             "password": password,
             "token": token
         }
-        return this.http.post(environment.api_path + "/api/common/password_reset_step2/", data);
+        return this.http.post(environment.api_path + "/api_hc/p/password_reset_step2/", data);
     }
 }

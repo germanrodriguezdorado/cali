@@ -100,7 +100,7 @@ class EmailService extends Controller
         if(!$this->envio_emails) return true;  
 
         try{
-            $this->email->setSubject("Gracias por registrarse a Cali");            
+            $this->email->setSubject("Gracias por registrarte a Cali");            
             $this->email->setFrom(array($this->container_interface->getParameter("mailer_user") => $this->container_interface->getParameter("mailer_name")));             
             $this->email->setTo($usuario->getEmail());
             $this->email->setBcc("germanrodriguezdorado@gmail.com");              
@@ -118,7 +118,7 @@ class EmailService extends Controller
 
     public function agendaConfirmadaDirigidaANegocio(Agenda $agenda){
         if(!$this->envio_emails) return;
-        $this->email->setSubject("Tienes una nueva reserva de horario");            
+        $this->email->setSubject("Tenés una nueva reserva de horario");            
         $this->email->setFrom(array($this->container_interface->getParameter("mailer_user") => $this->container_interface->getParameter("mailer_name")));             
         $this->email->setTo($agenda->getNegocio()->getEmail()); 
         $this->email->setBcc("germanrodriguezdorado@gmail.com");                 
@@ -127,7 +127,25 @@ class EmailService extends Controller
         )), "text/html");
         $this->mailer->send($this->email);
         return 1;
-    }         
+    }
+    
+    
+    public function passwordReset(Usuario $usuario){   
+        if(!$this->envio_emails) return;  
+        try{
+            $this->email->setSubject("Cambio de contraseña");            
+            $this->email->setFrom(array($this->container_interface->getParameter("mailer_user") => $this->container_interface->getParameter("mailer_name")));               
+            $this->email->setTo($usuario->getEmail()); 
+            $this->email->setBcc("germanrodriguezdorado@gmail.com");        
+            $this->email->setBody($this->templating->render("emails/password_reset.html.twig", array("usuario" => $usuario)), "text/html");                
+            $res = $this->mailer->send($this->email);
+            if($res > 0) $envio_exitoso = true;
+        }catch(\Swift_TransportException $e){
+            $envio_exitoso = false;
+        }
+        return $envio_exitoso;
+    }
+
 
 
 

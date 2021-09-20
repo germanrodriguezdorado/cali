@@ -141,7 +141,13 @@ class Negocio
      * @var string
      * @ORM\Column(name="cupos", type="string", length=10, nullable=true)
      */
-    private $cupos;                                                     
+    private $cupos;        
+    
+    /**
+     * @var string
+     * @ORM\Column(name="rubro", type="string", length=50, nullable=true)
+     */
+    private $rubro;
 
                      
 
@@ -623,5 +629,29 @@ class Negocio
     public function getCupos()
     {
         return $this->cupos;
+    }
+
+    /**
+     * Set rubro.
+     *
+     * @param string|null $rubro
+     *
+     * @return Negocio
+     */
+    public function setRubro($rubro = null)
+    {
+        $this->rubro = $rubro;
+
+        return $this;
+    }
+
+    /**
+     * Get rubro.
+     *
+     * @return string|null
+     */
+    public function getRubro()
+    {
+        return $this->rubro;
     }
 }

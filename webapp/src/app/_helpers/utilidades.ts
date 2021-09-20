@@ -261,11 +261,11 @@ export class Utilidades {
        validarPassword(password1: string, password2: string) {
 
         if (password1 != password2) { return false; }
-        if (password1.length < 8) { return false; }
-        if (/.*[a-z].*/.test(password1) == false) { return false; } // Lowercase letters
-        if (/.*[A-Z].*/.test(password1) == false) { return false; } // Uppercase letters
-        if (/.*[0-9].*/.test(password1) == false) { return false; } // Numbers
-        if (/.*[^a-zA-Z0-9].*/.test(password1) == false) { return false; } // Special characters (inc. space)
+        // if (password1.length < 8) { return false; }
+        // if (/.*[a-z].*/.test(password1) == false) { return false; } // Lowercase letters
+        // if (/.*[A-Z].*/.test(password1) == false) { return false; } // Uppercase letters
+        // if (/.*[0-9].*/.test(password1) == false) { return false; } // Numbers
+        // if (/.*[^a-zA-Z0-9].*/.test(password1) == false) { return false; } // Special characters (inc. space)
         return true;
       }
 

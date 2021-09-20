@@ -18,6 +18,7 @@ export class NegocioInformacionComponent implements OnInit {
   barrio: string;
   duracion: string;
   cupos: string;
+  rubro: string;
   horarios_disponibles: string[];
   barrios_disponibles: string[];
   desde: string;
@@ -30,6 +31,7 @@ export class NegocioInformacionComponent implements OnInit {
   viernes: boolean;
   sabado: boolean;
   domingo: boolean;
+  slug: string;
 
   
   constructor(
@@ -80,6 +82,8 @@ export class NegocioInformacionComponent implements OnInit {
     this.hasta = "";
     this.descanso = "";
     this.cupos = "";
+    this.rubro = "";
+    this.slug = "";
 
 
     this.NegocioService.darInfo().subscribe(data => {
@@ -100,6 +104,8 @@ export class NegocioInformacionComponent implements OnInit {
       this.hasta = data["hasta"];
       this.descanso = data["descanso"];
       this.cupos = data["cupos"];
+      this.rubro = data["rubro"];
+      this.slug = data["slug"];
       this.NgxSpinnerService.hide();
     });
   }
@@ -118,9 +124,10 @@ export class NegocioInformacionComponent implements OnInit {
       this.nombre == "" ||
       this.email == "" ||
       this.direccion == "" ||
-      this.telefono == ""
+      this.telefono == "" ||
+      this.rubro == ""
     ){
-      this.ToastService.notificar("warning", "Por favor, complete nombre, email, dirección y teléfono.", []);
+      this.ToastService.notificar("warning", "Por favor, complete nombre, email, dirección, teléfono y rubro.", []);
       return;
     }
 
@@ -155,11 +162,13 @@ export class NegocioInformacionComponent implements OnInit {
       "desde": this.desde,
       "hasta": this.hasta,
       "descanso": this.descanso,
-      "cupos": this.cupos
+      "cupos": this.cupos,
+      "rubro": this.rubro
     }
 
     this.NgxSpinnerService.show();
     this.NegocioService.guardarInfo(data).subscribe(data => {
+      this.slug = data["slug"];
 
       if(data["new_jwt"] != "0"){ // Reemplazo el JWT si amerita
         this.usuario.token = data["new_jwt"];
@@ -174,5 +183,24 @@ export class NegocioInformacionComponent implements OnInit {
 
     
   }
+
+
+
+  copyLink(){
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = "https://cali.uy/#/s/" + this.slug;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+    this.ToastService.notificar("success", "Enlace copiado!", []);
+  }
+
+
 
 }

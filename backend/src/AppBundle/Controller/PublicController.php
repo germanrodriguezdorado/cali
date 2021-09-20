@@ -48,11 +48,11 @@ class PublicController extends FOSRestController
         $q2 = "";        
         $q2 .= " SELECT n FROM AppBundle:Negocio n";
         $q2 .= " WHERE 1 = 1";
-        if($request->get("nombre") != "") $q2 .= " AND n.nombre LIKE :nombre";
+        if($request->get("rubro") != "") $q2 .= " AND n.rubro LIKE :rubro";
         if($request->get("barrio") != "") $q2 .= " AND n.barrio = :barrio";
 
         $q = $this->getDoctrine()->getManager()->createQuery($q2);
-        if($request->get("nombre") != "") $q->setParameter("nombre", "%".$request->get("nombre")."%");
+        if($request->get("rubro") != "") $q->setParameter("rubro", $request->get("rubro"));
         if($request->get("barrio") != "") $q->setParameter("barrio", $request->get("barrio"));      
         $negocios = $q->getResult(); 
 
@@ -214,6 +214,7 @@ class PublicController extends FOSRestController
       $negocio->setEmail($request->get("email"));
       $negocio->setDescanso("Sin descanso");
       $negocio->setDuracion("30");
+      $negocio->setRubro("");
       $em->persist($negocio);
       $em->flush(); 
 
@@ -274,6 +275,69 @@ class PublicController extends FOSRestController
         $userManager->updateUser($user, true);   
         return new JsonResponse(1);
     }
+
+
+    /**
+    * @Rest\Get("/api_hc/p/password_reset_step1/{email}")
+    */
+    public function passwordResetStep1($email)
+    {              
+        $em = $this->getDoctrine()->getManager();
+        $respuesta = true;
+        $usuario = $em->getRepository("AppBundle:Usuario")->findOneBy(array("email" => $email));
+        if($usuario){
+          if($usuario->isEnabled()){
+            $usuario->setConfirmationToken($this->get("string_functions")->generateRandomString(60));
+            $res = $this->get("email_service")->passwordReset($usuario);
+            if($res){
+              $em->flush();
+            }else{
+              $respuesta = false;
+            }
+          }
+        }
+
+        return new JsonResponse($respuesta);
+    }    
+
+
+
+   /**
+    * @Rest\Get("/api_hc/p/password_reset_check/{token}")
+    */
+    public function passwordResetCheck($token)
+    {              
+        $em = $this->getDoctrine()->getManager();
+        $usuario = $em->getRepository("AppBundle:Usuario")->findOneBy(array("confirmationToken" => $token));
+        
+        if($usuario){
+          $respuesta = 1;    
+        }else{
+          $respuesta = 0;
+        }
+
+        return new JsonResponse($respuesta);
+    }    
+
+
+
+  /**
+    * @Rest\Post("/api_hc/p/password_reset_step2/")
+    */
+    public function passwordResetStep2(Request $request)
+    {              
+      $em = $this->getDoctrine()->getManager();
+      $usuario = $em->getRepository("AppBundle:Usuario")->findOneBy(array("confirmationToken" => $request->get("token")));
+        
+      if(!$usuario) return new JsonResponse(0);
+
+      $userManager = $this->container->get("fos_user.user_manager");
+      $usuario->setPlainPassword($request->get("password"));                  
+      $userManager->updateUser($usuario, true);   
+      $usuario->setConfirmationToken(null);
+      $em->flush();
+      return new JsonResponse(1);
+    }      
 
 
 

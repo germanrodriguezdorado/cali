@@ -10,35 +10,43 @@
           <img class="mt-5" src="assets/img/logo2021.png" width="140" height="140">
         </div>
       </div>
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-md-12 text-center mt-5">
           <h3 style="font-size: 29px; background: -webkit-linear-gradient(#8F15D4, #3945D1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">RESERVÁ TU HORA</h3>
         </div>
-      </div>
+      </div> -->
 
-      <div class="row justify-content-md-center">
+      <!-- <div class="row justify-content-md-center">
         <div class="col-md-8 mt-5">
           <input style="height: 50px; border-radius: 50px; border: solid 1px; border-color: #5936D2;" placeholder="BUSCAR NEGOCIO" #inputBusqueda class="form-control form-control-lg text-center" type="text" [(ngModel)]="nombre">
+        </div>
+      </div> -->
+
+     
+
+      <div class="row justify-content-md-center mt-2">
+        <div class="col-md-9 mt-5">
+          <!-- <h4 style="line-height: 1.2; color: #fff; text-align: center;"></h4> -->
+          <h4 style="line-height: 1.5; color: #8F9BA6; text-align: center;">Buscá y reservá el horario para tu clase, peluquería o gym. El encargado del local o profesor, recibirá una notificación con tu reserva.</h4>
         </div>
       </div>
 
       <div class="row justify-content-md-center">
         <div class="col-md-8 mt-4">
-          <button [disabled]="loading" (click)="buscar()" type="button" class="btn btn-grad btn-block"><i *ngIf="loading" class="fa fa-circle-o-notch fa-spin"></i> BUSCAR</button>
+          <button [disabled]="loading" (click)="ir_a_paso2()" type="button" class="btn btn-grad btn-block"><i *ngIf="loading" class="fa fa-circle-o-notch fa-spin"></i> RESERVÁ TU HORA</button>
         </div>
       </div>
 
-      <div class="row justify-content-md-center mt-2">
-        <div class="col-md-8 mt-5">
-          <h5 style="line-height: 1.6; color: #8F9BA6; text-align: center;">Buscá y reservá el horario para tu clase, peluquería o gym. El encargado del local o profesor, recibirá una notificación con tu reserva.</h5>
-        </div>
-      </div>
-
-      <div class="row justify-content-md-center mt-4">
+      <div class="row justify-content-md-center mt-5">
         <div class="col-md-8">
           <p class="text-center" style="font-size: 26px; color: #8F9BA6;">
             Seguinos en <br>
-            <a style="color: #861DD3" href="https://www.instagram.com/cali.uy" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            <button type="button" (click)="irARedSocial('instagram')" style="border-radius: 50px;" class="btn btn-lg btn-cali btn-outline-dark"><i class="fa fa-instagram" aria-hidden="true"></i></button>
+            <button type="button" (click)="irARedSocial('facebook')" style="border-radius: 50px;" class="btn btn-lg btn-cali btn-outline-dark"><i class="fa fa-facebook" aria-hidden="true"></i></button>
+            <button type="button" (click)="irARedSocial('youtube')" style="border-radius: 50px;" class="btn btn-lg btn-cali btn-outline-dark"><i class="fa fa-youtube" aria-hidden="true"></i></button>
+            <!-- <a style="color: #861DD3" href="https://www.instagram.com/cali.uy" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            <a class="ml-2" style="color: #861DD3" href="https://www.facebook.com/Caliuy-105118571893889" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a class="ml-2" style="color: #861DD3" href="https://www.youtube.com/channel/UCBON5K4tBSDxh0Ax312Onrg" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a> -->
           </p>
          </div>
       </div>
@@ -113,11 +121,19 @@
 
 
 
-                  <div class="form-group col-sm-5" style="margin-bottom: 0px;">
+                  <div class="form-group col-sm-4" style="margin-bottom: 0px;">
+                    
                     <label>&nbsp;</label>
-                 
+                  
 
-                  <input style="height: 50px; border-radius: 50px; border: solid 1px; border-color: #5936D2;" placeholder="BUSCAR NEGOCIO" class="form-control form-control-lg text-center" type="text" [(ngModel)]="nombre">
+                  <ng-select style="height: 50px; border-radius: 50px; border: solid 1px; border-color: #5936D2;" class="form-control form-control-lg test" [clearable]="false" [searchable]="true" [(ngModel)]="rubro">
+                    <ng-option value="">Seleccioná un rubro</ng-option> 
+                    <ng-option value="Gimnasios">Gimnasios</ng-option>
+                      <ng-option value="Masajistas">Masajistas</ng-option>
+                      <ng-option value="Peluquerías">Peluquerías</ng-option>
+                      <ng-option value="Otros">Otros</ng-option>
+                </ng-select>
+
 
                 </div>
 
@@ -129,35 +145,17 @@
 
                    
                     <label>&nbsp;</label>
-                   
-
-                  <!-- <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" style="background-color: #fff;">
-                        <i class="fa fa-map-marker font-2xl" style="color: #5138D1"></i>
-                      </span>
-                    </div>
-                    <ng-select style="border-left: none;" class="form-control form-control-lg test" [clearable]="false" [searchable]="true" [(ngModel)]="barrio">
-                      <ng-option value="">Cualquier barrio</ng-option> 
-                      <ng-option *ngFor="let barrio of barrios_disponibles" value="{{ barrio }}">{{ barrio }}</ng-option>
-                  </ng-select>
-                   
-                  </div> -->
+                  
 
                   <ng-select style="height: 50px; border-radius: 50px; border: solid 1px; border-color: #5936D2;" class="form-control form-control-lg test" [clearable]="false" [searchable]="true" [(ngModel)]="barrio">
                     <ng-option value="">Cualquier barrio</ng-option> 
                     <ng-option *ngFor="let barrio of barrios_disponibles" value="{{ barrio }}">{{ barrio }}</ng-option>
                 </ng-select>
 
-                  <!-- <input style="height: 50px; border-radius: 50px; border: solid 1px; border-color: #5936D2;" placeholder="BUSCAR NEGOCIO" class="form-control form-control-lg text-center" type="text" [(ngModel)]="nombre"> -->
-
-               
-               
-              
-  
+                
               </div>
                   
-                    <div class="form-group col-sm-3">
+                    <div class="form-group col-sm-4">
                       <label>&nbsp;</label>
                       <button [disabled]="loading" (click)="buscar()" class="btn btn-lg btn-block btn-grad" type="button"><i *ngIf="loading" class="fa fa-circle-o-notch fa-spin"></i> Buscar</button>
                     </div>
@@ -174,13 +172,24 @@
         </div>
 
 
-        <div class="row mt-3 animated fadeIn" *ngIf="mostrando_sector_resultados && !loading && negocios.length == 0">
+        <div class="row mt-3 animated fadeIn" *ngIf="mostrando_sector_resultados && !loading && negocios.length == 0 && !iniciando_paso2">
           <div class="col-lg-8 mx-auto">
             <div role="alert" class="alert alert-danger text-center" style="color: #5936D2; border-color: #5936D2; background-color: #fff; border-radius: 50px;">
               <strong>¡Sin resultados!</strong> No encontramos negocios que cumplan esas condiciones de búsqueda. 
             </div>
           </div>
         </div>
+
+
+        <div class="row mt-3 animated fadeIn" *ngIf="iniciando_paso2">
+          <div class="col-lg-8 mx-auto">
+            <div role="alert" class="alert alert-danger text-center" style="color: #5936D2; border-color: #5936D2; background-color: #fff; border-radius: 50px;">
+              <strong>Seleccioná un rubro para comenzar tu búsqueda</strong> 
+            </div>
+          </div>
+        </div>
+
+        
 
 
         <div class="row mt-4 animated fadeIn" *ngIf="mostrando_sector_resultados">
