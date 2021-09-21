@@ -41,8 +41,8 @@
         <div class="col-md-8">
           <p class="text-center" style="font-size: 26px; color: #8F9BA6;">
             Seguinos en <br>
-            <button type="button" (click)="irARedSocial('instagram')" style="border-radius: 50px;" class="btn btn-lg btn-cali btn-outline-dark"><i class="fa fa-instagram" aria-hidden="true"></i></button>
-            <button type="button" (click)="irARedSocial('facebook')" style="border-radius: 50px;" class="btn btn-lg btn-cali btn-outline-dark"><i class="fa fa-facebook" aria-hidden="true"></i></button>
+            <button type="button" (click)="irARedSocial('instagram')" style="border-radius: 50px;" class="btn btn-lg btn-cali btn-outline-dark mr-1"><i class="fa fa-instagram" aria-hidden="true"></i></button>
+            <button type="button" (click)="irARedSocial('facebook')" style="border-radius: 50px;" class="btn btn-lg btn-cali btn-outline-dark mr-1"><i class="fa fa-facebook" aria-hidden="true"></i></button>
             <button type="button" (click)="irARedSocial('youtube')" style="border-radius: 50px;" class="btn btn-lg btn-cali btn-outline-dark"><i class="fa fa-youtube" aria-hidden="true"></i></button>
             <!-- <a style="color: #861DD3" href="https://www.instagram.com/cali.uy" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
             <a class="ml-2" style="color: #861DD3" href="https://www.facebook.com/Caliuy-105118571893889" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -121,14 +121,14 @@
 
 
 
-                  <div class="form-group col-sm-4" style="margin-bottom: 0px;">
+                  <div class="form-group col-sm-5" style="margin-bottom: 0px;">
                     
                     <label>&nbsp;</label>
                   
 
                   <ng-select style="height: 50px; border-radius: 50px; border: solid 1px; border-color: #5936D2;" class="form-control form-control-lg test" [clearable]="false" [searchable]="true" [(ngModel)]="rubro">
                     <ng-option value="">Seleccioná un rubro</ng-option> 
-                    <ng-option value="Coiffeurs / Peluquerías">Coiffeurs / Peluquerías</ng-option>
+                    <ng-option value="Coiffeurs / Peluquerías / Barberías">Coiffeurs / Peluquerías / Barberías</ng-option>
                       <ng-option value="Entrenamiento Funcional / Crossfit">Entrenamiento Funcional / Crossfit</ng-option>
                       <ng-option value="Gimnasios">Gimnasios</ng-option>
                       <ng-option value="Masajistas">Masajistas</ng-option>
@@ -156,7 +156,7 @@
                 
               </div>
                   
-                    <div class="form-group col-sm-4">
+                    <div class="form-group col-sm-3">
                       <label>&nbsp;</label>
                       <button [disabled]="loading" (click)="buscar()" class="btn btn-lg btn-block btn-grad" type="button"><i *ngIf="loading" class="fa fa-circle-o-notch fa-spin"></i> Buscar</button>
                     </div>
