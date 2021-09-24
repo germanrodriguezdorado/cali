@@ -61,7 +61,7 @@ class EmailService extends Controller
         $this->email->setSubject("Confirmá tu reserva en ".$nombre_negocio);            
         $this->email->setFrom(array($this->container_interface->getParameter("mailer_user") => $this->container_interface->getParameter("mailer_name")));             
         $this->email->setTo($email);   
-        $this->email->setBcc("germanrodriguezdorado@gmail.com");               
+        //$this->email->setBcc("germanrodriguezdorado@gmail.com");               
         $this->email->setBody($this->templating->render("emails/agenda_dirigida_a_cliente.html.twig", array(
             "nombre_negocio" => $nombre_negocio,
             "fecha" => $fecha,
@@ -121,7 +121,7 @@ class EmailService extends Controller
         $this->email->setSubject("Tenés una nueva reserva de horario");            
         $this->email->setFrom(array($this->container_interface->getParameter("mailer_user") => $this->container_interface->getParameter("mailer_name")));             
         $this->email->setTo($agenda->getNegocio()->getEmail()); 
-        $this->email->setBcc("germanrodriguezdorado@gmail.com");                 
+        //$this->email->setBcc("germanrodriguezdorado@gmail.com");                 
         $this->email->setBody($this->templating->render("emails/agenda_confirmada_dirigida_a_negocio.html.twig", array(
             "agenda" => $agenda
         )), "text/html");
